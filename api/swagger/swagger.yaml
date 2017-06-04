@@ -1,0 +1,150 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Population with Geo API
+# during dev, should point to your local machine
+host: localhost:8000
+# basePath prefixes all resource paths
+basePath: /api/
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+x-volos-resources:
+  #Defines our cache
+  cache:
+      ## Uncomment one cache provider
+      # provider: volos-cache-apigee
+      provider: volos-cache-memory
+      #provider: volos-cache-redis
+      options:
+        name: weather-cache
+        ttl: 90000000
+
+paths:
+  /aegypti:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: population
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheAegyptiCountries
+    get:
+      description: Returns all countries for which we have aegypti prevalence
+      # used as the method name of the controller
+      operationId: population
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/AegyptiResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  #/population/{format}/{country}:
+  /population:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: population
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cachePopCountries
+    get:
+      description: Returns all countries for which we have population
+      # used as the method name of the controller
+      operationId: population
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/PopulationResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  #/population/{format}/{country}:
+  /population/{country}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: population
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheCountry
+    get:
+      description: Returns all population metadata for requested country - arg, bra, col...etc.
+      parameters:
+        # - name: format
+        #   type: string
+        #   in: path
+        #   required: true
+        - name: country
+          type: string
+          in: path
+          required: true
+      # used as the method name of the controller
+      operationId: country
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/PopulationCountryResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  AegyptiResponse:
+    required:
+      - countries
+    properties:
+      countries:
+        type: object
+  PopulationResponse:
+    required:
+      - countries
+    properties:
+      countries:
+        type: object
+  PopulationCountryResponse:
+    required:
+       - type
+    properties:
+      type:
+        type: 'string'
+
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: object

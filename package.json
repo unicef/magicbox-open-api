@@ -1,0 +1,30 @@
+{
+  "name": "magicbox8",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "./server.js",
+  "dependencies": {
+    "a127-magic": "^0.12.1",
+    "azure-storage": "^2.1.0",
+    "bluebird": "^3.5.0",
+    "compression": "^1.6.2",
+    "eslint": "^3.19.0",
+    "express": "^4.12.3",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "swagger-express-mw": "^0.1.0",
+    "swagger-tools": "^0.10.1",
+    "volos-cache-memory": "^0.10.1",
+    "volos-swagger": "^0.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  }
+}

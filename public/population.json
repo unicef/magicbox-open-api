@@ -1,0 +1,4528 @@
+{
+      "afg": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 45155184,
+            "sq_km": 248596,
+            "density": 181.64083090637018
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.12469,
+            "sq_km": 376427,
+            "density": 3.312461645949945e-7
+          }
+        ]
+      },
+      "ago": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "AGO15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 25540682,
+            "sq_km": 481736,
+            "density": 53.018005712672505
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.63177,
+            "sq_km": 672121,
+            "density": 9.39964678978934e-7
+          }
+        ]
+      },
+      "arg": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ARG_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 52420457,
+            "sq_km": 1073406,
+            "density": 48.83562883009784
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.31325,
+            "sq_km": 1912484,
+            "density": 1.6379221996105588e-7
+          }
+        ]
+      },
+      "arm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ARM_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 3508218,
+            "sq_km": 11463,
+            "density": 306.0471080868883
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.02816,
+            "sq_km": 17773,
+            "density": 0.0000015844258144376302
+          }
+        ]
+      },
+      "atg": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ATG_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 93000,
+            "sq_km": 168,
+            "density": 553.5714285714286
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.42443,
+            "sq_km": 168,
+            "density": 0.0025263690476190473
+          }
+        ]
+      },
+      "aze": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "AZE_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 3938745,
+            "sq_km": 33295,
+            "density": 118.29839315212494
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.09099,
+            "sq_km": 43118,
+            "density": 0.0000021102555777169626
+          }
+        ]
+      },
+      "bdi": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BDI15adj_060213",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 9439881,
+            "sq_km": 10400,
+            "density": 907.6808653846153
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.04797,
+            "sq_km": 10405,
+            "density": 0.000004610283517539645
+          }
+        ]
+      },
+      "ben": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BEN14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 12195332,
+            "sq_km": 44565,
+            "density": 273.6526870862785
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.82794,
+            "sq_km": 59963,
+            "density": 0.000013807514634024315
+          }
+        ]
+      },
+      "bfa": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BFA14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 20747554,
+            "sq_km": 105567,
+            "density": 196.53446626313146
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.8464,
+            "sq_km": 128044,
+            "density": 0.000006610227734216363
+          }
+        ]
+      },
+      "bgd": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BGD_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 181607356,
+            "sq_km": 53918,
+            "density": 3368.213880336808
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.79492,
+            "sq_km": 61131,
+            "density": 0.000013003549753807397
+          }
+        ]
+      },
+      "blz": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BLZ_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 352745,
+            "sq_km": 8490,
+            "density": 41.54829210836278
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.55162,
+            "sq_km": 16485,
+            "density": 0.00003346193509250834
+          }
+        ]
+      },
+      "bol": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BOL_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 14416021,
+            "sq_km": 418302,
+            "density": 34.463189274734525
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.31628,
+            "sq_km": 810808,
+            "density": 3.900800189440657e-7
+          }
+        ]
+      },
+      "bra": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LAC_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 209204026,
+            "sq_km": 3282025,
+            "density": 63.742362108759075
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.64865,
+            "sq_km": 5730002,
+            "density": 1.1320240376879449e-7
+          }
+        ]
+      },
+      "brn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 435737,
+            "sq_km": 2230,
+            "density": 195.39775784753363
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.81866,
+            "sq_km": 2230,
+            "density": 0.0003671121076233184
+          }
+        ]
+      },
+      "btn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BTN_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 887101,
+            "sq_km": 14966,
+            "density": 59.274422023252704
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.41578,
+            "sq_km": 16922,
+            "density": 0.000024570381751566008
+          }
+        ]
+      },
+      "bwa": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "BWA15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 2866087,
+            "sq_km": 223118,
+            "density": 12.845610842693103
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.46261,
+            "sq_km": 528138,
+            "density": 8.759263677296464e-7
+          }
+        ]
+      },
+      "caf": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CAF15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 5681088,
+            "sq_km": 239480,
+            "density": 23.722598964422918
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.74965,
+            "sq_km": 460282,
+            "density": 0.0000016286754641719643
+          }
+        ]
+      },
+      "chl": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CHL_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 22516072,
+            "sq_km": 292504,
+            "density": 76.97697125509394
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.06608,
+            "sq_km": 497955,
+            "density": 1.3270275426494362e-7
+          }
+        ]
+      },
+      "chn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CHN_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 1806646877,
+            "sq_km": 3622477,
+            "density": 498.7324631736792
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.30977,
+            "sq_km": 7421691,
+            "density": 4.173846634143081e-8
+          }
+        ]
+      },
+      "civ": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CIV14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 25360799,
+            "sq_km": 124193,
+            "density": 204.20473778715387
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.71254,
+            "sq_km": 155286,
+            "density": 0.0000045885656144146925
+          }
+        ]
+      },
+      "cmr": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CMR15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 26712486,
+            "sq_km": 179939,
+            "density": 148.45300907529773
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.63966,
+            "sq_km": 238965,
+            "density": 0.0000026767936727135773
+          }
+        ]
+      },
+      "cod": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "COD15adjv5",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 91895561,
+            "sq_km": 898927,
+            "density": 102.22805745071625
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.67375,
+            "sq_km": 1810427,
+            "density": 3.7214977461118285e-7
+          }
+        ]
+      },
+      "cog": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "COG10adjv3",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 5193931,
+            "sq_km": 131916,
+            "density": 39.37301767791625
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.7166,
+            "sq_km": 258169,
+            "density": 0.000002775701187981516
+          }
+        ]
+      },
+      "col": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "COL_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 57164521,
+            "sq_km": 438806,
+            "density": 130.27287913109666
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.42085,
+            "sq_km": 670759,
+            "density": 6.274235604740302e-7
+          }
+        ]
+      },
+      "cri": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CRI_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 6478059,
+            "sq_km": 19759,
+            "density": 327.85358570777873
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.2525,
+            "sq_km": 27385,
+            "density": 0.000009220376118312945
+          }
+        ]
+      },
+      "cub": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "CUB_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 13350876,
+            "sq_km": 42753,
+            "density": 312.2792786471125
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.74861,
+            "sq_km": 55728,
+            "density": 0.000013433283089290841
+          }
+        ]
+      },
+      "dji": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "DJI15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 967468,
+            "sq_km": 8441,
+            "density": 114.61532993721123
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.63646,
+            "sq_km": 8441,
+            "density": 0.00007540101883663073
+          }
+        ]
+      },
+      "dom": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "DOM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 11902349,
+            "sq_km": 18568,
+            "density": 641.0140564411892
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.65642,
+            "sq_km": 22901,
+            "density": 0.000028663377145102833
+          }
+        ]
+      },
+      "dza": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "DZA_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 44906581,
+            "sq_km": 891147,
+            "density": 50.39188932914547
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.27225,
+            "sq_km": 2293307,
+            "density": 1.187150259428851e-7
+          }
+        ]
+      },
+      "ecu": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ECU_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 17404905,
+            "sq_km": 99081,
+            "density": 175.66339661489084
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.26646,
+            "sq_km": 127895,
+            "density": 0.0000020834278118769303
+          }
+        ]
+      },
+      "egy": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "EGY10adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 115152491,
+            "sq_km": 379835,
+            "density": 303.1645082733292
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.09463,
+            "sq_km": 1238134,
+            "density": 7.642953024470696e-8
+          }
+        ]
+      },
+      "eri": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ERI15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7314650,
+            "sq_km": 46509,
+            "density": 157.273860973145
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.61267,
+            "sq_km": 61077,
+            "density": 0.000010031108273163385
+          }
+        ]
+      },
+      "esh": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ESH_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 574426,
+            "sq_km": 103219,
+            "density": 5.565118825022525
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.0135,
+            "sq_km": 379360,
+            "density": 3.5586250527203714e-8
+          }
+        ]
+      },
+      "eth": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ETH15adjv5",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 115578936,
+            "sq_km": 436112,
+            "density": 265.0212239057857
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.40138,
+            "sq_km": 631063,
+            "density": 6.360379233135202e-7
+          }
+        ]
+      },
+      "fji": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.39111,
+            "sq_km": 11403,
+            "density": 0.00003429886871875822
+          }
+        ]
+      },
+      "fsm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 569999,
+            "sq_km": 299,
+            "density": 1906.3511705685619
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.13002,
+            "sq_km": 554,
+            "density": 0.0002346931407942238
+          }
+        ]
+      },
+      "gab": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GAB15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 1767590,
+            "sq_km": 102143,
+            "density": 17.305052720205985
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.59375,
+            "sq_km": 153727,
+            "density": 0.000003862366402778952
+          }
+        ]
+      },
+      "geo": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 6113087,
+            "sq_km": 26967,
+            "density": 226.6876923647421
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.07057,
+            "sq_km": 33848,
+            "density": 0.0000020849090049633655
+          }
+        ]
+      },
+      "gha": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GHA15adj_040213",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 32138320,
+            "sq_km": 92017,
+            "density": 349.2650271145549
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.72985,
+            "sq_km": 134861,
+            "density": 0.000005411868516472516
+          }
+        ]
+      },
+      "gin": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GIN14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 14800047,
+            "sq_km": 94524,
+            "density": 156.57448901866192
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.69501,
+            "sq_km": 122689,
+            "density": 0.0000056648110262533725
+          }
+        ]
+      },
+      "gmb": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GMB_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 2168852,
+            "sq_km": 4119,
+            "density": 526.54819130857
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.76746,
+            "sq_km": 4119,
+            "density": 0.00018632192279679534
+          }
+        ]
+      },
+      "gnb": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GNB14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 1999110,
+            "sq_km": 13082,
+            "density": 152.8137899403761
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.83068,
+            "sq_km": 13082,
+            "density": 0.00006349793609539825
+          }
+        ]
+      },
+      "gnq": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GNQ15adjv2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 953246,
+            "sq_km": 10409,
+            "density": 91.57901815736382
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.50011,
+            "sq_km": 12830,
+            "density": 0.00003897973499610289
+          }
+        ]
+      },
+      "gtm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GTM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 18874340,
+            "sq_km": 42144,
+            "density": 447.8535497342445
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.40344,
+            "sq_km": 45735,
+            "density": 0.000008821252869793375
+          }
+        ]
+      },
+      "guf": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GUF_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 302394,
+            "sq_km": 32162,
+            "density": 9.402213792674585
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.56431,
+            "sq_km": 32162,
+            "density": 0.00001754586157577265
+          }
+        ]
+      },
+      "guy": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "GUY_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 943705,
+            "sq_km": 80983,
+            "density": 11.65312472988158
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.71354,
+            "sq_km": 209836,
+            "density": 0.000003400465125145351
+          }
+        ]
+      },
+      "hnd": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "HND_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 10086827,
+            "sq_km": 43355,
+            "density": 232.65660246799678
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.57931,
+            "sq_km": 57781,
+            "density": 0.00001002596009068725
+          }
+        ]
+      },
+      "hti": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "HTI_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 11048659,
+            "sq_km": 10466,
+            "density": 1055.6716032868335
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.67322,
+            "sq_km": 11659,
+            "density": 0.00005774251651084999
+          }
+        ]
+      },
+      "idn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "IDN_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 327607647,
+            "sq_km": 729608,
+            "density": 449.018715529435
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.63787,
+            "sq_km": 1331262,
+            "density": 4.791468546386812e-7
+          }
+        ]
+      },
+      "ind": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 1621806251,
+            "sq_km": 1217127,
+            "density": 1332.4872844000668
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.74153,
+            "sq_km": 1632705,
+            "density": 4.5417267663172465e-7
+          }
+        ]
+      },
+      "irn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "Asia_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 81642255,
+            "sq_km": 626160,
+            "density": 130.38561230356459
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.17291,
+            "sq_km": 1235197,
+            "density": 1.3998576745247925e-7
+          }
+        ]
+      },
+      "irq": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "IRQ_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 45456529,
+            "sq_km": 171873,
+            "density": 264.4774281009815
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.26968,
+            "sq_km": 369442,
+            "density": 7.299657321040921e-7
+          }
+        ]
+      },
+      "jam": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "JAM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 3119780,
+            "sq_km": 4247,
+            "density": 734.5844125264892
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.62727,
+            "sq_km": 6010,
+            "density": 0.00010437104825291182
+          }
+        ]
+      },
+      "jor": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "Asia_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7909085,
+            "sq_km": 34406,
+            "density": 229.8751671220136
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.2775,
+            "sq_km": 84687,
+            "density": 0.000003276772113783698
+          }
+        ]
+      },
+      "jpn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 142461521,
+            "sq_km": 143811,
+            "density": 990.6163019518674
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.28849,
+            "sq_km": 173148,
+            "density": 0.000001666146880125673
+          }
+        ]
+      },
+      "kaz": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "KAZ_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 21894932,
+            "sq_km": 1054271,
+            "density": 20.76784052677158
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.02329,
+            "sq_km": 2658201,
+            "density": 8.761564682279481e-9
+          }
+        ]
+      },
+      "ken": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "KEN_popmap15adj_v2b",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 53077974,
+            "sq_km": 226250,
+            "density": 234.59878011049724
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.40152,
+            "sq_km": 297019,
+            "density": 0.0000013518327110386877
+          }
+        ]
+      },
+      "kgz": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7253512,
+            "sq_km": 76699,
+            "density": 94.57114173587661
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.0271,
+            "sq_km": 112232,
+            "density": 2.4146411005773755e-7
+          }
+        ]
+      },
+      "khm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "KHM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 15795378,
+            "sq_km": 70021,
+            "density": 225.58058296796676
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.73273,
+            "sq_km": 84055,
+            "density": 0.000008717268455178156
+          }
+        ]
+      },
+      "kir": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.61945,
+            "sq_km": 3126,
+            "density": 0.00019816058861164425
+          }
+        ]
+      },
+      "kor": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 58922436,
+            "sq_km": 38698,
+            "density": 1522.6222543800714
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.27352,
+            "sq_km": 47540,
+            "density": 0.00000575347076146403
+          }
+        ]
+      },
+      "lao": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LAO_popmap15adj_admin001_v2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 8004521,
+            "sq_km": 88756,
+            "density": 90.18568885483798
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.41279,
+            "sq_km": 111674,
+            "density": 0.0000036963841180579185
+          }
+        ]
+      },
+      "lbr": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LBR14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 5122491,
+            "sq_km": 37034,
+            "density": 138.31859912512826
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.5486,
+            "sq_km": 45482,
+            "density": 0.000012061914603579438
+          }
+        ]
+      },
+      "lby": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LBY10adjv2",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 6481613,
+            "sq_km": 623965,
+            "density": 10.387782968595994
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.05411,
+            "sq_km": 3334504,
+            "density": 1.622730097189867e-8
+          }
+        ]
+      },
+      "lka": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LKA_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 23375612,
+            "sq_km": 25420,
+            "density": 919.5756097560976
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.76891,
+            "sq_km": 25420,
+            "density": 0.00003024822974036192
+          }
+        ]
+      },
+      "lso": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "LSO10adjv2",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 2519096,
+            "sq_km": 11793,
+            "density": 213.60942932247943
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.02978,
+            "sq_km": 18730,
+            "density": 0.000001589962626801922
+          }
+        ]
+      },
+      "mar": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MAR_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 40114725,
+            "sq_km": 159643,
+            "density": 251.27769460608982
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.25072,
+            "sq_km": 188327,
+            "density": 0.000001331301406595974
+          }
+        ]
+      },
+      "mdg": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MDG15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 28013179,
+            "sq_km": 228359,
+            "density": 122.67166610468604
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.55359,
+            "sq_km": 281349,
+            "density": 0.0000019676273951569048
+          }
+        ]
+      },
+      "mdv": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 336999,
+            "sq_km": 115,
+            "density": 2930.426086956522
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.40834,
+            "sq_km": 231,
+            "density": 0.0017677056277056276
+          }
+        ]
+      },
+      "mex": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MEX_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 146308931,
+            "sq_km": 753684,
+            "density": 194.1250325069923
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.41478,
+            "sq_km": 1159804,
+            "density": 3.576293925525347e-7
+          }
+        ]
+      },
+      "mhl": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 59000,
+            "sq_km": 115,
+            "density": 513.0434782608696
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.5216,
+            "sq_km": 347,
+            "density": 0.0015031700288184436
+          }
+        ]
+      },
+      "mli": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MLI_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 20155033,
+            "sq_km": 483091,
+            "density": 41.720986315207696
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.76707,
+            "sq_km": 1258094,
+            "density": 6.097080186377171e-7
+          }
+        ]
+      },
+      "mmr": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MMR_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 70344699,
+            "sq_km": 258400,
+            "density": 272.23180727554177
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.63476,
+            "sq_km": 357288,
+            "density": 0.0000017766059873267504
+          }
+        ]
+      },
+      "mng": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 3654842,
+            "sq_km": 604735,
+            "density": 6.043708401200526
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00996,
+            "sq_km": 1038857,
+            "density": 9.587460064282187e-9
+          }
+        ]
+      },
+      "moz": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MOZ15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 33187098,
+            "sq_km": 303978,
+            "density": 109.17598642006988
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.74564,
+            "sq_km": 403550,
+            "density": 0.0000018477016478751083
+          }
+        ]
+      },
+      "mrt": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MRT_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 4631917,
+            "sq_km": 402001,
+            "density": 11.522152929967836
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.55495,
+            "sq_km": 1119232,
+            "density": 4.958310698764867e-7
+          }
+        ]
+      },
+      "mwi": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MWI_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 18953180,
+            "sq_km": 45571,
+            "density": 415.90441289416515
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.44111,
+            "sq_km": 48232,
+            "density": 0.00000914558799137502
+          }
+        ]
+      },
+      "mys": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "MYS_popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 110165898,
+            "sq_km": 127141,
+            "density": 866.4860115934277
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.57035,
+            "sq_km": 182256,
+            "density": 0.0000031293894302519534
+          }
+        ]
+      },
+      "nam": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "NAM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 3404988,
+            "sq_km": 318096,
+            "density": 10.70427795382526
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.44071,
+            "sq_km": 648165,
+            "density": 6.799348931213503e-7
+          }
+        ]
+      },
+      "ner": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "NER15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 23147494,
+            "sq_km": 457020,
+            "density": 50.64875497790031
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.75236,
+            "sq_km": 1727238,
+            "density": 4.355855996683723e-7
+          }
+        ]
+      },
+      "nga": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "AFR_PPP_2015_adj_v2",
+            "set": "2-gadm2-8",
+            "admin_level": 2,
+            "sum": 181966409,
+            "sq_km": 350740,
+            "density": 518.8071192336204
+          },
+          {
+            "data_source": "worldpop",
+            "raster": "AFR_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 181966409,
+            "sq_km": 350740,
+            "density": 518.8071192336204
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.74163,
+            "sq_km": 453995,
+            "density": 0.000001633564246302272
+          }
+        ]
+      },
+      "nic": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "NIC_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7599350,
+            "sq_km": 49506,
+            "density": 153.50361572334666
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.52236,
+            "sq_km": 77297,
+            "density": 0.0000067578301874587635
+          }
+        ]
+      },
+      "npl": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "NPL_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 29406147,
+            "sq_km": 57013,
+            "density": 515.7796818269518
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.36761,
+            "sq_km": 60375,
+            "density": 0.000006088778467908903
+          }
+        ]
+      },
+      "omn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "OMN_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 4813701,
+            "sq_km": 119385,
+            "density": 40.32081919839176
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.31763,
+            "sq_km": 291376,
+            "density": 0.0000010901035088682665
+          }
+        ]
+      },
+      "pak": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 238991173,
+            "sq_km": 337523,
+            "density": 708.0737401599298
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.42778,
+            "sq_km": 616967,
+            "density": 6.933596124265965e-7
+          }
+        ]
+      },
+      "pan": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PAN_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 4445427,
+            "sq_km": 28997,
+            "density": 153.3064454943615
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.42475,
+            "sq_km": 29650,
+            "density": 0.000014325463743676223
+          }
+        ]
+      },
+      "per": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PER_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 37492799,
+            "sq_km": 499088,
+            "density": 75.12262166191132
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.17287,
+            "sq_km": 791959,
+            "density": 2.1828150194643913e-7
+          }
+        ]
+      },
+      "phl": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PHL_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 102811902,
+            "sq_km": 114231,
+            "density": 900.035034272658
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.1406,
+            "sq_km": 116973,
+            "density": 0.0000012019867832747727
+          }
+        ]
+      },
+      "plw": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 20999,
+            "sq_km": 188,
+            "density": 111.69680851063829
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.2459,
+            "sq_km": 188,
+            "density": 0.0013079787234042553
+          }
+        ]
+      },
+      "png": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 96879576,
+            "sq_km": 179081,
+            "density": 540.9818797080651
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.28535,
+            "sq_km": 261397,
+            "density": 0.0000010916345635183265
+          }
+        ]
+      },
+      "pri": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PRI_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 3914878,
+            "sq_km": 3463,
+            "density": 1130.48743863702
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.67679,
+            "sq_km": 4716,
+            "density": 0.00014350932994062766
+          }
+        ]
+      },
+      "prk": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 29835117,
+            "sq_km": 47396,
+            "density": 629.4859692801081
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.10906,
+            "sq_km": 55880,
+            "density": 0.000001951682176091625
+          }
+        ]
+      },
+      "pry": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PRY_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 8319510,
+            "sq_km": 154281,
+            "density": 53.924397689929414
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.79992,
+            "sq_km": 265306,
+            "density": 0.0000030150844685005238
+          }
+        ]
+      },
+      "pse": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "PSE_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 4759839,
+            "sq_km": 2401,
+            "density": 1982.4402332361517
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.59789,
+            "sq_km": 2401,
+            "density": 0.0002490170762182424
+          }
+        ]
+      },
+      "rwa": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "RWA_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 5,
+            "sum": 10060776,
+            "sq_km": 9769,
+            "density": 1029.8675401781145
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 5,
+            "sum": 0.02251,
+            "sq_km": 9859,
+            "density": 0.0000022831930216046252
+          }
+        ]
+      },
+      "sau": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SAU_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 30561563,
+            "sq_km": 737267,
+            "density": 41.45250363843763
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.14293,
+            "sq_km": 4536243,
+            "density": 3.150845314062761e-8
+          }
+        ]
+      },
+      "sdn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SDN15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 50003228,
+            "sq_km": 722836,
+            "density": 69.17644942974617
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.6645,
+            "sq_km": 1496662,
+            "density": 4.439880213434964e-7
+          }
+        ]
+      },
+      "sen": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SEN_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 16754594,
+            "sq_km": 76019,
+            "density": 220.40008418947895
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.72639,
+            "sq_km": 93181,
+            "density": 0.000007795473326107254
+          }
+        ]
+      },
+      "slb": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7415137,
+            "sq_km": 11016,
+            "density": 673.1242737835875
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.15605,
+            "sq_km": 12786,
+            "density": 0.000012204755201001095
+          }
+        ]
+      },
+      "sle": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SLE14adjv1",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 7477184,
+            "sq_km": 28031,
+            "density": 266.7469587242696
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.56468,
+            "sq_km": 29174,
+            "density": 0.000019355590594364843
+          }
+        ]
+      },
+      "slv": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SLV_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 6906118,
+            "sq_km": 7885,
+            "density": 875.8551680405834
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.42702,
+            "sq_km": 8841,
+            "density": 0.000048299966067186974
+          }
+        ]
+      },
+      "som": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SOM15adjv2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 11736030,
+            "sq_km": 244610,
+            "density": 47.97853726339888
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.61396,
+            "sq_km": 411734,
+            "density": 0.0000014911569119868653
+          }
+        ]
+      },
+      "ssd": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SSD15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 13494831,
+            "sq_km": 242485,
+            "density": 55.65223003484752
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.80558,
+            "sq_km": 490211,
+            "density": 0.000001643333176938094
+          }
+        ]
+      },
+      "sur": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SUR_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 615839,
+            "sq_km": 56535,
+            "density": 10.89305739807199
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.62017,
+            "sq_km": 81309,
+            "density": 0.000007627322928581092
+          }
+        ]
+      },
+      "swz": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SWZ15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 1491272,
+            "sq_km": 6711,
+            "density": 222.21308299806287
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.51597,
+            "sq_km": 6711,
+            "density": 0.00007688421993741618
+          }
+        ]
+      },
+      "syr": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "SYR_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 26616640,
+            "sq_km": 72169,
+            "density": 368.80987681691585
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.30721,
+            "sq_km": 142073,
+            "density": 0.0000021623390792057604
+          }
+        ]
+      },
+      "tcd": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "TCD15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 15291307,
+            "sq_km": 490337,
+            "density": 31.185301129631252
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.78057,
+            "sq_km": 1368476,
+            "density": 5.70393634963273e-7
+          }
+        ]
+      },
+      "tgo": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "TGO15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 7812141,
+            "sq_km": 22006,
+            "density": 355.00049986367355
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.80242,
+            "sq_km": 27097,
+            "density": 0.000029612872273683436
+          }
+        ]
+      },
+      "tha": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "THA_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 74943039,
+            "sq_km": 198478,
+            "density": 377.5886445852941
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.67336,
+            "sq_km": 220396,
+            "density": 0.000003055227862574638
+          }
+        ]
+      },
+      "tjk": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 8678521,
+            "sq_km": 54870,
+            "density": 158.16513577546928
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.20846,
+            "sq_km": 83225,
+            "density": 0.0000025047762090717934
+          }
+        ]
+      },
+      "tkm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "Asia_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 12488983,
+            "sq_km": 189033,
+            "density": 66.06773949522041
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.10498,
+            "sq_km": 703328,
+            "density": 1.4926179535010693e-7
+          }
+        ]
+      },
+      "tls": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 1376786,
+            "sq_km": 5757,
+            "density": 239.14990446413063
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.39633,
+            "sq_km": 5845,
+            "density": 0.00006780667236954663
+          }
+        ]
+      },
+      "ton": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.41015,
+            "sq_km": 490,
+            "density": 0.0008370408163265306
+          }
+        ]
+      },
+      "tto": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "TTO_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 1573189,
+            "sq_km": 1991,
+            "density": 790.1501757910597
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.70499,
+            "sq_km": 1991,
+            "density": 0.00035408839779005525
+          }
+        ]
+      },
+      "tun": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "TUN15adjv3",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 12483473,
+            "sq_km": 59793,
+            "density": 208.7781680129781
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.25856,
+            "sq_km": 75018,
+            "density": 0.0000034466394731931003
+          }
+        ]
+      },
+      "tur": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "Asia_PPP_2015_adj_v2",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 78272646,
+            "sq_km": 301438,
+            "density": 259.6641631114856
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.11321,
+            "sq_km": 375539,
+            "density": 3.01460034776681e-7
+          }
+        ]
+      },
+      "twn": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 31730779,
+            "sq_km": 14056,
+            "density": 2257.4543966989186
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.56295,
+            "sq_km": 18707,
+            "density": 0.00003009301331052547
+          }
+        ]
+      },
+      "tza": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "TZA_popmap15adj_v2b",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 61620325,
+            "sq_km": 363160,
+            "density": 169.67817215552373
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.5404,
+            "sq_km": 461381,
+            "density": 0.0000011712662636736233
+          }
+        ]
+      },
+      "uga": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "UGA_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 42338132,
+            "sq_km": 93243,
+            "density": 454.06231030747614
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.45098,
+            "sq_km": 110346,
+            "density": 0.0000040869628260199735
+          }
+        ]
+      },
+      "ukr": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "UKR_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 68639347,
+            "sq_km": 232131,
+            "density": 295.6922901292804
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00885,
+            "sq_km": 301859,
+            "density": 2.9318324118214134e-8
+          }
+        ]
+      },
+      "ury": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "URY_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 3755905,
+            "sq_km": 68520,
+            "density": 54.814725627554
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.49478,
+            "sq_km": 83544,
+            "density": 0.000005922388202623767
+          }
+        ]
+      },
+      "uzb": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "UZB_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 3830808,
+            "sq_km": 172803,
+            "density": 22.168642905505113
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.22169,
+            "sq_km": 377134,
+            "density": 5.878281989955824e-7
+          }
+        ]
+      },
+      "ven": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "VEN_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 38619268,
+            "sq_km": 352317,
+            "density": 109.6151136618443
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.59683,
+            "sq_km": 629229,
+            "density": 9.485100019229883e-7
+          }
+        ]
+      },
+      "vnm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "VNM_ppp_v2b_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 93590824,
+            "sq_km": 126790,
+            "density": 738.1561952835397
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.4269,
+            "sq_km": 136241,
+            "density": 0.0000031334179872431942
+          }
+        ]
+      },
+      "vut": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 309433,
+            "sq_km": 4756,
+            "density": 65.06160639192599
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.41561,
+            "sq_km": 5624,
+            "density": 0.000073899359886202
+          }
+        ]
+      },
+      "wsm": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "popmap15adj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 200050,
+            "sq_km": 1101,
+            "density": 181.69845594913716
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.24301,
+            "sq_km": 1189,
+            "density": 0.00020438183347350715
+          }
+        ]
+      },
+      "yem": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "YEM10",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 30681678,
+            "sq_km": 174610,
+            "density": 175.7154687589485
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.30661,
+            "sq_km": 289795,
+            "density": 0.0000010580237754274573
+          }
+        ]
+      },
+      "zaf": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ZAF15adjv4",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 62515460,
+            "sq_km": 470934,
+            "density": 132.747816042163
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.24139,
+            "sq_km": 671133,
+            "density": 3.596753549594492e-7
+          }
+        ]
+      },
+      "zmb": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ZMB_ppp_v2c_2015_UNadj",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 19593496,
+            "sq_km": 290081,
+            "density": 67.54491331731482
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.66506,
+            "sq_km": 500167,
+            "density": 0.0000013296758882533234
+          }
+        ]
+      },
+      "zwe": {
+        "human": [
+          {
+            "data_source": "worldpop",
+            "raster": "ZWE15adjv5",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 17440730,
+            "sq_km": 150843,
+            "density": 115.6217391592583
+          }
+        ],
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.54493,
+            "sq_km": 239138,
+            "density": 0.0000022787260912109326
+          }
+        ]
+      },
+      "abw": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.92733,
+            "sq_km": 70,
+            "density": 0.013247571428571428
+          }
+        ]
+      },
+      "aia": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.45967,
+            "sq_km": 64,
+            "density": 0.00718234375
+          }
+        ]
+      },
+      "ala": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00553,
+            "sq_km": 884,
+            "density": 0.000006255656108597285
+          }
+        ]
+      },
+      "alb": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.07658,
+            "sq_km": 12878,
+            "density": 0.000005946575555210436
+          }
+        ]
+      },
+      "and": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.02233,
+            "sq_km": 174,
+            "density": 0.00012833333333333333
+          }
+        ]
+      },
+      "are": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.32442,
+            "sq_km": 81218,
+            "density": 0.0000039944347312172175
+          }
+        ]
+      },
+      "asm": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.0362,
+            "sq_km": 86,
+            "density": 0.00042093023255813954
+          }
+        ]
+      },
+      "atf": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.12801,
+            "sq_km": 5906,
+            "density": 0.000021674568235692518
+          }
+        ]
+      },
+      "aus": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.19489,
+            "sq_km": 10474208,
+            "density": 1.860665741982592e-8
+          }
+        ]
+      },
+      "aut": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.01399,
+            "sq_km": 35819,
+            "density": 3.905748345849968e-7
+          }
+        ]
+      },
+      "bel": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.01153,
+            "sq_km": 12215,
+            "density": 9.439214081047892e-7
+          }
+        ]
+      },
+      "bes": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.51954,
+            "sq_km": 124,
+            "density": 0.00418983870967742
+          }
+        ]
+      },
+      "bgr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01217,
+            "sq_km": 51302,
+            "density": 2.3722272036177928e-7
+          }
+        ]
+      },
+      "bhr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.558,
+            "sq_km": 276,
+            "density": 0.0020217391304347826
+          }
+        ]
+      },
+      "bhs": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.51953,
+            "sq_km": 6615,
+            "density": 0.00007853817082388512
+          }
+        ]
+      },
+      "bih": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.02263,
+            "sq_km": 22337,
+            "density": 0.000001013117249406814
+          }
+        ]
+      },
+      "blr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00646,
+            "sq_km": 111485,
+            "density": 5.7945015024442746e-8
+          }
+        ]
+      },
+      "brb": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.72565,
+            "sq_km": 167,
+            "density": 0.004345209580838324
+          }
+        ]
+      },
+      "bvt": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.00029,
+            "sq_km": 59,
+            "density": 0.000004915254237288135
+          }
+        ]
+      },
+      "can": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.01039,
+            "sq_km": 48227333,
+            "density": 2.1543799654026068e-10
+          }
+        ]
+      },
+      "che": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.01208,
+            "sq_km": 16516,
+            "density": 7.3141196415597e-7
+          }
+        ]
+      },
+      "cok": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.38985,
+            "sq_km": 403,
+            "density": 0.0009673697270471464
+          }
+        ]
+      },
+      "com": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.52612,
+            "sq_km": 646,
+            "density": 0.0008144272445820434
+          }
+        ]
+      },
+      "cpv": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.60272,
+            "sq_km": 1579,
+            "density": 0.00038170994300189997
+          }
+        ]
+      },
+      "cuw": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.89125,
+            "sq_km": 169,
+            "density": 0.005273668639053254
+          }
+        ]
+      },
+      "cxr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.70238,
+            "sq_km": 53,
+            "density": 0.01325245283018868
+          }
+        ]
+      },
+      "cym": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.26002,
+            "sq_km": 122,
+            "density": 0.002131311475409836
+          }
+        ]
+      },
+      "cyp": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.53584,
+            "sq_km": 4984,
+            "density": 0.00010751203852327448
+          }
+        ]
+      },
+      "cze": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01129,
+            "sq_km": 35113,
+            "density": 3.2153333523196534e-7
+          }
+        ]
+      },
+      "deu": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.0083,
+            "sq_km": 147205,
+            "density": 5.638395434937672e-8
+          }
+        ]
+      },
+      "dma": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.45923,
+            "sq_km": 291,
+            "density": 0.001578109965635739
+          }
+        ]
+      },
+      "dnk": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00868,
+            "sq_km": 21211,
+            "density": 4.092216302861723e-7
+          }
+        ]
+      },
+      "esp": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.07033,
+            "sq_km": 213919,
+            "density": 3.2876930052963975e-7
+          }
+        ]
+      },
+      "est": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.00314,
+            "sq_km": 17926,
+            "density": 1.7516456543568003e-7
+          }
+        ]
+      },
+      "fin": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.00628,
+            "sq_km": 213533,
+            "density": 2.940997410236357e-8
+          }
+        ]
+      },
+      "flk": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.0034,
+            "sq_km": 14360,
+            "density": 2.3676880222841225e-7
+          }
+        ]
+      },
+      "fro": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01637,
+            "sq_km": 555,
+            "density": 0.000029495495495495492
+          }
+        ]
+      },
+      "gbr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01703,
+            "sq_km": 143095,
+            "density": 1.1901184527761277e-7
+          }
+        ]
+      },
+      "ggy": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00084,
+            "sq_km": 34,
+            "density": 0.000024705882352941178
+          }
+        ]
+      },
+      "gib": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.51891,
+            "sq_km": 2,
+            "density": 0.259455
+          }
+        ]
+      },
+      "glp": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.59342,
+            "sq_km": 637,
+            "density": 0.000931585557299843
+          }
+        ]
+      },
+      "grc": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.2319,
+            "sq_km": 58889,
+            "density": 0.000003937917098269626
+          }
+        ]
+      },
+      "grd": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.69734,
+            "sq_km": 138,
+            "density": 0.005053188405797101
+          }
+        ]
+      },
+      "grl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00937,
+            "sq_km": 23552397,
+            "density": 3.978363645959263e-10
+          }
+        ]
+      },
+      "gum": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.55104,
+            "sq_km": 212,
+            "density": 0.002599245283018868
+          }
+        ]
+      },
+      "hkg": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.5383,
+            "sq_km": 602,
+            "density": 0.0008941860465116279
+          }
+        ]
+      },
+      "hmd": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.00656,
+            "sq_km": 140,
+            "density": 0.00004685714285714286
+          }
+        ]
+      },
+      "hrv": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.03815,
+            "sq_km": 24575,
+            "density": 0.0000015523906408952188
+          }
+        ]
+      },
+      "hun": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00812,
+            "sq_km": 45291,
+            "density": 1.7928506767348922e-7
+          }
+        ]
+      },
+      "imn": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01668,
+            "sq_km": 223,
+            "density": 0.00007479820627802691
+          }
+        ]
+      },
+      "iot": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.36301,
+            "sq_km": 49,
+            "density": 0.007408367346938775
+          }
+        ]
+      },
+      "irl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.01831,
+            "sq_km": 46033,
+            "density": 3.9775813003714724e-7
+          }
+        ]
+      },
+      "isl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01454,
+            "sq_km": 62459,
+            "density": 2.3279271201908453e-7
+          }
+        ]
+      },
+      "isr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.61114,
+            "sq_km": 14158,
+            "density": 0.000043165701370250036
+          }
+        ]
+      },
+      "ita": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.07431,
+            "sq_km": 124079,
+            "density": 5.988926409787313e-7
+          }
+        ]
+      },
+      "jey": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00731,
+            "sq_km": 48,
+            "density": 0.00015229166666666665
+          }
+        ]
+      },
+      "kna": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.43592,
+            "sq_km": 103,
+            "density": 0.0042322330097087375
+          }
+        ]
+      },
+      "kwt": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.41843,
+            "sq_km": 6713,
+            "density": 0.00006233129748249665
+          }
+        ]
+      },
+      "lbn": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.1172,
+            "sq_km": 3952,
+            "density": 0.00002965587044534413
+          }
+        ]
+      },
+      "lca": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.69684,
+            "sq_km": 237,
+            "density": 0.002940253164556962
+          }
+        ]
+      },
+      "lie": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.01376,
+            "sq_km": 62,
+            "density": 0.00022193548387096774
+          }
+        ]
+      },
+      "ltu": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.0066,
+            "sq_km": 38446,
+            "density": 1.7166935441918534e-7
+          }
+        ]
+      },
+      "lux": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 4,
+            "sum": 0.00878,
+            "sq_km": 996,
+            "density": 0.000008815261044176707
+          }
+        ]
+      },
+      "lva": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00571,
+            "sq_km": 28992,
+            "density": 1.969508830022075e-7
+          }
+        ]
+      },
+      "mac": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.11071,
+            "sq_km": 13,
+            "density": 0.008516153846153847
+          }
+        ]
+      },
+      "maf": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.87828,
+            "sq_km": 21,
+            "density": 0.04182285714285714
+          }
+        ]
+      },
+      "mda": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00916,
+            "sq_km": 21176,
+            "density": 4.32565168114847e-7
+          }
+        ]
+      },
+      "mkd": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.01846,
+            "sq_km": 9585,
+            "density": 0.000001925925925925926
+          }
+        ]
+      },
+      "mlt": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.687,
+            "sq_km": 125,
+            "density": 0.005496
+          }
+        ]
+      },
+      "mne": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.0385,
+            "sq_km": 6749,
+            "density": 0.0000057045488220477104
+          }
+        ]
+      },
+      "mnp": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.5445,
+            "sq_km": 368,
+            "density": 0.0014796195652173913
+          }
+        ]
+      },
+      "msr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.61165,
+            "sq_km": 38,
+            "density": 0.01609605263157895
+          }
+        ]
+      },
+      "mtq": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.61495,
+            "sq_km": 431,
+            "density": 0.0014267981438515081
+          }
+        ]
+      },
+      "mus": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.64281,
+            "sq_km": 1133,
+            "density": 0.0005673521624007061
+          }
+        ]
+      },
+      "myt": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.46939,
+            "sq_km": 151,
+            "density": 0.0031085430463576157
+          }
+        ]
+      },
+      "ncl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.68439,
+            "sq_km": 7951,
+            "density": 0.00008607596528738524
+          }
+        ]
+      },
+      "niu": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.50667,
+            "sq_km": 102,
+            "density": 0.0049673529411764705
+          }
+        ]
+      },
+      "nld": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.0124,
+            "sq_km": 15492,
+            "density": 8.004131164471985e-7
+          }
+        ]
+      },
+      "nor": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.0176,
+            "sq_km": 182314,
+            "density": 9.653674429829854e-8
+          }
+        ]
+      },
+      "nru": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.06888,
+            "sq_km": 8,
+            "density": 0.00861
+          }
+        ]
+      },
+      "nzl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.02009,
+            "sq_km": 140162,
+            "density": 1.4333414192149084e-7
+          }
+        ]
+      },
+      "pol": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00824,
+            "sq_km": 148870,
+            "density": 5.535030563578962e-8
+          }
+        ]
+      },
+      "prt": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 3,
+            "sum": 0.06601,
+            "sq_km": 36657,
+            "density": 0.0000018007474697874894
+          }
+        ]
+      },
+      "pyf": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.33093,
+            "sq_km": 1855,
+            "density": 0.0001783989218328841
+          }
+        ]
+      },
+      "qat": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.27241,
+            "sq_km": 4488,
+            "density": 0.00006069741532976827
+          }
+        ]
+      },
+      "reu": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.31469,
+            "sq_km": 970,
+            "density": 0.0003244226804123712
+          }
+        ]
+      },
+      "rou": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01232,
+            "sq_km": 97935,
+            "density": 1.2579772297952724e-7
+          }
+        ]
+      },
+      "sgs": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.00596,
+            "sq_km": 3163,
+            "density": 0.000001884287069238065
+          }
+        ]
+      },
+      "shn": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.04031,
+            "sq_km": 231,
+            "density": 0.00017450216450216448
+          }
+        ]
+      },
+      "sjm": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00606,
+            "sq_km": 231599,
+            "density": 2.616591608772059e-8
+          }
+        ]
+      },
+      "smr": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.00756,
+            "sq_km": 23,
+            "density": 0.000328695652173913
+          }
+        ]
+      },
+      "spm": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.01337,
+            "sq_km": 87,
+            "density": 0.00015367816091954023
+          }
+        ]
+      },
+      "srb": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01145,
+            "sq_km": 38215,
+            "density": 2.9962056783985347e-7
+          }
+        ]
+      },
+      "stp": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.48588,
+            "sq_km": 442,
+            "density": 0.0010992760180995474
+          }
+        ]
+      },
+      "svk": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.0138,
+            "sq_km": 21220,
+            "density": 6.503298774740811e-7
+          }
+        ]
+      },
+      "svn": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.02314,
+            "sq_km": 7931,
+            "density": 0.0000029176648594124323
+          }
+        ]
+      },
+      "swe": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.00743,
+            "sq_km": 291747,
+            "density": 2.5467271300133336e-8
+          }
+        ]
+      },
+      "sxm": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.88395,
+            "sq_km": 14,
+            "density": 0.06313928571428572
+          }
+        ]
+      },
+      "syc": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.21991,
+            "sq_km": 280,
+            "density": 0.0007853928571428571
+          }
+        ]
+      },
+      "tca": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.43371,
+            "sq_km": 595,
+            "density": 0.0007289243697478991
+          }
+        ]
+      },
+      "usa": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.27258,
+            "sq_km": 9260054,
+            "density": 2.9436113439511257e-8
+          }
+        ]
+      },
+      "vct": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.72147,
+            "sq_km": 153,
+            "density": 0.004715490196078431
+          }
+        ]
+      },
+      "vgb": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.1412,
+            "sq_km": 65,
+            "density": 0.002172307692307692
+          }
+        ]
+      },
+      "vir": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.14804,
+            "sq_km": 154,
+            "density": 0.0009612987012987014
+          }
+        ]
+      },
+      "wlf": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.28777,
+            "sq_km": 60,
+            "density": 0.004796166666666667
+          }
+        ]
+      },
+      "xad": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.73545,
+            "sq_km": 138,
+            "density": 0.0053293478260869566
+          }
+        ]
+      },
+      "xca": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.07539,
+            "sq_km": 1147754,
+            "density": 6.568480702310774e-8
+          }
+        ]
+      },
+      "xcl": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 0,
+            "sum": 0.79544,
+            "sq_km": 3,
+            "density": 0.2651466666666667
+          }
+        ]
+      },
+      "xko": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 2,
+            "sum": 0.01305,
+            "sq_km": 4442,
+            "density": 0.0000029378658262044125
+          }
+        ]
+      },
+      "xnc": {
+        "aegypti": [
+          {
+            "data_source": "simon_hay",
+            "raster": "aegypti",
+            "set": "gadm2-8",
+            "admin_level": 1,
+            "sum": 0.49059,
+            "sq_km": 1279,
+            "density": 0.00038357310398749023
+          }
+        ]
+      }
+    }
