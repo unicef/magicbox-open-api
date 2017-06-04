@@ -30,9 +30,9 @@ x-volos-resources:
         ttl: 90000000
 
 paths:
-  /aegypti:
+  /mosquito/{kind}:
     # binds a127 app logic to a route
-    x-swagger-router-controller: population
+    x-swagger-router-controller: general
     x-volos-apply:
       # Applies the cache to our endpoint
       cache:
@@ -40,17 +40,26 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cacheAegyptiCountries
+            function: cacheMosquitoKinds
     get:
-      description: Returns all countries for which we have aegypti prevalence
+      description: Returns all population metadata for requested country - arg, bra, col...etc.
+      parameters:
+        # - name: format
+        #   type: string
+        #   in: path
+        #   required: true
+        - name: kind
+          type: string
+          in: path
+          required: true
       # used as the method name of the controller
-      operationId: population
+      operationId: general
       responses:
         "200":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/AegyptiResponse"
+            $ref: "#/definitions/MosquitoKindResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -59,7 +68,7 @@ paths:
   #/population/{format}/{country}:
   /population:
     # binds a127 app logic to a route
-    x-swagger-router-controller: population
+    x-swagger-router-controller: general
     x-volos-apply:
       # Applies the cache to our endpoint
       cache:
@@ -71,7 +80,7 @@ paths:
     get:
       description: Returns all countries for which we have population
       # used as the method name of the controller
-      operationId: population
+      operationId: general
       responses:
         "200":
           description: Success
@@ -123,7 +132,7 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  AegyptiResponse:
+  MosquitoKindResponse:
     required:
       - countries
     properties:

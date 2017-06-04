@@ -24,10 +24,10 @@ var util = require('util');
   In the starter/skeleton project the 'get' operation on the '/hello' path has an operationId named 'hello'.  Here,
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
-var population_helper = require('../helpers/population');
+var general_helper = require('../helpers/general');
 
 module.exports = {
-  population: population,
+  general: general,
 };
 
 /**
@@ -36,16 +36,18 @@ module.exports = {
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function population(req, res) {
+function general(req, res) {
+  var data_kind = req._key || req.swagger.params.kind.value
   // Fetch array of countries and metadata about population aggregations.
   // Example: {"afg":{"popmap15adj":[{"gadm2-8":2}]},"ago":{"AGO15adjv4":[{"gadm2-8":3}]}
-  population_helper.countries_with_this_kind_data(req._key)
+general_helper.countries_with_this_kind_data(data_kind)
   .catch(err => {
     return res.json({message: err});
   })
-  .then(population => {
+  .then(data => {
     return res.json({
-      population: population
+      data_kind: data_kind,
+      data: data
     });
   })
 }

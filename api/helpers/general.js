@@ -44,7 +44,6 @@ var countries_with_this_kind_data = (kind) => {
     });
   })
 }
-
 function shapefile_aggregations(h, dir, kind) {
   return new Promise((resolve, reject) => {
     azure_utils.get_file_list(fileSvc, kind, dir)
@@ -61,10 +60,6 @@ function shapefile_aggregations(h, dir, kind) {
     });
 
   })
-}
-
-function extract_dirs(ary) {
-  return ary.map(e => { return e.name;});
 }
 
 /**
@@ -112,7 +107,9 @@ function file_to_record(file_obj) {
   };
   return pop_obj;
 }
-
+function extract_dirs(ary) {
+  return ary.map(e => { return e.name;});
+}
 module.exports = {
   countries_with_this_kind_data: countries_with_this_kind_data,
 }
