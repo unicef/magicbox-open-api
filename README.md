@@ -1,2 +1,2 @@
-# Skeleton project for Swagger
-# magicbox9
+# Temporary Magic Box Open API
+
