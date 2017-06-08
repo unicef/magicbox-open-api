@@ -6,11 +6,12 @@ var config = require('../config');
  * @return{Promise} Fulfilled list of blobs
  */
 exports.get_file_list = (fileSrv, kind, dir) => {
+  var rootDir = config[kind].azure.directory;
   var path = config[kind].azure.path;
-  var path = dir ? path + dir : path;
+  path = dir ? path + dir : path;
 
   return new Promise(function(resolve, reject) {
-    fileSrv.listFilesAndDirectoriesSegmented('aggregations', path, null, function(err, result, response) {
+    fileSrv.listFilesAndDirectoriesSegmented(rootDir, path, null, function(err, result, response) {
       if (err) {
         return reject(err);
       } else {
@@ -18,4 +19,4 @@ exports.get_file_list = (fileSrv, kind, dir) => {
       }
     });
   });
-}
+};
