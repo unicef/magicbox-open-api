@@ -28,6 +28,7 @@ var general_helper = require('../helpers/general');
 
 module.exports = {
   general: general,
+  zikacases: get_zika_cases
 };
 
 /**
@@ -50,4 +51,25 @@ general_helper.countries_with_this_kind_data(data_kind)
       data: data
     });
   })
+}
+
+/**
+ * Returns an object with information about zika cases in all countries
+ * @param{String} request - request object
+ * @param{String} res - response object
+ * @return{Promise} Fulfilled when records are returned
+ */
+function get_zika_cases(request, response) {
+  var key = request._key;
+  var week = request.swagger.params.date ? request.swagger.params.date.value : null;
+  general_helper.get_zika_cases(key, week)
+  .then(cases => {
+    return response.json({
+      cases: cases
+    });
+  })
+  .catch(error => {
+    return response.json({ message: error });
+  });
+
 }

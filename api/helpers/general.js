@@ -54,12 +54,11 @@ function shapefile_aggregations(h, dir, kind) {
           h[record.country].push(record);
         } else {
           h[record.country] = [record];
-        };
+        }
       });
       return resolve(h);
     });
-
-  })
+  });
 }
 
 /**
@@ -110,6 +109,81 @@ function file_to_record(file_obj) {
 function extract_dirs(ary) {
   return ary.map(e => { return e.name;});
 }
+
+
+/**
+ * Fetches zika cases for specified week. To get all the cases set week to null
+ * @param  {String} key  Key for azure_helper (should always be zikacases)
+ * @param  {String} week Last day of the week
+ * @return {Object}      Object holding zika cases
+ */
+function get_zika_cases(key, week) {
+  return new Promise((resolve, reject) => {
+    async.waterfall([
+      // fetch all the files names holding zika cases
+      // file names are last day of the week for which they hold data
+      function(callback) {
+        azure_utils.get_file_list(fileSvc, key)
+        .then(files => {
+          callback(null, files.entries.files, week);
+        });
+      },
+      // read all the files and make an object to return
+      function (files, date, callback) {
+        // if date is set then just read one file else read all the files
+        if (date !== null) {
+          files = files.filter(file => {
+            return file.name.replace(/.json/g, '') === date;
+          });
+          if (files.length !== 1) {
+            console.error("Error -> File not found", file.name);
+          }
+        }
+        var returnObj = {};
+
+        // read files and store the content in returnObj with key as the date
+        bluebird.each(files, file => {
+          var objKey = file.name.replace(/.json/g, '');
+          return read_file(key, file.name)
+          .then(content => {
+            returnObj[objKey] = content.countries;
+          })
+          .catch(error => {
+            console.log("Error", error);
+          });
+        }, {concurrency: 1})
+        .then(() => {
+          callback(returnObj);
+        });
+      }], returnObj => {
+      console.log("DONE!!!");
+      return resolve(returnObj);
+    });
+  });
+}
+
+
+/**
+ * Read a file and return Json object with the file content
+ * @param  {String} key      Key for the request. This determines root dir for the file
+ * @param  {String} fileName File to read
+ * @return {Promise} Fulfilled when records are returned
+ */
+function read_file(key, fileName) {
+  return new Promise((resolve, reject) => {
+    var dir = config[key].azure.directory;
+    var path = config[key].azure.path;
+    fileSvc.getFileToText(dir, path, fileName, function(error, fileContent, file) {
+      if (!error) {
+        resolve(JSON.parse(fileContent));
+      } else {
+        console.log("Error while reading", dir+path+fileName);
+      }
+    });
+  });
+}
+
 module.exports = {
   countries_with_this_kind_data: countries_with_this_kind_data,
-}
+  get_zika_cases: get_zika_cases
+};

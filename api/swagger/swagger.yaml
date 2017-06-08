@@ -57,6 +57,24 @@ paths:
       responses:
         "200":
           description: Success
+          examples:
+            application/json: {
+                              "data_kind": "aegypti",
+                              "data": {
+                                "abw": [
+                                {
+                                  "country": "abw",
+                                  "data_source": "simon_hay",
+                                  "shapefile_set": "gadm2-8",
+                                  "admin_level": "0",
+                                  "sum": 0.92733,
+                                  "sq_km": 70,
+                                  "density": 0.013247571428571428,
+                                  "raster": "aegypti"
+                                }
+                                ]
+                              }
+                            }
           schema:
             # a pointer to a definition
             $ref: "#/definitions/MosquitoKindResponse"
@@ -84,6 +102,21 @@ paths:
       responses:
         "200":
           description: Success
+          examples:
+            application/json: { "data_kind": "population",
+                                "data": {
+                                  "afg": [
+                                        { "country": "afg",
+                                        "data_source": "worldpop",
+                                        "shapefile_set": "gadm2-8",
+                                        "admin_level": "2",
+                                        "sum": 45155184,
+                                        "sq_km": 248596,
+                                        "density": 181.64083090637018,
+                                        "raster": "popmap15adj" }
+                                  ]
+                                }
+                              }
           schema:
             # a pointer to a definition
             $ref: "#/definitions/PopulationResponse"
@@ -120,9 +153,119 @@ paths:
       responses:
         "200":
           description: Success
+          examples:
+            application/json: { "data_kind": "population",
+                                "data": {
+                                  "afg": [
+                                        { "country": "afg",
+                                        "data_source": "worldpop",
+                                        "shapefile_set": "gadm2-8",
+                                        "admin_level": "2",
+                                        "sum": 45155184,
+                                        "sq_km": 248596,
+                                        "density": 181.64083090637018,
+                                        "raster": "popmap15adj" }
+                                  ]
+                                }
+                              }
           schema:
             # a pointer to a definition
             $ref: "#/definitions/PopulationCountryResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /zikacases:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheZikaCases
+    get:
+      description: Returns JSON with metadata regarding zika cases
+      operationId: zikacases
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: { "cases": {
+                                  "2016-11-17": {
+                                    "can": {
+                                        "country": "Canada",
+                                        "autochthonous_cases_suspected": 0,
+                                        "autochthonous_cases_confirmed": 0,
+                                        "imported_cases": 374,
+                                        "incidence_rate": 0,
+                                        "deaths": 0,
+                                        "confirmed_congenital": 0,
+                                        "population_x_1k": 36286,
+                                        "congenital_suspected": 0,
+                                        "congenital_probable": 0,
+                                        "gbs_total": 0,
+                                        "gbs_confirmed": 0
+                                    }
+                                  }
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/zikaCasesResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /zikacases/{date}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheZikaCases
+    get:
+      description: Returns JSON with metadata regarding zika cases
+      parameters:
+        - name: date
+          type: string
+          in: path
+          required: true
+      operationId: zikacases
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: { "cases": {
+                                  "2016-11-17": {
+                                    "can": {
+                                        "country": "Canada",
+                                        "autochthonous_cases_suspected": 0,
+                                        "autochthonous_cases_confirmed": 0,
+                                        "imported_cases": 374,
+                                        "incidence_rate": 0,
+                                        "deaths": 0,
+                                        "confirmed_congenital": 0,
+                                        "population_x_1k": 36286,
+                                        "congenital_suspected": 0,
+                                        "congenital_probable": 0,
+                                        "gbs_total": 0,
+                                        "gbs_confirmed": 0
+                                    }
+                                  }
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/zikaCasesResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -150,6 +293,12 @@ definitions:
     properties:
       type:
         type: 'string'
+  zikaCasesResponse:
+    required:
+      - cases
+    properties:
+      cases:
+        type: object
 
   ErrorResponse:
     required:

@@ -24,7 +24,8 @@ var debug = require('debug')('helpers');
 module.exports = {
   cacheCountry: cacheCountry,
   cachePopCountries: cachePopCountries,
-  cacheMosquitoKinds: cacheMosquitoKinds
+  cacheMosquitoKinds: cacheMosquitoKinds,
+  cacheZikaCases: cacheZikaCases
 };
 
 // Checks for the 'city' query param from the API request
@@ -45,5 +46,11 @@ function cacheMosquitoKinds(req) {
   var key = req.swagger.params.kind.value;
   if (debug.enabled) { debug('Cache Key: '+key); }
   return
+  return key;
+}
+
+function cacheZikaCases(req) {
+  var key = 'zikacases';
+  if (debug.enabled) { debug('Cache Key: '+key); }
   return key;
 }
