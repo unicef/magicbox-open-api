@@ -49,7 +49,7 @@ function cacheMosquitoKinds(req) {
   return key;
 }
 
-function cacheZikaCases(req) {
+function cacheCases(req) {
   var key = 'cases';
   if (debug.enabled) { debug('Cache Key: '+key); }
   return key;

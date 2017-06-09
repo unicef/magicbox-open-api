@@ -54,7 +54,7 @@ general_helper.countries_with_this_kind_data(data_kind)
 }
 
 /**
- * Returns an object with information about zika cases in all countries
+ * Returns an object with information about cases for specific kind in all countries
  * @param{String} request - request object
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned

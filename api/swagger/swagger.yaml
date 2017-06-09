@@ -186,7 +186,7 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cacheZikaCases
+            function: cacheCases
     get:
       description: Returns JSON with metadata regarding cases for specified kind
       parameters:
@@ -236,7 +236,7 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cacheZikaCases
+            function: cacheCases
     get:
       description: Returns JSON with metadata regarding zika cases
       parameters:
