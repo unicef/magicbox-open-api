@@ -28,7 +28,7 @@ var general_helper = require('../helpers/general');
 
 module.exports = {
   general: general,
-  zikacases: get_zika_cases
+  getCases: get_cases
 };
 
 /**
@@ -59,12 +59,14 @@ general_helper.countries_with_this_kind_data(data_kind)
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function get_zika_cases(request, response) {
+function get_cases(request, response) {
   var key = request._key;
+  var kind = request.swagger.params.kind.value;
   var week = request.swagger.params.date ? request.swagger.params.date.value : null;
-  general_helper.get_zika_cases(key, week)
+  general_helper.get_cases(key, kind, week)
   .then(cases => {
     return response.json({
+      kind: kind,
       cases: cases
     });
   })
