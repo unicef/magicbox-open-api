@@ -176,7 +176,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /zikacases:
+  /cases/{kind}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -186,10 +186,15 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cacheZikaCases
+            function: cacheCases
     get:
-      description: Returns JSON with metadata regarding zika cases
-      operationId: zikacases
+      description: Returns JSON with metadata regarding cases for specified kind
+      parameters:
+        - name: kind
+          type: string
+          in: path
+          required: true
+      operationId: getCases
       responses:
         "200":
           description: Success
@@ -215,13 +220,13 @@ paths:
                               }
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/zikaCasesResponse"
+            $ref: "#/definitions/casesResponse"
         # responses may fall through to errors
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /zikacases/{date}:
+  /cases/{kind}/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -231,15 +236,19 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cacheZikaCases
+            function: cacheCases
     get:
       description: Returns JSON with metadata regarding zika cases
       parameters:
+        - name: kind
+          type: string
+          in: path
+          required: true
         - name: date
           type: string
           in: path
           required: true
-      operationId: zikacases
+      operationId: getCases
       responses:
         "200":
           description: Success
@@ -265,7 +274,7 @@ paths:
                               }
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/zikaCasesResponse"
+            $ref: "#/definitions/casesResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -293,10 +302,13 @@ definitions:
     properties:
       type:
         type: 'string'
-  zikaCasesResponse:
+  casesResponse:
     required:
+      - kind
       - cases
     properties:
+      kind:
+        type: string
       cases:
         type: object
 

@@ -112,18 +112,19 @@ function extract_dirs(ary) {
 
 
 /**
- * Fetches zika cases for specified week. To get all the cases set week to null
- * @param  {String} key  Key for azure_helper (should always be zikacases)
+ * Fetches cases of specified kind for specified week. To get all the cases set week to null
+ * @param  {String} key  Key for azure_helper (should always be cases)
+ * @param  {String} kind name of disease
  * @param  {String} week Last day of the week
- * @return {Object}      Object holding zika cases
+ * @return {Object}      Object holding cases
  */
-function get_zika_cases(key, week) {
+function get_cases(key, kind, week) {
   return new Promise((resolve, reject) => {
     async.waterfall([
-      // fetch all the files names holding zika cases
+      // fetch all the file-names holding cases
       // file names are last day of the week for which they hold data
       function(callback) {
-        azure_utils.get_file_list(fileSvc, key)
+        azure_utils.get_file_list(fileSvc, kind)
         .then(files => {
           callback(null, files.entries.files, week);
         });
@@ -144,7 +145,7 @@ function get_zika_cases(key, week) {
         // read files and store the content in returnObj with key as the date
         bluebird.each(files, file => {
           var objKey = file.name.replace(/.json/g, '');
-          return read_file(key, file.name)
+          return read_file(kind, file.name)
           .then(content => {
             returnObj[objKey] = content.countries;
           })
@@ -185,5 +186,5 @@ function read_file(key, fileName) {
 
 module.exports = {
   countries_with_this_kind_data: countries_with_this_kind_data,
-  get_zika_cases: get_zika_cases
+  get_cases: get_cases
 };

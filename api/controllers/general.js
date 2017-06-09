@@ -28,7 +28,7 @@ var general_helper = require('../helpers/general');
 
 module.exports = {
   general: general,
-  zikacases: get_zika_cases
+  getCases: get_cases
 };
 
 /**
@@ -54,17 +54,24 @@ general_helper.countries_with_this_kind_data(data_kind)
 }
 
 /**
- * Returns an object with information about zika cases in all countries
+ * Returns an object with information about cases for specific kind in all countries
  * @param{String} request - request object
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function get_zika_cases(request, response) {
+function get_cases(request, response) {
+  // key represents what data we want to pull, here it is 'cases'
   var key = request._key;
+
+  // kind represents disease whose cases we are pulling
+  var kind = request.swagger.params.kind.value;
+
+  // week represents last date of epi-week. If set, the API will fetch cases only for that week
   var week = request.swagger.params.date ? request.swagger.params.date.value : null;
-  general_helper.get_zika_cases(key, week)
+  general_helper.get_cases(key, kind, week)
   .then(cases => {
     return response.json({
+      kind: kind,
       cases: cases
     });
   })

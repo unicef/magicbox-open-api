@@ -25,7 +25,7 @@ module.exports = {
   cacheCountry: cacheCountry,
   cachePopCountries: cachePopCountries,
   cacheMosquitoKinds: cacheMosquitoKinds,
-  cacheZikaCases: cacheZikaCases
+  cacheCases: cacheCases
 };
 
 // Checks for the 'city' query param from the API request
@@ -49,8 +49,8 @@ function cacheMosquitoKinds(req) {
   return key;
 }
 
-function cacheZikaCases(req) {
-  var key = 'zikacases';
+function cacheCases(req) {
+  var key = 'cases';
   if (debug.enabled) { debug('Cache Key: '+key); }
   return key;
 }
