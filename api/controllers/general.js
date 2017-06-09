@@ -60,8 +60,13 @@ general_helper.countries_with_this_kind_data(data_kind)
  * @return{Promise} Fulfilled when records are returned
  */
 function get_cases(request, response) {
+  // key represents what data we want to pull, here it is 'cases'
   var key = request._key;
+
+  // kind represents disease whose cases we are pulling
   var kind = request.swagger.params.kind.value;
+
+  // week represents last date of epi-week. If set, the API will fetch cases only for that week
   var week = request.swagger.params.date ? request.swagger.params.date.value : null;
   general_helper.get_cases(key, kind, week)
   .then(cases => {

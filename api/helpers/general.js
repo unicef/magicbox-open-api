@@ -124,7 +124,7 @@ function get_cases(key, kind, week) {
       // fetch all the file-names holding cases
       // file names are last day of the week for which they hold data
       function(callback) {
-        azure_utils.get_file_list(fileSvc, key + '_' + kind)
+        azure_utils.get_file_list(fileSvc, kind)
         .then(files => {
           callback(null, files.entries.files, week);
         });
@@ -145,7 +145,7 @@ function get_cases(key, kind, week) {
         // read files and store the content in returnObj with key as the date
         bluebird.each(files, file => {
           var objKey = file.name.replace(/.json/g, '');
-          return read_file(key + '_' + kind, file.name)
+          return read_file(kind, file.name)
           .then(content => {
             returnObj[objKey] = content.countries;
           })

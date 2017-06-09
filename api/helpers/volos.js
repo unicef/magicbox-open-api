@@ -25,7 +25,7 @@ module.exports = {
   cacheCountry: cacheCountry,
   cachePopCountries: cachePopCountries,
   cacheMosquitoKinds: cacheMosquitoKinds,
-  cacheZikaCases: cacheZikaCases
+  cacheCases: cacheCases
 };
 
 // Checks for the 'city' query param from the API request
