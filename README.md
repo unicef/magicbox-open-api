@@ -21,5 +21,5 @@ Mosquiro Prevalence indicates comonness of having mosquitos in a country. Curren
 2. Albopictus
 <br />API to access mosquito prevalence is:
 ```
-http:mb-api.azurewebsites.net/api/mosquito/{kind}
+http://mb-api.azurewebsites.net/api/mosquito/{kind}
 ```
