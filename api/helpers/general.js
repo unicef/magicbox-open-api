@@ -113,18 +113,19 @@ function extract_dirs(ary) {
 
 /**
  * Fetches cases of specified kind for specified week. To get all the cases set week to null
- * @param  {String} key  Key for azure_helper (should always be cases)
- * @param  {String} kind name of disease
- * @param  {String} week Last day of the week
+ * @param  {String} key       Key for azure_helper (should always be cases)
+ * @param  {String} kind      name of disease
+ * @param  {String} week      Last day of the week
+ * @param  {String} weekType  type of week (epi or iso)
  * @return {Object}      Object holding cases
  */
-function get_cases(key, kind, week) {
+function get_cases(key, kind, weekType, week) {
   return new Promise((resolve, reject) => {
     async.waterfall([
       // fetch all the file-names holding cases
       // file names are last day of the week for which they hold data
       function(callback) {
-        azure_utils.get_file_list(fileSvc, kind)
+        azure_utils.get_file_list(fileSvc, kind, weekType)
         .then(files => {
           callback(null, files.entries.files, week);
         });
@@ -145,7 +146,7 @@ function get_cases(key, kind, week) {
         // read files and store the content in returnObj with key as the date
         bluebird.each(files, file => {
           var objKey = file.name.replace(/.json/g, '');
-          return read_file(kind, file.name)
+          return read_file(kind, weekType, file.name)
           .then(content => {
             returnObj[objKey] = content.countries;
           })
@@ -170,15 +171,16 @@ function get_cases(key, kind, week) {
  * @param  {String} fileName File to read
  * @return {Promise} Fulfilled when records are returned
  */
-function read_file(key, fileName) {
+function read_file(key, dir, fileName) {
   return new Promise((resolve, reject) => {
-    var dir = config[key].azure.directory;
+    var directory = config[key].azure.directory;
     var path = config[key].azure.path;
-    fileSvc.getFileToText(dir, path, fileName, function(error, fileContent, file) {
+    path = dir ? path + dir : path;
+    fileSvc.getFileToText(directory, path, fileName, function(error, fileContent, file) {
       if (!error) {
         resolve(JSON.parse(fileContent));
       } else {
-        console.log("Error while reading", dir+path+fileName);
+        console.log("Error while reading", directory+path+fileName);
       }
     });
   });

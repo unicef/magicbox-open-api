@@ -45,7 +45,6 @@ function cachePopCountries(req) {
 function cacheMosquitoKinds(req) {
   var key = req.swagger.params.kind.value;
   if (debug.enabled) { debug('Cache Key: '+key); }
-  return
   return key;
 }
 

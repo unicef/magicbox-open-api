@@ -176,7 +176,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /cases/{kind}:
+  /cases/{kind}/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -191,6 +191,10 @@ paths:
       description: Returns JSON with metadata regarding cases for specified kind
       parameters:
         - name: kind
+          type: string
+          in: path
+          required: true
+        - name: weekType
           type: string
           in: path
           required: true
@@ -226,7 +230,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /cases/{kind}/{date}:
+  /cases/{kind}/{weekType}/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -241,6 +245,10 @@ paths:
       description: Returns JSON with metadata regarding zika cases
       parameters:
         - name: kind
+          type: string
+          in: path
+          required: true
+        - name: weekType
           type: string
           in: path
           required: true
