@@ -8,10 +8,15 @@ You can access the API [here](http://mb-api.azurewebsites.net/docs/#/default)
 
 ### 1. Population:
 Magic box fetches and provides population of different countries recorded by [WorldPop](http://www.worldpop.org.uk/)
+
 * ***URL***
-` /api/population/ `
+
+    ` /api/population/ `
+
 * ***Method***
-` GET `
+
+    ` GET `
+
 * ***Success Response***
     ```
     CODE: 200
@@ -39,14 +44,18 @@ Magic box fetches and provides population of different countries recorded by [Wo
 Mosquiro Prevalence indicates comonness of having mosquitos in a country. Currently we are only focusing on 2 types of mosquitos, namely:
 1. Aegypti
 2. Albopictus
+
 * ***URL***
-` /api/mosquito/{kind} `
+
+    ` /api/mosquito/{kind} `
 
 * ***Method***
-` GET `
+
+    ` GET `
 
 * ***URL Params***
-` kind=[String] `
+
+    ` kind=[String] `
 
 * ***Success Response***
     ```
@@ -71,20 +80,24 @@ Mosquiro Prevalence indicates comonness of having mosquitos in a country. Curren
     }
     ```
 * ***Sample Call***
-`http://mb-api.azurewebsites.net/api/mosquito/aegypti`
+    `http://mb-api.azurewebsites.net/api/mosquito/aegypti`
 
 ### 3. Cases:
 Confirmed cases of an epidemic (kind) per epi week or iso week around the world.
 
 * ***URL***
-` /api/cases/{kind}/{weekType}/ `
+
+    ` /api/cases/{kind}/{weekType}/ `
 
 * ***Method***
-`GET`
+
+    `GET`
 
 * ***URL Params***
-`kind = [String]`
-`weekType = [String]`
+
+    `kind = [String]`
+
+    `weekType = [String]`
 
 * ***Success Response***
     ```
@@ -115,4 +128,5 @@ Confirmed cases of an epidemic (kind) per epi week or iso week around the world.
     ```
 
 * ***Sample Call***
-`http://mb-api.azurewebsites.net/api/cases/zika/epi`
+
+    `http://mb-api.azurewebsites.net/api/cases/zika/epi`
