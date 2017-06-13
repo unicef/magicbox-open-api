@@ -125,57 +125,57 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  #/population/{format}/{country}:
-  /population/{country}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: population
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCountry
-    get:
-      description: Returns all population metadata for requested country - arg, bra, col...etc.
-      parameters:
-        # - name: format
-        #   type: string
-        #   in: path
-        #   required: true
-        - name: country
-          type: string
-          in: path
-          required: true
-      # used as the method name of the controller
-      operationId: country
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "data_kind": "population",
-                                "data": {
-                                  "afg": [
-                                        { "country": "afg",
-                                        "data_source": "worldpop",
-                                        "shapefile_set": "gadm2-8",
-                                        "admin_level": "2",
-                                        "sum": 45155184,
-                                        "sq_km": 248596,
-                                        "density": 181.64083090637018,
-                                        "raster": "popmap15adj" }
-                                  ]
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationCountryResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # #/population/{format}/{country}:
+  # /population/{country}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: population
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cacheCountry
+  #   get:
+  #     description: Returns all population metadata for requested country - arg, bra, col...etc.
+  #     parameters:
+  #       # - name: format
+  #       #   type: string
+  #       #   in: path
+  #       #   required: true
+  #       - name: country
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: country
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationCountryResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   /cases/{kind}/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
