@@ -66,12 +66,16 @@ function get_cases(request, response) {
   // kind represents disease whose cases we are pulling
   var kind = request.swagger.params.kind.value;
 
+  // week types (epi-week or iso-week)
+  var weekType = request.swagger.params.weekType.value;
+
   // week represents last date of epi-week. If set, the API will fetch cases only for that week
   var week = request.swagger.params.date ? request.swagger.params.date.value : null;
-  general_helper.get_cases(key, kind, week)
+  general_helper.get_cases(key, kind, weekType, week)
   .then(cases => {
     return response.json({
       kind: kind,
+      weekType: weekType,
       cases: cases
     });
   })
