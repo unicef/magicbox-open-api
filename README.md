@@ -6,6 +6,14 @@ Magic Box Open API provides data, aggregated from various sources. The data that
 
 You can access the API [here](http://mb-api.azurewebsites.net/docs/#/default)
 
+
+### running development
+```bash
+  git clone https://github.com/unicef/magicbox-open-api.git
+  cd to/the/project
+  npm install
+  babel-watch server.js
+```
 ### 1. Population:
 Magic box fetches and provides population of different countries recorded by [WorldPop](http://www.worldpop.org.uk/)
 
