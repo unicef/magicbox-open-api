@@ -1,10 +1,11 @@
-var config = require('../config');
-var azure_utils= require('./azure');
-var azure_storage = require('azure-storage');
-var account = config.geojson.azure.storage_account;
-var container = config.geojson.azure.container;
-var azure_key = config.geojson.azure.key1;
-var blobSvc = azure_storage.createBlobService(account, azure_key);
+import config  from '../config'
+import azure_utils from './azure'
+import {createBlobService}  from 'azure-storage'
+
+const account = config.geojson.azure.storage_account
+const container = config.geojson.azure.container
+const azure_key = config.geojson.azure.key1
+const blobSvc = createBlobService(account, azure_key)
 
 /**
  * Return list of countries in aggregated populations
@@ -14,9 +15,10 @@ var blobSvc = azure_storage.createBlobService(account, azure_key);
  * @param{String} admin_level - admin levl
  * @return{Promise} Fulfilled list of countries with raster metadata
  */
-exports.admins_shape = (country, admin_level) => {
+export function admins_shape(country, admin_level) {
   return new Promise((resolve, reject) => {
-    azure_utils.country_geojson(container, blobSvc, country, admin_level)
-    .then(resolve);
+    azure_utils
+      .country_geojson(container, blobSvc, country, admin_level)
+      .then(resolve)
   })
 }

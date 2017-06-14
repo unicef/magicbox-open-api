@@ -1,35 +1,35 @@
-'use strict';
-var a127 = require('a127-magic');
-var SwaggerExpress = require('swagger-express-mw');
-var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
-var compression = require('compression')
-var app = require('express')();
-app.use(compression());
-module.exports = app; // for testing
+import a127 from 'a127-magic'
+import SwaggerExpress from 'swagger-express-mw'
+import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
+import compression from 'compression'
+import express from 'express'
 
-var config = {
-  appRoot: __dirname // required config
-};
+const config = {
+  appRoot: __dirname,
+  port: process.env.PORT || 8000
+}
 
-a127.init(function(config) {
-  app.use(a127.middleware(config));
+const app = express()
 
-});
+app.use(compression())
 
+a127.init(config => app.use(a127.middleware(config)))
 
-SwaggerExpress.create(config, function(err, swaggerExpress) {
+SwaggerExpress.create(config, (err, swaggerExpress) => {
+  if (err) {
+    throw err
+  }
 
-  if (err) { throw err; }
-  app.use(SwaggerUi(swaggerExpress.runner.swagger));
+  app.use(SwaggerUi(swaggerExpress.runner.swagger))
+
   // Serve the Swagger documents and Swagger UI
   // app.use(swaggerExpress.runner.swaggerTools.swaggerUi());
   // install middleware
-  swaggerExpress.register(app);
+  swaggerExpress.register(app)
 
-  var port = process.env.PORT || 8000; // first change
-  app.listen(port);
+  app.listen(config.port, () => {
+    console.log(`Open maps API is up on http://localhost:${config.port}`)
+  })
+})
 
-  // if (swaggerExpress.runner.swagger.paths['/hello']) {
-  //   console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
-  // }
-});
+export default app
