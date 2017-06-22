@@ -186,7 +186,68 @@ function read_file(key, dir, fileName) {
   });
 }
 
+/**
+ * Returns population of each admin for specified country. The population is a list of strings having following format:
+ * <country>_<admin 0 id>_<admin 1 id>_...<admin n id>_<population of smallest admin level>_<source>
+ * @param  {String} kind      type of data requested (population)
+ * @param  {String} country   iso 3 code of the country
+ * @return{Promise} Fulfilled when records are returned
+ */
+const get_population_by_admins = (kind, country) => {
+  return new Promise((resolve, reject) => {
+    async.waterfall([
+      // get all files from population/worldpop dir
+      (callback) => {
+        azure_utils.get_file_list(fileSvc, kind, config[kind].azure.default_database)
+        .then(files => {
+          files = files.entries.files.filter(file => {
+            return file.name.split('_')[0] === country
+          })
+          if (files.length === 1) {
+            callback(null, kind, config[kind].azure.default_database, files[0].name)
+          }
+        })
+      },
+      // read the required file and reduce every element to corresponding formated string
+      (kind, dir, fileName, callback) => {
+
+
+        let [ raster, source  ] = fileName.split('^').slice(1, 3)
+
+        let population_map = {}
+        population_map.raster = raster
+        population_map.source = source
+        population_map.population = {}
+
+        read_file(kind, dir, fileName)
+        .then(content => {
+          var pop_map = content.reduce((map, element) => {
+            var tempList = Object.keys(element).filter(key => {
+              return ( key.startsWith('id_') )
+            }).map(key => {
+              return element[key]
+            })
+
+            let temp_map = {}
+            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element.sum
+            Object.assign(map, temp_map)
+            return map
+          }, {})
+          Object.assign(population_map.population, pop_map)
+          callback(null, population_map)
+        })
+      }
+    ], (error, population_map) => {
+      if (error) {
+        return reject(error)
+      }
+      return resolve(population_map)
+    })
+  });
+}
+
 module.exports = {
-  countries_with_this_kind_data: countries_with_this_kind_data,
-  get_cases: get_cases
+  countries_with_this_kind_data,
+  get_cases,
+  get_population_by_admins
 };
