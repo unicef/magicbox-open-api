@@ -74,7 +74,7 @@ export function getPopulationByCountry(request, response) {
         return_object.population = population_map.population
       } else {
         return_object.kind = population_map.raster,
-        return_object.mosquito_prevelence = population_map.population
+        return_object.mosquito_prevalence = population_map.population
       }
       response.json(return_object)
     })
