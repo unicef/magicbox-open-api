@@ -60,16 +60,24 @@ export function getCases(request, response) {
  */
 export function getPopulationByCountry(request, response) {
   // country represents country whose population we are pulling
-  const country = request._key
+  const [ key, country ] = request._key.split('_')
 
   general_helper
-    .get_population_by_admins('population', country)
-    .then(population_map => response.json({
-      country: country,
-      source: population_map.source,
-      raster: population_map.raster,
-      population: population_map.population
-    }))
+    .get_data_by_admins(key, country)
+    .then(population_map => {
+      let return_object = {
+        country: country,
+        source: population_map.source,
+      }
+      if (key === 'population') {
+        return_object.raster = population_map.raster,
+        return_object.population = population_map.population
+      } else {
+        return_object.kind = population_map.raster,
+        return_object.mosquito_prevelence = population_map.population
+      }
+      response.json(return_object)
+    })
     .catch(error =>
       response.json({ message: error })
     )
