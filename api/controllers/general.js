@@ -41,7 +41,7 @@ export function getCases(request, response) {
 
   general_helper
     .get_cases(key, kind, weekType, week)
-    .then(cases => response.json({
+    .then((cases) => response.json({
       kind: kind,
       weekType: weekType,
       cases: cases
@@ -50,4 +50,27 @@ export function getCases(request, response) {
       response.json({ message: error })
     )
 
+}
+
+/**
+ * Returns population of each admin for specified country.
+ * @param{String} request - request object
+ * @param{String} res - response object
+ * @return{Promise} Fulfilled when records are returned
+ */
+export function getPopulationByCountry(request, response) {
+  // country represents country whose population we are pulling
+  const country = request._key
+
+  general_helper
+    .get_population_by_admins('population', country)
+    .then(population_map => response.json({
+      country: country,
+      source: population_map.source,
+      raster: population_map.raster,
+      population: population_map.population
+    }))
+    .catch(error =>
+      response.json({ message: error })
+    )
 }

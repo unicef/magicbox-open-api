@@ -28,12 +28,12 @@ module.exports = {
   cacheCases: cacheCases
 };
 
-// Checks for the 'city' query param from the API request
+// Checks for the 'country' query param from the API request
 // and returns it to be used as the cache name
 function cacheCountry(req) {
-  var key = req.swagger.params.country.value;
-  if (debug.enabled) { debug('Cache Key: '+key); }
-  return key;
+  var catcheKey = req.swagger.params.country.value;
+  if (debug.enabled) { debug('Cache Key: '+ catcheKey); }
+  return catcheKey;
 }
 
 function cachePopCountries(req) {
