@@ -30,7 +30,7 @@ x-volos-resources:
         ttl: 90000000
 
 paths:
-  /mosquito/{kind}:
+  /v1/mosquito/{kind}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -43,6 +43,7 @@ paths:
             function: cacheMosquitoKinds
     get:
       description: Returns mosquito prevelence metadata for all countries - arg, bra, col...etc.
+      summary: aegypti / albopictus
       parameters:
         # - name: format
         #   type: string
@@ -84,7 +85,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   #/population/{format}/{country}:
-  /population:
+  /v1/population:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -126,7 +127,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   # #/population/{format}/{country}:
-  /population/{country}:
+  /v1/population/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -139,6 +140,7 @@ paths:
             function: cacheCountry
     get:
       description: Returns all population metadata for requested country - arg, bra, col...etc.
+      summary: arg, bra, col
       parameters:
         - name: country
           type: string
@@ -169,7 +171,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /cases/{kind}/{weekType}:
+  /v1/cases/{kind}/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -182,6 +184,7 @@ paths:
             function: cacheCases
     get:
       description: Returns JSON with metadata regarding cases for specified kind
+      summary: zika/epi
       parameters:
         - name: kind
           type: string
@@ -223,64 +226,64 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /cases/{kind}/{weekType}/{date}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCases
-    get:
-      description: Returns JSON with metadata regarding zika cases
-      parameters:
-        - name: kind
-          type: string
-          in: path
-          required: true
-        - name: weekType
-          type: string
-          in: path
-          required: true
-        - name: date
-          type: string
-          in: path
-          required: true
-      operationId: getCases
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "cases": {
-                                  "2016-11-17": {
-                                    "can": {
-                                        "country": "Canada",
-                                        "autochthonous_cases_suspected": 0,
-                                        "autochthonous_cases_confirmed": 0,
-                                        "imported_cases": 374,
-                                        "incidence_rate": 0,
-                                        "deaths": 0,
-                                        "confirmed_congenital": 0,
-                                        "population_x_1k": 36286,
-                                        "congenital_suspected": 0,
-                                        "congenital_probable": 0,
-                                        "gbs_total": 0,
-                                        "gbs_confirmed": 0
-                                    }
-                                  }
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/casesResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # /v1/cases/{kind}/{weekType}/{date}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cacheCases
+  #   get:
+  #     description: Returns JSON with metadata regarding zika cases
+  #     parameters:
+  #       - name: kind
+  #         type: string
+  #         in: path
+  #         required: true
+  #       - name: weekType
+  #         type: string
+  #         in: path
+  #         required: true
+  #       - name: date
+  #         type: string
+  #         in: path
+  #         required: true
+  #     operationId: getCases
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "cases": {
+  #                                 "2016-11-17": {
+  #                                   "can": {
+  #                                       "country": "Canada",
+  #                                       "autochthonous_cases_suspected": 0,
+  #                                       "autochthonous_cases_confirmed": 0,
+  #                                       "imported_cases": 374,
+  #                                       "incidence_rate": 0,
+  #                                       "deaths": 0,
+  #                                       "confirmed_congenital": 0,
+  #                                       "population_x_1k": 36286,
+  #                                       "congenital_suspected": 0,
+  #                                       "congenital_probable": 0,
+  #                                       "gbs_total": 0,
+  #                                       "gbs_confirmed": 0
+  #                                   }
+  #                                 }
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/casesResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
