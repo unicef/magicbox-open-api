@@ -23,7 +23,7 @@
     "volos-swagger": "^0.8.0"
   },
   "scripts": {
-    "start": "babel-watch server.js"
+    "start": "node ./node_modules/babel-cli/bin/babel-node.js server.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
