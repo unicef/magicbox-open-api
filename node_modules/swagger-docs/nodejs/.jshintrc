@@ -1,0 +1,5 @@
+// Extends the main jshintrc for Server
+{
+  "extends": "../.jshintrc",
+  "node": true
+}

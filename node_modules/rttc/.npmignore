@@ -1,0 +1,17 @@
+*#
+node_modules
+.DS_STORE
+*.swo
+*.swp
+*.swn
+*.swm
+*~
+.idea
+nbproject
+.git
+.gitignore
+.tmp
+.jshintrc
+.editorconfig
+docs
+test

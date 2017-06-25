@@ -1,0 +1,3 @@
+TestService:
+  key1: "someKey1"
+  key2: "someKey2"
