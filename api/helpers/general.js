@@ -274,7 +274,7 @@ const get_population_by_admins = (kind, country) => {
  * @return{Promise} Admin poperties obj
  */
 function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids) {
-  return admin_properties.find(p => {
+  return admin_properties_ary.find(p => {
     let count = 0;
     const temp_admin_id = Object.keys(p).reduce((ary, k) => {
       if (k == 'ID_' + count) {
