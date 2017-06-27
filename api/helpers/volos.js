@@ -22,16 +22,17 @@
 var debug = require('debug')('helpers');
 
 module.exports = {
-  cacheCountry: cacheCountry,
-  cachePopCountries: cachePopCountries,
-  cacheMosquitoKinds: cacheMosquitoKinds,
-  cacheCases: cacheCases
+  cacheCountry,
+  cachePopCountries,
+  cacheMosquitoKinds,
+  cacheCases,
+  cacheMosquitoByCountry
 };
 
 // Checks for the 'country' query param from the API request
 // and returns it to be used as the cache name
 function cacheCountry(req) {
-  var catcheKey = req.swagger.params.country.value;
+  var catcheKey = 'population_' + req.swagger.params.country.value;
   if (debug.enabled) { debug('Cache Key: '+ catcheKey); }
   return catcheKey;
 }
@@ -51,5 +52,11 @@ function cacheMosquitoKinds(req) {
 function cacheCases(req) {
   var key = 'cases';
   if (debug.enabled) { debug('Cache Key: '+key); }
+  return key;
+}
+
+function cacheMosquitoByCountry(req) {
+  var key = req.swagger.params.kind.value + '_' + req.swagger.params.country.value
+  if (debug.enabled) { debug('Cache Key: '+ key); }
   return key;
 }

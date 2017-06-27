@@ -189,11 +189,11 @@ function read_file(key, dir, fileName) {
 /**
  * Returns population of each admin for specified country. The population is a list of strings having following format:
  * <country>_<admin 0 id>_<admin 1 id>_...<admin n id>_<population of smallest admin level>_<source>
- * @param  {String} kind      type of data requested (population)
+ * @param  {String} kind      type of data requested (population or mosquito)
  * @param  {String} country   iso 3 code of the country
  * @return{Promise} Fulfilled when records are returned
  */
-const get_population_by_admins = (kind, country) => {
+const get_data_by_admins = (kind, country) => {
   return new Promise((resolve, reject) => {
     async.waterfall([
       // get all files from population/worldpop dir
@@ -229,7 +229,7 @@ const get_population_by_admins = (kind, country) => {
             })
 
             let temp_map = {}
-            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element.sum
+            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element.sum || element.mean
             Object.assign(map, temp_map)
             return map
           }, {})
@@ -249,5 +249,5 @@ const get_population_by_admins = (kind, country) => {
 module.exports = {
   countries_with_this_kind_data,
   get_cases,
-  get_population_by_admins
+  get_data_by_admins
 };

@@ -42,6 +42,7 @@ paths:
             helper: volos
             function: cacheMosquitoKinds
     get:
+
       description: Returns mosquito prevelence metadata for all countries - arg, bra, col...etc.
       summary: aegypti / albopictus
       parameters:
@@ -80,6 +81,52 @@ paths:
             # a pointer to a definition
             $ref: "#/definitions/MosquitoKindResponse"
         # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/mosquito/{kind}/{country}:
+     # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    x-volos-apply:
+       # Applies the cache to our endpoint
+      cache:
+         # Gets the cache name by calling
+         # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheMosquitoByCountry
+    get:
+      description: Returns all metadata regarding mosquito prevalence for requested country - arg, bra, col...etc.
+      parameters:
+        - name: kind
+          type: string
+          in: path
+          required: true
+        - name: country
+          type: string
+          in: path
+          required: true
+       # used as the method name of the controller
+      operationId: getPopulationByCountry
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                              "country": "afg",
+                              "source": "simon_hay",
+                              "kind": "aegypti",
+                              "mosquito_prevalence": {
+                                "afg_1_16_170_gadm2-8": 0.0628956609969974,
+                                "afg_1_25_250_gadm2-8": 0.0167634032894597,
+                                "afg_1_11_103_gadm2-8": 0.0821634181047418
+                                }
+                              }
+          schema:
+             # a pointer to a definition
+            $ref: "#/definitions/MosquitoCountryResponse"
+         # responses may fall through to errors
         default:
           description: Error
           schema:
@@ -323,6 +370,21 @@ definitions:
       kind:
         type: string
       cases:
+        type: object
+  MosquitoCountryResponse:
+    required:
+      - country
+      - source
+      - raster
+      - mosquito_prevalence
+    properties:
+      country:
+        type: 'string'
+      source:
+        type: 'string'
+      raster:
+        type: 'string'
+      mosquito_prevalence:
         type: object
 
   ErrorResponse:
