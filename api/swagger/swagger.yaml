@@ -85,7 +85,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /mosquito/{kind}/{country}:
+  /v1/mosquito/{kind}/{country}:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
