@@ -1,0 +1,218 @@
+iso,rank,name,population
+CHN,1,China,"1,371,220"
+IND,2,India,"1,311,051"
+USA,3,United States,"321,419"
+IDN,4,Indonesia,"257,564"
+BRA,5,Brazil,"207,848"
+PAK,6,Pakistan,"188,925"
+NGA,7,Nigeria,"182,202"
+BGD,8,Bangladesh,"160,996"
+RUS,9,Russian Federation,"144,097"
+MEX,10,Mexico,"127,017"
+JPN,11,Japan,"126,958"
+PHL,12,Philippines,"100,699"
+ETH,13,Ethiopia,"99,391"
+VNM,14,Vietnam,"91,713"
+EGY,15,"Egypt, Arab Rep.","91,508"
+DEU,16,Germany,"81,680"
+IRN,17,"Iran, Islamic Rep.","79,109"
+TUR,18,Turkey,"78,666"
+COD,19,"Congo, Dem. Rep.","77,267"
+THA,20,Thailand,"67,959"
+FRA,21,France,"66,538"
+GBR,22,United Kingdom,"65,129"
+ITA,23,Italy,"60,731"
+ZAF,24,South Africa,"55,012"
+MMR,25,Myanmar,"53,897"
+TZA,26,Tanzania,"53,470"
+KOR,27,"Korea, Rep.","50,617"
+COL,28,Colombia,"48,229"
+ESP,29,Spain,"46,444"
+KEN,30,Kenya,"46,050"
+UKR,31,Ukraine,"45,154"
+ARG,32,Argentina,"43,417"
+SDN,33,Sudan,"40,235"
+DZA,34,Algeria,"39,667"
+UGA,35,Uganda,"39,032"
+POL,36,Poland,"37,986"
+IRQ,37,Iraq,"36,423"
+CAN,38,Canada,"35,849"
+MAR,39,Morocco,"34,378"
+AFG,40,Afghanistan,"32,527"
+SAU,41,Saudi Arabia,"31,540"
+PER,42,Peru,"31,377"
+UZB,43,Uzbekistan,"31,299"
+VEN,44,"Venezuela, RB","31,108"
+MYS,45,Malaysia,"30,331"
+NPL,46,Nepal,"28,514"
+MOZ,47,Mozambique,"27,978"
+GHA,48,Ghana,"27,410"
+YEM,49,"Yemen, Rep.","26,832"
+PRK,50,"Korea, Dem. People's Rep.","25,155"
+AGO,51,Angola,"25,022"
+MDG,52,Madagascar,"24,235"
+AUS,53,Australia,"23,790"
+CMR,54,Cameroon,"23,344"
+CIV,55,Côte d'Ivoire,"22,702"
+LKA,56,Sri Lanka,"20,966"
+NER,57,Niger,"19,899"
+ROU,58,Romania,"19,815"
+SYR,59,Syrian Arab Republic,"18,502"
+BFA,60,Burkina Faso,"18,106"
+CHL,61,Chile,"17,948"
+MLI,62,Mali,"17,600"
+KAZ,63,Kazakhstan,"17,544"
+MWI,64,Malawi,"17,215"
+NLD,65,Netherlands,"16,940"
+GTM,66,Guatemala,"16,343"
+ZMB,67,Zambia,"16,212"
+ECU,68,Ecuador,"16,144"
+ZWE,69,Zimbabwe,"15,603"
+KHM,70,Cambodia,"15,578"
+SEN,71,Senegal,"15,129"
+TCD,72,Chad,"14,037"
+GIN,73,Guinea,"12,609"
+SSD,74,South Sudan,"12,340"
+RWA,75,Rwanda,"11,610"
+CUB,76,Cuba,"11,390"
+TUN,77,Tunisia,"11,254"
+BEL,78,Belgium,"11,249"
+BDI,79,Burundi,"11,179"
+BEN,80,Benin,"10,880"
+GRC,81,Greece,"10,821"
+SOM,82,Somalia,"10,787"
+BOL,83,Bolivia,"10,725"
+HTI,84,Haiti,"10,711"
+CZE,85,Czech Republic,"10,546"
+DOM,86,Dominican Republic,"10,528"
+PRT,87,Portugal,"10,358"
+HUN,88,Hungary,"9,843"
+SWE,89,Sweden,"9,799"
+AZE,90,Azerbaijan,"9,649"
+BLR,91,Belarus,"9,490"
+ARE,92,United Arab Emirates,"9,157"
+AUT,93,Austria,"8,638"
+TJK,94,Tajikistan,"8,482"
+ISR,95,Israel,"8,380"
+CHE,96,Switzerland,"8,281"
+HND,97,Honduras,"8,075"
+PNG,98,Papua New Guinea,"7,619"
+JOR,99,Jordan,"7,595"
+HKG,100,"Hong Kong SAR, China","7,306"
+TGO,101,Togo,"7,305"
+BGR,102,Bulgaria,"7,178"
+SRB,103,Serbia,"7,095"
+LAO,104,Lao PDR,"6,802"
+PRY,105,Paraguay,"6,639"
+SLE,106,Sierra Leone,"6,453"
+LBY,107,Libya,"6,278"
+SLV,108,El Salvador,"6,127"
+NIC,109,Nicaragua,"6,082"
+KGZ,110,Kyrgyz Republic,"5,957"
+LBN,111,Lebanon,"5,851"
+DNK,112,Denmark,"5,683"
+SGP,113,Singapore,"5,535"
+FIN,114,Finland,"5,480"
+SVK,115,Slovak Republic,"5,424"
+TKM,116,Turkmenistan,"5,374"
+ERI,117,Eritrea,"5,228"
+NOR,118,Norway,"5,190"
+CAF,119,Central African Republic,"4,900"
+CRI,120,Costa Rica,"4,808"
+IRL,121,Ireland,"4,644"
+COG,122,"Congo, Rep.","4,620"
+NZL,123,New Zealand,"4,596"
+LBR,124,Liberia,"4,503"
+OMN,125,Oman,"4,491"
+PSE,126,West Bank and Gaza,"4,422"
+HRV,127,Croatia,"4,204"
+MRT,128,Mauritania,"4,068"
+PAN,129,Panama,"3,929"
+KWT,130,Kuwait,"3,892"
+BIH,131,Bosnia and Herzegovina,"3,810"
+GEO,132,Georgia,"3,717"
+MDA,133,Moldova,"3,554"
+PRI,134,Puerto Rico,"3,474"
+URY,135,Uruguay,"3,432"
+ARM,136,Armenia,"3,018"
+MNG,137,Mongolia,"2,959"
+LTU,138,Lithuania,"2,905"
+ALB,139,Albania,"2,889"
+JAM,140,Jamaica,"2,793"
+NAM,141,Namibia,"2,459"
+BWA,142,Botswana,"2,262"
+QAT,143,Qatar,"2,235"
+LSO,144,Lesotho,"2,135"
+MKD,145,"Macedonia, FYR","2,078"
+SVN,146,Slovenia,"2,064"
+GMB,147,"Gambia, The","1,991"
+LVA,148,Latvia,"1,978"
+GNB,149,Guinea-Bissau,"1,844"
+XKX,150,Kosovo,"1,802"
+GAB,151,Gabon,"1,725"
+BHR,152,Bahrain,"1,377"
+TTO,153,Trinidad and Tobago,"1,360"
+EST,154,Estonia,"1,315"
+SWZ,155,Swaziland,"1,287"
+MUS,156,Mauritius,"1,263"
+TLS,157,Timor-Leste,"1,185"
+CYP,158,Cyprus,"1,165"
+FJI,159,Fiji,892
+DJI,160,Djibouti,888
+GNQ,161,Equatorial Guinea,845
+COM,162,Comoros,788
+BTN,163,Bhutan,775
+GUY,164,Guyana,767
+MNE,165,Montenegro,622
+MAC,166,"Macao SAR, China",588
+SLB,167,Solomon Islands,584
+LUX,168,Luxembourg,570
+SUR,169,Suriname,543
+CPV,170,Cabo Verde,521
+MLT,171,Malta,432
+BRN,172,Brunei Darussalam,423
+MDV,173,Maldives,409
+BHS,174,"Bahamas, The",388
+BLZ,175,Belize,359
+ISL,176,Iceland,331
+BRB,177,Barbados,284
+PYF,178,French Polynesia,283
+NCL,179,New Caledonia,273
+VUT,180,Vanuatu,265
+WSM,181,Samoa,193
+STP,182,São Tomé and Principe,190
+LCA,183,St. Lucia,185
+GUM,184,Guam,170
+CHI,185,Channel Islands,164
+CUW,186,Curaçao,158
+KIR,187,Kiribati,112
+VCT,188,St. Vincent and the Grenadines,109
+GRD,189,Grenada,107
+TON,190,Tonga,106
+FSM,191,"Micronesia, Fed. Sts.",104
+ABW,192,Aruba,104
+VIR,193,Virgin Islands (U.S.),104
+SYC,194,Seychelles,93
+ATG,195,Antigua and Barbuda,92
+IMN,196,Isle of Man,88
+DMA,197,Dominica,73
+AND,198,Andorra,70
+BMU,199,Bermuda,65
+CYM,200,Cayman Islands,60
+GRL,201,Greenland,56
+KNA,202,St. Kitts and Nevis,56
+ASM,203,American Samoa,56
+MNP,204,Northern Mariana Islands,55
+MHL,205,Marshall Islands,53
+FRO,206,Faroe Islands,48
+SXM,207,Sint Maarten (Dutch part),39
+MCO,208,Monaco,38
+LIE,209,Liechtenstein,38
+TCA,210,Turks and Caicos Islands,34
+GIB,211,Gibraltar,32
+SMR,212,San Marino,32
+MAF,213,St. Martin (French part),32
+VGB,214,British Virgin Islands,30
+PLW,215,Palau,21
+NRU,216,Nauru,12
+TUV,217,Tuvalu,10
