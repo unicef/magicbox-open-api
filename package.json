@@ -10,6 +10,7 @@
   "dependencies": {
     "a127-magic": "^0.12.1",
     "azure-storage": "^2.1.0",
+    "babel-preset-node6": "^11.0.0",
     "bluebird": "^3.5.0",
     "compression": "^1.6.2",
     "eslint": "^3.19.0",
@@ -20,6 +21,9 @@
     "swagger-tools": "^0.10.1",
     "volos-cache-memory": "^0.10.1",
     "volos-swagger": "^0.8.0"
+  },
+  "scripts": {
+    "start": "babel-watch server.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
