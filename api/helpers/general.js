@@ -13,23 +13,24 @@ var fileSvc = azure_storage.createFileService(storage_account, azure_key);
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-var countries_with_this_kind_data = (kind) => {
+var countries_with_this_kind_data = (kind, source) => {
   return new Promise((resolve, reject) => {
     // return resolve(temp_population_json);
     async.waterfall([
       function(callback) {
         // gadm2-8, santiblanko
-        azure_utils.get_file_list(fileSvc, kind)
+        let data_source = source || config[kind].azure.default_source
+        azure_utils.get_file_list(fileSvc, kind, data_source)
         .then(directories => {
           var dirs_shapefiles = extract_dirs(directories.entries.directories);
-          callback(null, dirs_shapefiles, kind);
+          callback(null, dirs_shapefiles, kind, data_source);
         });
       },
       // Iterate through each shapefile source
       // and keep a running hash of country to array of aggregations per source
-      function(dirs_shapefiles, kind, callback) {
+      function(dirs_shapefiles, kind, source, callback) {
         bluebird.reduce(dirs_shapefiles, (h, dir) => {
-          return shapefile_aggregations(h, dir, kind)
+          return shapefile_aggregations(h, dir, kind, source)
           .then(updated_hash => {
             h = updated_hash;
             return h;
@@ -44,9 +45,10 @@ var countries_with_this_kind_data = (kind) => {
     });
   })
 }
-function shapefile_aggregations(h, dir, kind) {
+function shapefile_aggregations(h, dir, kind, source) {
   return new Promise((resolve, reject) => {
-    azure_utils.get_file_list(fileSvc, kind, dir)
+    var directory = source === undefined ? dir : source + '/' + dir
+    azure_utils.get_file_list(fileSvc, kind, directory)
     .then(files => {
       files.entries.files.forEach(e => {
         var record = file_to_record(e);
@@ -198,25 +200,21 @@ const get_data_by_admins = (kind, country) => {
     async.waterfall([
       // get all files from population/worldpop dir
       (callback) => {
-        azure_utils.get_file_list(fileSvc, kind, config[kind].azure.default_database)
+        azure_utils.get_file_list(fileSvc, kind, config[kind].azure.default_source + '/' + config[kind].azure.default_database)
         .then(files => {
           files = files.entries.files.filter(file => {
             return file.name.split('_')[0] === country
           })
           if (files.length === 1) {
-            callback(null, kind, config[kind].azure.default_database, files[0].name)
+            callback(null, kind, config[kind].azure.default_source + '/' + config[kind].azure.default_database, files[0].name)
           }
         })
       },
       // read the required file and reduce every element to corresponding formated string
       (kind, dir, fileName, callback) => {
-
-
         let [ raster, source  ] = fileName.split('^').slice(1, 3)
-
         let population_map = {}
         population_map.raster = raster
-        population_map.source = source
         population_map.population = {}
 
         read_file(kind, dir, fileName)
@@ -246,8 +244,41 @@ const get_data_by_admins = (kind, country) => {
   });
 }
 
+/**
+  * Returns population metadata available from specified source for specified country.
+  * If country is not specified it will return data for all countries.
+ * @param  {String} source      Source for the population data
+ * @param  {String} country     country for which we need the data
+ * @return {Promise} Fulfilled  when records are returned
+ */
+const getPopulation = (source, country) => {
+  return new Promise((resolve, reject) => {
+    if (source === 'worldpop') {
+      if (country !== undefined) {
+        get_data_by_admins('population', country)
+        .then(resolve)
+      } else {
+        countries_with_this_kind_data('population', source)
+        .then(data => {
+          return resolve(data)
+        })
+      }
+    } else if (source === 'worldbank') {
+      read_file('population', source, 'population.json')
+      .then(content => {
+        if (country !== undefined) {
+          return resolve(content[country])
+        } else {
+          return resolve(content)
+        }
+      })
+    }
+  });
+}
+
 module.exports = {
   countries_with_this_kind_data,
   get_cases,
-  get_data_by_admins
+  get_data_by_admins,
+  getPopulation
 };

@@ -30,7 +30,7 @@ x-volos-resources:
         ttl: 90000000
 
 paths:
-  /v1/mosquito/{kind}:
+  /v1/mosquito/kind/{kind}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -55,7 +55,7 @@ paths:
           in: path
           required: true
       # used as the method name of the controller
-      operationId: general
+      operationId: getMosquito
       responses:
         "200":
           description: Success
@@ -85,7 +85,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /mosquito/{kind}/{country}:
+  /v1/mosquito/kind/{kind}/country/{country}:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -108,7 +108,7 @@ paths:
           in: path
           required: true
        # used as the method name of the controller
-      operationId: getPopulationByCountry
+      operationId: getMosquito
       responses:
         "200":
           description: Success
@@ -142,11 +142,57 @@ paths:
         # cacheKey() in /helpers/volos.js
         key:
             helper: volos
-            function: cachePopCountries
+            function: cachePopulation
     get:
       description: Returns all countries for which we have population
       # used as the method name of the controller
-      operationId: general
+      operationId: getPopulation
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: { "data_kind": "population",
+                                "data": {
+                                  "afg": [
+                                        { "country": "afg",
+                                        "data_source": "worldpop",
+                                        "shapefile_set": "gadm2-8",
+                                        "admin_level": "2",
+                                        "sum": 45155184,
+                                        "sq_km": 248596,
+                                        "density": 181.64083090637018,
+                                        "raster": "popmap15adj" }
+                                  ]
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/PopulationResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/population/source/{source}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cachePopulation
+    get:
+      description: Returns all countries for which we have population
+      parameters:
+        - name: source
+          type: string
+          in: path
+          required: true
+      # used as the method name of the controller
+      operationId: getPopulation
       responses:
         "200":
           description: Success
@@ -174,7 +220,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   # #/population/{format}/{country}:
-  /v1/population/{country}:
+  /v1/population/country/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:
@@ -194,7 +240,7 @@ paths:
           in: path
           required: true
       # used as the method name of the controller
-      operationId: getPopulationByCountry
+      operationId: getPopulation
       responses:
         "200":
           description: Success
@@ -218,7 +264,55 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/cases/{kind}/{weekType}:
+  /v1/population/source/{source}/country/{country}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    x-volos-apply:
+      # Applies the cache to our endpoint
+      cache:
+        # Gets the cache name by calling
+        # cacheKey() in /helpers/volos.js
+        key:
+            helper: volos
+            function: cacheCountry
+    get:
+      description: Returns all population metadata for requested country - arg, bra, col...etc.
+      summary: arg, bra, col
+      parameters:
+        - name: country
+          type: string
+          in: path
+          required: true
+        - name: source
+          type: string
+          in: path
+          required: true
+      # used as the method name of the controller
+      operationId: getPopulation
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                              "country": "afg",
+                              "source": "worldpop",
+                              "raster": "popmap15adj",
+                              "population": {
+                              "afg_1_12_129_gadm2-8": 106461.486597909,
+                              "afg_1_18_195_gadm2-8": 49145.9762721732,
+                              "afg_1_25_251_gadm2-8": 38762.5194789991,
+                              "afg_1_11_106_gadm2-8": 85040.7826003991
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/PopulationCountryResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/cases/kind/{kind}/weekType/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     x-volos-apply:

@@ -20,10 +20,11 @@
 'use strict';
 
 var debug = require('debug')('helpers');
+const config = require('../../config')
 
 module.exports = {
   cacheCountry,
-  cachePopCountries,
+  cachePopulation,
   cacheMosquitoKinds,
   cacheCases,
   cacheMosquitoByCountry
@@ -32,13 +33,16 @@ module.exports = {
 // Checks for the 'country' query param from the API request
 // and returns it to be used as the cache name
 function cacheCountry(req) {
-  var catcheKey = 'population_' + req.swagger.params.country.value;
-  if (debug.enabled) { debug('Cache Key: '+ catcheKey); }
-  return catcheKey;
+  let country = req.swagger.params.country.value
+  let source = req.swagger.params.source !== undefined ? req.swagger.params.source.value : config.population.azure.default_source
+  var cacheKey = 'population_' + source + '_' + country;
+  if (debug.enabled) { debug('Cache Key: '+ cacheKey); }
+  return cacheKey;
 }
 
-function cachePopCountries(req) {
-  var key = 'population';
+function cachePopulation(req) {
+  let source = req.swagger.params.source ? req.swagger.params.source.value : config.population.azure.default_source
+  var key = 'population_' + source;
   if (debug.enabled) { debug('Cache Key: '+key); }
   return key;
 }

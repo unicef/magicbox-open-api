@@ -1,32 +1,76 @@
 import util from 'util'
 import general_helper from '../helpers/general'
 
+
 /**
- * Return list of countries in with aggregated population data
+ * Returns mosquito prevalence for specified country. If country is not specified it will return
+ * mosquito prevalence for all countries.
  * @param{String} request - request object
- * @param{String} res - response object
+ * @param{String} response - response object
  * @return{Promise} Fulfilled when records are returned
  */
-export function general(req, res) {
-  const data_kind = req._key || req.swagger.params.kind.value
-  // Fetch array of countries and metadata about population aggregations.
-  // Example: {"afg":{"popmap15adj":[{"gadm2-8":2}]},"ago":{"AGO15adjv4":[{"gadm2-8":3}]}
+export function getMosquito(request, response) {
+
+  // get kind of mosquito
+  const data_kind = request.swagger.params.kind.value
+
+  // get country. if it's not set, set it to empty string
+  const country = request.swagger.params.country ? request.swagger.params.country.value : ''
+
+  if (country !== '') {
+    // get data for specified country
+    general_helper
+      .get_data_by_admins(data_kind, country)
+      .then(population_map => response.json({
+        country : country,
+        source : population_map.source,
+        kind : population_map.raster,
+        mosquito_prevalence : population_map.population
+      }))
+      .catch(err =>
+        response.json({message: err})
+      )
+  } else {
+    // get data for all countries
+    general_helper
+      .countries_with_this_kind_data(data_kind)
+      .then(data => response.json({
+        data_kind : data_kind,
+        data : data
+      }))
+      .catch(err =>
+        response.json({message: err})
+      )
+  }
+}
+
+/**
+ * Returns population metadata available from specified source for specified country.
+ * If country is not specified it will return data for all countries.
+ * Default source is worldpop.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ * @return{Promise} Fulfilled when records are returned
+ */
+export function getPopulation(request, response) {
+  const [ key, source, country ] = request._key.split('_')
   general_helper
-    .countries_with_this_kind_data(data_kind)
-    .then(data => res.json({
-      data_kind: data_kind,
+    .getPopulation(source, country)
+    .then(data => response.json({
+      data_kind: key,
+      source: source,
       data: data
     }))
-    .catch(err =>
-      res.json({message: err})
-    )
+    .catch(err => {
+      response.json({message: err})
+    })
 }
 
 
 /**
  * Returns an object with information about cases for specific kind in all countries
  * @param{String} request - request object
- * @param{String} res - response object
+ * @param{String} response - response object
  * @return{Promise} Fulfilled when records are returned
  */
 export function getCases(request, response) {
@@ -50,35 +94,4 @@ export function getCases(request, response) {
       response.json({ message: error })
     )
 
-}
-
-/**
- * Returns population of each admin for specified country.
- * @param{String} request - request object
- * @param{String} res - response object
- * @return{Promise} Fulfilled when records are returned
- */
-export function getPopulationByCountry(request, response) {
-  // country represents country whose population we are pulling
-  const [ key, country ] = request._key.split('_')
-
-  general_helper
-    .get_data_by_admins(key, country)
-    .then(population_map => {
-      let return_object = {
-        country: country,
-        source: population_map.source,
-      }
-      if (key === 'population') {
-        return_object.raster = population_map.raster,
-        return_object.population = population_map.population
-      } else {
-        return_object.kind = population_map.raster,
-        return_object.mosquito_prevalence = population_map.population
-      }
-      response.json(return_object)
-    })
-    .catch(error =>
-      response.json({ message: error })
-    )
 }
