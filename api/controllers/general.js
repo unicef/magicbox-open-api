@@ -1,8 +1,8 @@
-// import util from 'util'
-// import general_helper from '../helpers/general'
+import util from 'util'
+import general_helper from '../helpers/general'
 
-var util = require('util');
-var general_helper = require('../helpers/general');
+// var util = require('util');
+// var general_helper = require('../helpers/general');
 
 /**
  * Return list of countries with aggregated population data
@@ -10,7 +10,7 @@ var general_helper = require('../helpers/general');
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function general(req, res) {
+export function general(req, res) {
   const data_kind = req._key || req.swagger.params.kind.value
   // Fetch array of countries and metadata about population aggregations.
   // Example: {"afg":{"popmap15adj":[{"gadm2-8":2}]},"ago":{"AGO15adjv4":[{"gadm2-8":3}]}
@@ -32,7 +32,7 @@ function general(req, res) {
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function getCases(request, response) {
+export function getCases(request, response) {
   // key represents what data we want to pull, here it is 'cases'
   const key = request._key
   // kind represents disease whose cases we are pulling
@@ -61,7 +61,7 @@ function getCases(request, response) {
  * @param{String} res - response object
  * @return{Promise} Fulfilled when records are returned
  */
-function getPopulationByCountry(request, response) {
+export function getPopulationByCountry(request, response) {
   // country represents country whose population we are pulling
   const [ key, country ] = request._key.split('_')
 
@@ -86,8 +86,8 @@ function getPopulationByCountry(request, response) {
     )
 }
 
-module.exports = {
-  getPopulationByCountry: getPopulationByCountry,
-  general: general,
-  getCases: getCases
-};
+// module.exports = {
+//   getPopulationByCountry: getPopulationByCountry,
+//   general: general,
+//   getCases: getCases
+// };
