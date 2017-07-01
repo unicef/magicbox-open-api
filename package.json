@@ -11,7 +11,6 @@
     "a127-magic": "^0.12.1",
     "azure-storage": "^2.1.0",
     "babel-preset-node6": "^11.0.0",
-    "babel-cli": "^6.24.1",
     "bluebird": "^3.5.0",
     "compression": "^1.6.2",
     "eslint": "^3.19.0",
