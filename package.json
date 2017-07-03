@@ -24,6 +24,7 @@
     "volos-swagger": "^0.8.0"
   },
   "scripts": {
+    "start": "node index.js",
     "prod": "babel-node server.js",
     "dev": "babel-watch server.js"
   },
