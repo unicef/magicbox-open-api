@@ -1,14 +1,8 @@
-// import a127 from 'a127-magic'
-// import SwaggerExpress from 'swagger-express-mw'
-// import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
-// import compression from 'compression'
-// import express from 'express'
-
-var a127 = require('a127-magic');
-var SwaggerExpress = require('swagger-express-mw');
-var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
-var compression = require('compression');
-var express = require('express');
+import a127 from 'a127-magic'
+import SwaggerExpress from 'swagger-express-mw'
+import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
+import compression from 'compression'
+import express from 'express'
 
 const config = {
   appRoot: __dirname,
@@ -38,4 +32,4 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   })
 })
 
-// exports default app
+export default app
