@@ -4,12 +4,6 @@ import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
 import compression from 'compression'
 import express from 'express'
 
-// var a127 = require('a127-magic');
-// var SwaggerExpress = require('swagger-express-mw');
-// var SwaggerUi = require('swagger-tools/middleware/swagger-ui');
-// var compression = require('compression');
-// var express = require('express');
-
 const config = {
   appRoot: __dirname,
   port: process.env.PORT || 8000

@@ -176,7 +176,7 @@ function read_file(key, dir, fileName) {
     var directory = config[key].azure.directory;
     var path = config[key].azure.path;
     path = dir ? path + dir : path;
-    fileSvc.getFileToText(directory, path, fileName, function(error, fileContent, file) {
+    fileSvc.getFileToText(directory, path, fileName, (error, fileContent, file) => {
       if (!error) {
         resolve(JSON.parse(fileContent));
       } else {
@@ -208,20 +208,27 @@ const get_data_by_admins = (kind, country) => {
           }
         })
       },
-      // read the required file and reduce every element to corresponding formated string
+      // Get geo properties from country shapefiles
       (kind, dir, fileName, callback) => {
+        let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() + '.json'
+        read_file('geo-properties', dir, geo_props_file_name)
+        .then(admin_properties => {
+          callback(null, kind, dir, fileName, admin_properties)
+        });
+      },
 
-
+      // read the required file and reduce every element to corresponding formated string
+      (kind, dir, fileName, admin_properties, callback) => {
         let [ raster, source  ] = fileName.split('^').slice(1, 3)
 
-        let population_map = {}
-        population_map.raster = raster
-        population_map.source = source
-        population_map.population = {}
-
+        let admin_to_value_map = {}
+        admin_to_value_map.raster = raster
+        admin_to_value_map.source = source
+        admin_to_value_map.population = {}
+        // fileName example: afg_2_gadm2-8^popmap15adj^worldpop^42348516^248596^641869.188.json
         read_file(kind, dir, fileName)
         .then(content => {
-          var pop_map = content.reduce((map, element) => {
+          var value_map = content.reduce((ary, element) => {
             var tempList = Object.keys(element).filter(key => {
               return ( key.startsWith('id_') )
             }).map(key => {
@@ -229,21 +236,55 @@ const get_data_by_admins = (kind, country) => {
             })
 
             let temp_map = {}
-            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element.sum || element.mean
-            Object.assign(map, temp_map)
-            return map
-          }, {})
-          Object.assign(population_map.population, pop_map)
-          callback(null, population_map)
+            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element[config[kind].val_type]
+
+            // Enrich each object with the feature properties from the original shapefile
+            var admin_props = assign_correct_admin_from_admins(admin_properties, tempList);
+
+            ary.push(Object.assign(
+              {
+                admin_id: country + '_' + tempList.join('_') + '_' + dir,
+                value: element[config[kind].val_type]
+              },
+              admin_props
+            )
+          )
+            // Object.assign(map, temp_map)
+            return ary
+          }, []);
+
+          admin_to_value_map.value = value_map;
+          callback(null, admin_to_value_map)
         })
       }
-    ], (error, population_map) => {
+    ], (error, admin_to_value_map) => {
       if (error) {
         return reject(error)
       }
-      return resolve(population_map)
+
+      return resolve(admin_to_value_map)
     })
   });
+}
+
+/**
+ * Return admin properties that matches spark output ids
+ * @param  {Array} admin_properties_ary admin properties per a country
+ * @param  {Array} spark_output_ids ids from spark aggregation output
+ * @return{Promise} Admin poperties obj
+ */
+function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids) {
+  return admin_properties_ary.find(p => {
+    let count = 0;
+    const temp_admin_id = Object.keys(p).reduce((ary, k) => {
+      if (k == 'ID_' + count) {
+        ary.push(p[k])
+        count += 1;
+      }
+      return ary;
+    }, [])
+    return temp_admin_id.join('_') === spark_output_ids.join('_');
+  })
 }
 
 module.exports = {
