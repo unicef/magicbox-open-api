@@ -1,6 +1,6 @@
 import util from 'util'
 import general_helper from '../helpers/general'
-
+import config from '../../config'
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
@@ -25,7 +25,7 @@ export function getMosquito(request, response) {
         country : country,
         source : population_map.source,
         kind : population_map.raster,
-        mosquito_prevalence : population_map.population
+        mosquito_prevalence : population_map.value
       }))
       .catch(err =>
         response.json({message: err})
@@ -83,10 +83,15 @@ export function getCases(request, response) {
   // week represents last date of epi-week. If set, the API will fetch cases only for that week
   const week = request.swagger.params.date ? request.swagger.params.date.value : null
 
+  const source = config.zika.source
+  const source_url = config.zika.source_url
+
   general_helper
     .get_cases(key, kind, weekType, week)
     .then((cases) => response.json({
       kind: kind,
+      source: source,
+      source_url: source_url,
       weekType: weekType,
       cases: cases
     }))
@@ -94,4 +99,28 @@ export function getCases(request, response) {
       response.json({ message: error })
     )
 
+}
+
+/**
+ * Returns population of each admin for specified country.
+ * @param{String} request - request object
+ * @param{String} res - response object
+ * @return{Promise} Fulfilled when records are returned
+ */
+export function getPopulationByCountry(request, response) {
+  // country represents country whose population we are pulling
+  const [ key, country ] = request._key.split('_')
+
+  general_helper
+    .get_data_by_admins(key, country)
+    .then(pop_or_prev_map => response.json({
+        country: country,
+        source: config[key].source,
+        source_url: config[key].source_url,
+        kind: pop_or_prev_map.raster,
+        value: pop_or_prev_map.value
+    }))
+    .catch(error =>
+      response.json({ message: error })
+    )
 }
