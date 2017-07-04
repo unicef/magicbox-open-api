@@ -221,14 +221,14 @@ const get_data_by_admins = (kind, country) => {
       (kind, dir, fileName, admin_properties, callback) => {
         let [ raster, source  ] = fileName.split('^').slice(1, 3)
 
-        let population_map = {}
-        population_map.raster = raster
-        population_map.source = source
-        population_map.population = {}
+        let admin_to_value_map = {}
+        admin_to_value_map.raster = raster
+        admin_to_value_map.source = source
+        admin_to_value_map.population = {}
+        // fileName example: afg_2_gadm2-8^popmap15adj^worldpop^42348516^248596^641869.188.json
         read_file(kind, dir, fileName)
         .then(content => {
-
-          var pop_map = content.reduce((ary, element) => {
+          var value_map = content.reduce((ary, element) => {
             var tempList = Object.keys(element).filter(key => {
               return ( key.startsWith('id_') )
             }).map(key => {
@@ -236,7 +236,7 @@ const get_data_by_admins = (kind, country) => {
             })
 
             let temp_map = {}
-            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element.sum
+            temp_map[country + '_' + tempList.join('_') + '_' + dir] = element[config[kind].val_type]
 
             // Enrich each object with the feature properties from the original shapefile
             var admin_props = assign_correct_admin_from_admins(admin_properties, tempList);
@@ -244,7 +244,7 @@ const get_data_by_admins = (kind, country) => {
             ary.push(Object.assign(
               {
                 admin_id: country + '_' + tempList.join('_') + '_' + dir,
-                population: element.sum
+                value: element[config[kind].val_type]
               },
               admin_props
             )
@@ -253,16 +253,16 @@ const get_data_by_admins = (kind, country) => {
             return ary
           }, []);
 
-          population_map.population = pop_map;
-          callback(null, population_map)
+          admin_to_value_map.value = value_map;
+          callback(null, admin_to_value_map)
         })
       }
-    ], (error, population_map) => {
+    ], (error, admin_to_value_map) => {
       if (error) {
         return reject(error)
       }
 
-      return resolve(population_map)
+      return resolve(admin_to_value_map)
     })
   });
 }
