@@ -43,7 +43,7 @@ paths:
             function: cacheMosquitoKinds
     get:
 
-      description: Returns mosquito prevelence metadata for all countries - arg, bra, col...etc.
+      description: Returns mosquito prevelence metadata for all countries - arg, bra, col...etc. Data sourced from, The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus, https://elifesciences.org/articles/08347
       summary: aegypti / albopictus
       parameters:
         # - name: format
@@ -86,7 +86,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /v1/mosquito/{kind}/{country}:
-     # binds a127 app logic to a route
+     # binds a127 app logic to a routes
     x-swagger-router-controller: general
     x-volos-apply:
        # Applies the cache to our endpoint
@@ -97,7 +97,7 @@ paths:
             helper: volos
             function: cacheMosquitoByCountry
     get:
-      description: Returns all metadata regarding mosquito prevalence for requested country - arg, bra, col...etc.
+      description: Returns all metadata regarding mosquito prevalence for requested country - arg, bra, col...etc.  Data sourced from, The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus, https://elifesciences.org/articles/08347
       parameters:
         - name: kind
           type: string
@@ -230,7 +230,7 @@ paths:
             helper: volos
             function: cacheCases
     get:
-      description: Returns JSON with metadata regarding cases for specified kind
+      description: Returns JSON with metadata regarding cases for specified kind. Data sourced from Paho, http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en
       summary: zika/epi
       parameters:
         - name: kind
