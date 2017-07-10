@@ -1,5 +1,10 @@
-// import config from '../config'
-var config = require('../config');
+import config from '../config'
+import azure_storage from 'azure-storage'
+
+const storage_account = config.azure.storage_account
+const azure_key = config.azure.key1
+const fileSvc = azure_storage.createFileService(storage_account, azure_key)
+const base_dir = config.azure.directory
 
 /**
  * Gets list of country population aggregation blobs
@@ -7,13 +12,11 @@ var config = require('../config');
  * @param{String} container_name - Name of blob container
  * @return{Promise} Fulfilled list of blobs
  */
-exports.get_file_list = (fileSrv, kind, dir) => {
-
-  let {directory: rootDir, path = null} = config[kind].azure
+export function get_file_list (kind, dir) {
+  let path = config[kind].path
   path = dir ? path + dir : path
-
   return new Promise((resolve, reject) => {
-    fileSrv.listFilesAndDirectoriesSegmented(rootDir, path, null, function(err, result, response) {
+    fileSvc.listFilesAndDirectoriesSegmented(base_dir, path, null, function(err, result, response) {
       if (err) {
         return reject(err);
       } else {
@@ -22,3 +25,23 @@ exports.get_file_list = (fileSrv, kind, dir) => {
     });
   });
 };
+
+/**
+ * Read a file and return Json object with the file content
+ * @param  {String} key      Key for the request. This determines root dir for the file
+ * @param  {String} fileName File to read
+ * @return {Promise} Fulfilled when records are returned
+ */
+export function read_file(key, dir, fileName) {
+  return new Promise((resolve, reject) => {
+    var path = config[key].path;
+    path = dir ? path + dir : path;
+    fileSvc.getFileToText(base_dir, path, fileName, (error, fileContent, file) => {
+      if (!error) {
+        resolve(JSON.parse(fileContent));
+      } else {
+        console.log("Error while reading", base_dir+path+fileName);
+      }
+    });
+  });
+}

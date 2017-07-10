@@ -23,44 +23,71 @@ var debug = require('debug')('helpers');
 const config = require('../../config')
 
 module.exports = {
-  cacheCountry,
   cachePopulation,
-  cacheMosquitoKinds,
+  cachePopulationProperties,
+  cachePopulationCountries,
   cacheCases,
-  cacheMosquitoByCountry
+  cacheCasesProperties,
+  cacheMosquitoProperties,
+  cacheMosquito
 };
 
-// Checks for the 'country' query param from the API request
-// and returns it to be used as the cache name
-function cacheCountry(req) {
-  let country = req.swagger.params.country.value
-  let source = req.swagger.params.source !== undefined ? req.swagger.params.source.value : config.population.azure.default_source
-  var cacheKey = 'population_' + source + '_' + country;
-  if (debug.enabled) { debug('Cache Key: '+ cacheKey); }
-  return cacheKey;
-}
-
 function cachePopulation(req) {
-  let source = req.swagger.params.source ? req.swagger.params.source.value : config.population.azure.default_source
-  var key = 'population_' + source;
+  let key = 'population' + getKeyForRequest(req.swagger.params)
   if (debug.enabled) { debug('Cache Key: '+key); }
   return key;
 }
 
-function cacheMosquitoKinds(req) {
-  var key = req.swagger.params.kind.value;
+function cachePopulationCountries(req) {
+  let key = 'population_' + config.population.default_source + getKeyForRequest(req.swagger.params)
+  if (debug.enabled) { debug('Cache Key: '+ key + '_properties'); }
+  return key;
+}
+
+function cacheMosquitoProperties(req) {
+  let key = 'mosquito'
+  key += getKeyForRequest(req.swagger.params)
+  if (debug.enabled) { debug('Cache Key: '+ key + '_properties'); }
+  console.log('key', key);
+  return key;
+}
+
+function cacheMosquito(req) {
+  let key = 'mosquito' + getKeyForRequest(req.swagger.params)
   if (debug.enabled) { debug('Cache Key: '+key); }
   return key;
 }
 
 function cacheCases(req) {
-  var key = 'cases';
-  if (debug.enabled) { debug('Cache Key: '+key); }
+  var key = 'cases' + getKeyForRequest(req.swagger.params);
+  if (debug.enabled) { debug('Cache Key: '+ key); }
   return key;
 }
 
-function cacheMosquitoByCountry(req) {
-  var key = req.swagger.params.kind.value + '_' + req.swagger.params.country.value
-  if (debug.enabled) { debug('Cache Key: '+ key); }
+function cachePopulationProperties(req) {
+  let key = 'population'
+  key += getKeyForRequest(req.swagger.params)
+  if (debug.enabled) { debug('Cache Key: '+ key + '_properties'); }
   return key;
+}
+
+function cacheCasesProperties(req) {
+  let key = 'cases'
+  key += getKeyForRequest(req.swagger.params)
+  if (debug.enabled) { debug('Cache Key: '+ key + '_properties'); }
+  return key;
+}
+
+const getKeyForRequest = (params) => {
+  let key = ''
+  let paramKeys = Object.keys(params)
+  for (let property of paramKeys) {
+    if (params[property] === undefined) {
+      key += '_' + property
+      break;
+    } else {
+      key += '_' + params[property].value
+    }
+  }
+  return key
 }
