@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <script src="https://cdn.auth0.com/js/auth0/8.0.4/auth0.min.js"></script>
+  <script>
+  var webAuth = new auth0.WebAuth({
+    domain:       'pratikkul1.auth0.com',
+    clientID:     '-ByPmbRVYjhEdMIHrwjwJUIz9wJYXOb7'
+  });
+  function showToken(error, token) {
+    var tokenContainer = document.getElementById('token')
+    console.log(token);
+    tokenContainer.innerHTML = token.accessToken
+  }
+  webAuth.parseHash(showToken)
+  </script>
+</head>
+
+<body>
+  <h3>Your token is: <p id='token'></p></h3>
+</body>
+
+</html>

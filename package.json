@@ -29,6 +29,8 @@
     "dev": "babel-watch server.js"
   },
   "devDependencies": {
+    "auth0": "^2.7.0",
+    "auth0-js": "^8.8.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^6.1.2",
     "babel-preset-es2015": "^6.24.1",
@@ -36,6 +38,8 @@
     "csvtojson": "^1.1.7",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
+    "qs": "^6.5.0",
+    "serve": "^5.1.5",
     "should": "^7.1.0",
     "supertest": "^1.0.0"
   }

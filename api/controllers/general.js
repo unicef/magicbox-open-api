@@ -1,7 +1,11 @@
 import util from 'util'
 import * as general_helper from '../helpers/general'
 import config from '../../config'
-
+import * as auth from '../helpers/auth'
+import bluebird from 'bluebird'
+import fs from 'fs'
+import qs from 'qs'
+const readFile = bluebird.promisify(fs.readFile)
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
@@ -97,4 +101,27 @@ export function getProperties(request, response) {
     key: properties.key,
     properties: properties.properties
   }))
+}
+
+export const getToken = (request, response) => {
+  let url = auth.getAuthorizeUrl()
+  // response.json({
+  //   action: "Please open following url in browser and follow next steps",
+  //   url: url
+  // })
+  // console.log(url);
+  response.format({
+    'text/html': function(){
+      response.send("<html><body><h3><a href='" + url + "'> Click Here </a></h3></body></html>")
+    }
+  })
+}
+
+export const showToken = (request, response) => {
+  let token = qs.parse(request.body).access_token
+  response.format({
+    'text/html': function(){
+      response.send("<html><body><h3>Token: "+ token +"</h3></body></html>")
+    }
+  })
 }
