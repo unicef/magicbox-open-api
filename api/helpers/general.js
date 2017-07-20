@@ -31,6 +31,7 @@ const getFile = (shapefiles, country) => {
  */
 export const countries_with_this_kind_data = (kind, source, country) => {
   return new Promise((resolve, reject) => {
+    // Get country name for each shapefile
     getShapeFiles(kind, source)
     .then(shapefileSet => {
       if (country) {
@@ -386,6 +387,11 @@ const fetchProperty = (key, path, splitOn, part) => {
 export const getPopulation = (key, source, country) => {
   return new Promise((resolve, reject) => {
     source = (source !== undefined) ? source : config[key].default_source
+    // Temp solution until we aggregate worldpop by all admin zeros.
+    if (!country) {
+      source = 'worldbank';
+    }
+
     switch(source) {
       case 'worldpop': {
         countries_with_this_kind_data(key, source, country)
