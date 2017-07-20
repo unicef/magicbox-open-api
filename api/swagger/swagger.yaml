@@ -1,18 +1,19 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Population with Geo API
+  title: Open data aggregated by administrative regions
+  description: "This API is just for information purposes."
 # during dev, should point to your local machine
 host: localhost:8000
 # basePath prefixes all resource paths
 basePath: /api/
 tags:
-  - name: "Population"
-    # description: "Everything about People around the world"
-  - name: "Mosquito"
-    # description: "No one is too small to have an impact"
-  - name: "Cases"
-    # description: "Case data of epidemics"
+- name: "Population"
+  description: "World Bank and worldpop.org / gadm2-8 shapefiles"
+- name: "Mosquito"
+  # description: "No one is too small to have an impact"
+- name: "Cases"
+  # description: "Case data of epidemics"
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -253,7 +254,8 @@ paths:
     get:
       tags:
         - 'Population'
-      description: Returns all countries for which we have population. For population worldpop id used as default source
+      summary: World Bank population figures per country
+      description: Returns population figures published by the World Bank.
       # used as the method name of the controller
       operationId: getPopulation
       responses:
@@ -296,6 +298,7 @@ paths:
     get:
       tags:
         - 'Population'
+      summary: worldbank - admin 0, worldpop - highest admin level available from worldpop.org
       description: Returns list of different sources from which population data is available
       # used as the method name of the controller
       operationId: getProperties
@@ -420,7 +423,7 @@ paths:
     get:
       tags:
         - 'Population'
-      description: Returns all population metadata for requested country - arg, bra, col...etc.
+      description: Returns admin level population at highest admin level available by gadm.org
       summary: arg, bra, col
       parameters:
         - name: country
