@@ -1,6 +1,7 @@
 import util from 'util'
 import * as general_helper from '../helpers/general'
 import config from '../../config'
+import * as logger from './../helpers/logger'
 
 
 /**
@@ -25,6 +26,7 @@ export function getMosquito(request, response) {
       data: data
     }))
     .catch(err => {
+      logger.error({ desc: err })
       response.json({message: err})
     })
 }
@@ -48,6 +50,7 @@ export function getPopulation(request, response) {
       data: data
     }))
     .catch(err => {
+      logger.error({ desc: err })
       response.json({message: err})
     })
 }
@@ -78,9 +81,10 @@ export function getCases(request, response) {
       weekType: weekType,
       cases: cases
     }))
-    .catch(error =>
+    .catch(error => {
+      logger.error({ desc: err })
       response.json({ message: error })
-    )
+    })
 }
 
 
@@ -97,4 +101,8 @@ export function getProperties(request, response) {
     key: properties.key,
     properties: properties.properties
   }))
+  .catch(err => {
+    logger.error({ desc: err })
+    return reject(err)
+  })
 }
