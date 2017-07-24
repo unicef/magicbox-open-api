@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Open data aggregated by administrative regions
-  description: "This API is just for information purposes."
+  description: "This API is just for information purposes. Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)."
 # during dev, should point to your local machine
 host: localhost:8000
 # basePath prefixes all resource paths
