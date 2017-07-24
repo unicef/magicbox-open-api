@@ -38,7 +38,11 @@ export function getMosquito(request, response) {
  * @return{Promise} Fulfilled when records are returned
  */
 export function getPopulation(request, response) {
+  // When no source or country are specified: 'population'
+  // If country is specified: 'population_worldpop_afg'
+  
   const [ key, source, country ] = request._key.split('_')
+
   const data_source = (source !== undefined) ? source : config.population.source
   general_helper
     .getPopulation(key, source, country)

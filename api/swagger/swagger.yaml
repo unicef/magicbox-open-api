@@ -1,18 +1,19 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Population with Geo API
+  title: Open data aggregated by administrative regions
+  description: "This API is just for information purposes."
 # during dev, should point to your local machine
 host: localhost:8000
 # basePath prefixes all resource paths
 basePath: /api/
 tags:
-  - name: "Population"
-    # description: "Everything about People around the world"
-  - name: "Mosquito"
-    # description: "No one is too small to have an impact"
-  - name: "Cases"
-    # description: "Case data of epidemics"
+- name: "Population"
+  description: "worldpop.org aggregated by gadm2-8 shapefiles"
+- name: "Mosquito"
+  # description: "No one is too small to have an impact"
+- name: "Cases"
+  # description: "Case data of epidemics"
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -238,134 +239,136 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  # #/population/{format}/{country}:
-  /v1/population:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
-    get:
-      tags:
-        - 'Population'
-      description: Returns all countries for which we have population. For population worldpop id used as default source
-      # used as the method name of the controller
-      operationId: getPopulation
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "data_kind": "population",
-                                "data": {
-                                  "afg": [
-                                        { "country": "afg",
-                                        "data_source": "worldpop",
-                                        "shapefile_set": "gadm2-8",
-                                        "admin_level": "2",
-                                        "sum": 45155184,
-                                        "sq_km": 248596,
-                                        "density": 181.64083090637018,
-                                        "raster": "popmap15adj" }
-                                  ]
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationProperties
-    get:
-      tags:
-        - 'Population'
-      description: Returns list of different sources from which population data is available
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                          "key": "population",
-                          "properties": [
-                              "worldbank",
-                              "worldpop"
-                            ]
-                          }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/{source}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
-    get:
-      tags:
-        - 'Population'
-      description: Returns all countries for which we have population from specified source
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-      # used as the method name of the controller
-      operationId: getPopulation
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "data_kind": "population",
-                                "data": {
-                                  "afg": [
-                                        { "country": "afg",
-                                        "data_source": "worldpop",
-                                        "shapefile_set": "gadm2-8",
-                                        "admin_level": "2",
-                                        "sum": 45155184,
-                                        "sq_km": 248596,
-                                        "density": 181.64083090637018,
-                                        "raster": "popmap15adj" }
-                                  ]
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # # #/population/{format}/{country}:
+  # /v1/population:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cachePopulation
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     summary: World Bank population figures per country
+  #     description: Returns population figures published by the World Bank.
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cachePopulationProperties
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     summary: worldbank - admin 0, worldpop - highest admin level available from worldpop.org
+  #     description: Returns list of different sources from which population data is available
+  #     # used as the method name of the controller
+  #     operationId: getProperties
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: {
+  #                         "key": "population",
+  #                         "properties": [
+  #                             "worldbank",
+  #                             "worldpop"
+  #                           ]
+  #                         }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/ValueResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/{source}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cachePopulation
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all countries for which we have population from specified source
+  #     parameters:
+  #       - name: source
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   /v1/population/countries/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
@@ -420,7 +423,7 @@ paths:
     get:
       tags:
         - 'Population'
-      description: Returns all population metadata for requested country - arg, bra, col...etc.
+      description: Returns admin level population at highest admin level available by gadm.org
       summary: arg, bra, col
       parameters:
         - name: country
@@ -469,117 +472,117 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/{source}/countries/:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationProperties
-    get:
-      tags:
-        - 'Population'
-      description: Returns list of all the countries for which we have population data from specified source.
-      summary: arg, bra, col
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                            "key": "population_worldpop",
-                            "properties": [
-                                    "afg",
-                                    "ago",
-                                    "arg",
-                                    "arm"
-                                ]
-                            }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/{source}/countries/{country}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
-    get:
-      tags:
-        - 'Population'
-      description: Returns all population metadata for requested country - arg, bra, col...etc.
-      summary: arg, bra, col
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-        - name: country
-          type: string
-          in: path
-          required: true
-      # used as the method name of the controller
-      operationId: getPopulation
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                            "key": "population",
-                            "source": "worldpop",
-                            "data": {
-                            "raster": "popmap15adj",
-                            "source": "worldpop",
-                            "population": [
-                                      {
-                                      "admin_id": "afg_1_12_129_worldpop",
-                                      "value": 74459.9892636929,
-                                      "ID_0": 1,
-                                      "ISO": "AFG",
-                                      "NAME_0": "Afghanistan",
-                                      "ID_1": 12,
-                                      "NAME_1": "Hirat",
-                                      "ID_2": 129,
-                                      "NAME_2": "Zinda Jan",
-                                      "HASC_2": "AF.HR.ZJ",
-                                      "CCN_2": 0,
-                                      "CCA_2": null,
-                                      "TYPE_2": "Wuleswali",
-                                      "ENGTYPE_2": "District",
-                                      "NL_NAME_2": null,
-                                      "VARNAME_2": null
-                                      }
-                                  ]
-                                }
-                            }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationCountryResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/{source}/countries/:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cachePopulationProperties
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns list of all the countries for which we have population data from specified source.
+  #     summary: arg, bra, col
+  #     parameters:
+  #       - name: source
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: getProperties
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: {
+  #                           "key": "population_worldpop",
+  #                           "properties": [
+  #                                   "afg",
+  #                                   "ago",
+  #                                   "arg",
+  #                                   "arm"
+  #                               ]
+  #                           }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/ValueResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/{source}/countries/{country}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   x-volos-apply:
+  #     # Applies the cache to our endpoint
+  #     cache:
+  #       # Gets the cache name by calling
+  #       # cacheKey() in /helpers/volos.js
+  #       key:
+  #           helper: volos
+  #           function: cachePopulation
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all population metadata for requested country - arg, bra, col...etc.
+  #     summary: arg, bra, col
+  #     parameters:
+  #       - name: source
+  #         type: string
+  #         in: path
+  #         required: true
+  #       - name: country
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: {
+  #                           "key": "population",
+  #                           "source": "worldpop",
+  #                           "data": {
+  #                           "raster": "popmap15adj",
+  #                           "source": "worldpop",
+  #                           "population": [
+  #                                     {
+  #                                     "admin_id": "afg_1_12_129_worldpop",
+  #                                     "value": 74459.9892636929,
+  #                                     "ID_0": 1,
+  #                                     "ISO": "AFG",
+  #                                     "NAME_0": "Afghanistan",
+  #                                     "ID_1": 12,
+  #                                     "NAME_1": "Hirat",
+  #                                     "ID_2": 129,
+  #                                     "NAME_2": "Zinda Jan",
+  #                                     "HASC_2": "AF.HR.ZJ",
+  #                                     "CCN_2": 0,
+  #                                     "CCA_2": null,
+  #                                     "TYPE_2": "Wuleswali",
+  #                                     "ENGTYPE_2": "District",
+  #                                     "NL_NAME_2": null,
+  #                                     "VARNAME_2": null
+  #                                     }
+  #                                 ]
+  #                               }
+  #                           }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationCountryResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   /v1/cases/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
