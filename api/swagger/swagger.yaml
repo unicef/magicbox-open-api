@@ -2,14 +2,21 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Open data aggregated by administrative regions
-  description: "This API is just for information purposes. Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)."
+  description: "This API is just for information purposes.
+
+- Case data is from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
+
+- Population is from worldpop.org.uk
+
+- Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)"
+
 # during dev, should point to your local machine
 host: localhost:8000
 # basePath prefixes all resource paths
 basePath: /api/
 tags:
 - name: "Population"
-  description: "worldpop.org aggregated by gadm2-8 shapefiles"
+  # description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
   # description: "No one is too small to have an impact"
 - name: "Cases"
