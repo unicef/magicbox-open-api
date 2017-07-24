@@ -21,7 +21,10 @@
     "swagger-express-mw": "^0.1.0",
     "swagger-tools": "^0.10.1",
     "volos-cache-memory": "^0.10.1",
-    "volos-swagger": "^0.8.0"
+    "volos-swagger": "^0.8.0",
+    "dateformat": "^2.0.0",
+    "mixpanel": "^0.7.0",
+    "request-ip": "^2.0.2"
   },
   "scripts": {
     "start": "node index.js",
@@ -34,11 +37,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-watch": "^2.0.6",
     "csvtojson": "^1.1.7",
-    "dateformat": "^2.0.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
-    "mixpanel": "^0.7.0",
-    "request-ip": "^2.0.2",
     "should": "^7.1.0",
     "supertest": "^1.0.0"
   }
