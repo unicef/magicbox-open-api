@@ -112,16 +112,17 @@ export const getToken = (request, response) => {
   // console.log(url);
   response.format({
     'text/html': function(){
-      response.send("<html><body><h3><a href='" + url + "'> Click Here </a></h3></body></html>")
+      response.send("<html><body><h3>Please click <a href='" + url + "'> HERE </a> and follow next steps to get access token</h3></body></html>")
     }
   })
 }
 
 export const showToken = (request, response) => {
-  let token = qs.parse(request.body).access_token
+  let authObject = qs.parse(request.body)
+  let token = (authObject.error) ? authObject.error_description : 'Token:' + authObject.access_token
   response.format({
     'text/html': function(){
-      response.send("<html><body><h3>Token: "+ token +"</h3></body></html>")
+      response.send("<html><body><h3>"+ token +"</h3></body></html>")
     }
   })
 }
