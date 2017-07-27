@@ -391,7 +391,6 @@ paths:
       tags:
         - 'Population'
       description: Returns list of all the countries for which we have population data. For this worldpop is used as default source.
-      summary: arg, bra, col
       # used as the method name of the controller
       operationId: getProperties
       responses:
@@ -431,7 +430,6 @@ paths:
       tags:
         - 'Population'
       description: Returns admin level population at highest admin level available by gadm.org
-      summary: arg, bra, col
       parameters:
         - name: country
           type: string
