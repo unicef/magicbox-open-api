@@ -11,7 +11,7 @@ info:
 - Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)"
 
 # during dev, should point to your local machine
-host: localhost:8000
+host: magicbox-open-api.azurewebsites.net
 # basePath prefixes all resource paths
 basePath: /api/
 tags:
