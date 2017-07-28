@@ -45,3 +45,18 @@ export function read_file(key, dir, fileName) {
     });
   });
 }
+
+
+export const createAndWriteFile = (key, dir, fileName, content) => {
+  return new Promise((resolve, reject) => {
+    let path = config[key].path
+    path = dir ? path + dir : path
+    fileSvc.createFileFromText(base_dir, path, fileName, content, (error, result, response) => {
+      if (!error) {
+        return resolve()
+      } else {
+        return reject('File writing failed on azure')
+      }
+    })
+  });
+}
