@@ -214,117 +214,117 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   # #/population/{format}/{country}:
-  /v1/population:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Population'
-      description: Returns all countries for which we have population. For population worldpop id used as default source
-      # used as the method name of the controller
-      operationId: getPopulation
-      security:
-        - Bearer: []
-      x-security-scopes:
-        - user
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "data_kind": "population",
-                                "data": {
-                                  "afg": [
-                                        { "country": "afg",
-                                        "data_source": "worldpop",
-                                        "shapefile_set": "gadm2-8",
-                                        "admin_level": "2",
-                                        "sum": 45155184,
-                                        "sq_km": 248596,
-                                        "density": 181.64083090637018,
-                                        "raster": "popmap15adj" }
-                                  ]
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationResponse"
-        # responses may fall through to errors
-        "403":
-          description: Access denied
-          schema:
-            $ref: "#/definitions/AccessErrorResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Population'
-      description: Returns list of different sources from which population data is available
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                          "key": "population",
-                          "properties": [
-                              "worldbank",
-                              "worldpop"
-                            ]
-                          }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/population/sources/{source}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Population'
-      description: Returns all countries for which we have population from specified source
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-      # used as the method name of the controller
-      operationId: getPopulation
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "data_kind": "population",
-                                "data": {
-                                  "afg": [
-                                        { "country": "afg",
-                                        "data_source": "worldpop",
-                                        "shapefile_set": "gadm2-8",
-                                        "admin_level": "2",
-                                        "sum": 45155184,
-                                        "sq_km": 248596,
-                                        "density": 181.64083090637018,
-                                        "raster": "popmap15adj" }
-                                  ]
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/PopulationResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # /v1/population:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all countries for which we have population. For population worldpop id used as default source
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     security:
+  #       - Bearer: []
+  #     x-security-scopes:
+  #       - user
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       "403":
+  #         description: Access denied
+  #         schema:
+  #           $ref: "#/definitions/AccessErrorResponse"
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns list of different sources from which population data is available
+  #     # used as the method name of the controller
+  #     operationId: getProperties
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: {
+  #                         "key": "population",
+  #                         "properties": [
+  #                             "worldbank",
+  #                             "worldpop"
+  #                           ]
+  #                         }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/ValueResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/{source}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all countries for which we have population from specified source
+  #     parameters:
+  #       - name: source
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   # # #/population/{format}/{country}:
   # /v1/population:
   #   # binds a127 app logic to a route
