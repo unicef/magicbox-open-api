@@ -6,6 +6,8 @@ import bluebird from 'bluebird'
 import fs from 'fs'
 import qs from 'qs'
 const readFile = bluebird.promisify(fs.readFile)
+import * as logger from './../helpers/logger'
+
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
@@ -34,6 +36,7 @@ export function getMosquito(request, response) {
       data: data
     }))
     .catch(err => {
+      logger.error({ desc: err })
       response.json({message: err})
     })
 }
@@ -47,10 +50,15 @@ export function getMosquito(request, response) {
  * @return{Promise} Fulfilled when records are returned
  */
 export function getPopulation(request, response) {
+
   // const [ key, source, country ] = request._key.split('_')
 
   let key = 'population'
+
+  // When no source or country are specified: 'population'
+  // If country is specified: [ worldpop, country_name ]
   let [ source, country ] = getParams(request)
+
 
   const data_source = (source !== undefined) ? source : config.population.source
   general_helper
@@ -61,6 +69,7 @@ export function getPopulation(request, response) {
         data: data
       }))
     .catch(err => {
+      logger.error({ desc: err })
       response.json({message: err})
     })
 }
@@ -96,9 +105,10 @@ export function getCases(request, response) {
       weekType: weekType,
       cases: cases
     }))
-    .catch(error =>
+    .catch(error => {
+      logger.error({ desc: err })
       response.json({ message: error })
-    )
+    })
 }
 
 
@@ -129,6 +139,10 @@ export function getProperties(request, response) {
     key: properties.key,
     properties: properties.properties
   }))
+  .catch(err => {
+    logger.error({ desc: err })
+    return reject(err)
+  })
 }
 
 export const getToken = (request, response) => {

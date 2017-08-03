@@ -8,6 +8,8 @@ import * as auth from './api/helpers/auth'
 
 
 const VOLOS_RESOURCE = 'x-volos-resources'
+import requestIp from 'request-ip'
+import * as logger from './api/helpers/logger'
 
 const config = {
   appRoot: __dirname,
@@ -18,6 +20,10 @@ const config = {
 const app = express()
 
 app.use(compression())
+
+app.use(requestIp.mw())
+
+app.use(logger.logRequest)
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
   if (err) {
@@ -35,12 +41,14 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   // Serve the Swagger documents and Swagger UI
   // app.use(swaggerExpress.runner.swaggerTools.swaggerUi());
   // install middleware
+
   swaggerExpress.register(app)
 
   app.listen(config.port, () => {
     console.log(`Open maps API is up on http://localhost:${config.port}`)
   })
 })
+
 
 const getCacheKey = (req) => {
   let cacheKey
@@ -57,5 +65,6 @@ const getCacheKey = (req) => {
 
   return cacheKey
 }
+
 
 export default app
