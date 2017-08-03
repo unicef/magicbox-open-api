@@ -16,7 +16,12 @@ const readFile = bluebird.promisify(fs.readFile)
  */
 export function getMosquito(request, response) {
 
-  let [ key, kind, country ] = request._key.split('_')
+  // let [ key, kind, country ] = request._key.split('_')
+
+  let key = 'mosquito'
+  let [ kind, country ] = getParams(request)
+
+
   const source = config[key].source
   const source_url = config[key].source_url
   general_helper
@@ -42,15 +47,19 @@ export function getMosquito(request, response) {
  * @return{Promise} Fulfilled when records are returned
  */
 export function getPopulation(request, response) {
-  const [ key, source, country ] = request._key.split('_')
+  // const [ key, source, country ] = request._key.split('_')
+
+  let key = 'population'
+  let [ source, country ] = getParams(request)
+
   const data_source = (source !== undefined) ? source : config.population.source
   general_helper
     .getPopulation(key, source, country)
     .then(data => response.json({
-      key: key,
-      source: data_source,
-      data: data
-    }))
+        key: key,
+        source: data_source,
+        data: data
+      }))
     .catch(err => {
       response.json({message: err})
     })
@@ -69,7 +78,12 @@ export function getCases(request, response) {
   // kind represents disease whose cases we are pulling
   // week-types (epi-week or iso-week)
   // week represents last date of epi-week. If set, the API will fetch cases only for that week
-  const [ key, kind, weekType, week ] = request._key.split('_')
+
+  // const [ key, kind, weekType, week ] = request._key.split('_')
+
+  let key = 'cases'
+  let [ kind, weekType, week ] = getParams(request)
+
   const source = config.cases[kind].source
   const source_url = config.cases[kind].source_url
 
@@ -95,8 +109,22 @@ export function getCases(request, response) {
  * @return{Promise} Fulfilled when records are returned
  */
 export function getProperties(request, response) {
+
+  // general_helper
+  // .getProperties(request._key)
+  // .then(properties => response.json ({
+  //   key: properties.key,
+  //   properties: properties.properties
+  // }))
+
+  let key = request.swagger.apiPath.split('/')[2]
+  let params = getParams(request)
+  if (params.length > 0) {
+    key += '_' + getParams(request).join("_")
+  }
+
   general_helper
-  .getProperties(request._key)
+  .getProperties(key)
   .then(properties => response.json ({
     key: properties.key,
     properties: properties.properties
@@ -105,11 +133,6 @@ export function getProperties(request, response) {
 
 export const getToken = (request, response) => {
   let url = auth.getAuthorizeUrl()
-  // response.json({
-  //   action: "Please open following url in browser and follow next steps",
-  //   url: url
-  // })
-  // console.log(url);
   response.format({
     'text/html': function(){
       response.send("<html><body><h3>Please click <a href='" + url + "'> HERE </a> and follow next steps to get access token</h3></body></html>")
@@ -125,4 +148,12 @@ export const showToken = (request, response) => {
       response.send("<html><body><h3>"+ token +"</h3></body></html>")
     }
   })
+}
+
+const getParams = (request) => {
+  let params = Object.keys(request.swagger.params).reduce((paramsList, property) => {
+    paramsList.push(request.swagger.params[property].value)
+    return paramsList
+  }, [])
+  return params
 }

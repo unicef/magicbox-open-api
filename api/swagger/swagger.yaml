@@ -25,30 +25,26 @@ consumes:
 produces:
   - application/json
   - text/html
+securityDefinitions:
+  Bearer:
+      type: apiKey
+      name: Token
+      in: header
 
 x-volos-resources:
   #Defines our cache
   cache:
-      ## Uncomment one cache provider
-      # provider: volos-cache-apigee
+      name: magic-box-cache
       provider: volos-cache-memory
-      #provider: volos-cache-redis
       options:
-        name: weather-cache
         ttl: 90000000
+        encoding: utf8
+        maxEntries: 10000
 
 paths:
   /v1/mosquito/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquitoProperties
     get:
       tags:
         - 'Mosquito'
@@ -78,14 +74,6 @@ paths:
   /v1/mosquito/kinds/{kind}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquito
     get:
       tags:
         - 'Mosquito'
@@ -133,14 +121,6 @@ paths:
   /v1/mosquito/kinds/{kind}/countries/:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-       # Applies the cache to our endpoint
-      cache:
-         # Gets the cache name by calling
-         # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquitoProperties
     get:
       tags:
         - 'Mosquito'
@@ -175,14 +155,6 @@ paths:
   /v1/mosquito/kinds/{kind}/countries/{country}:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-       # Applies the cache to our endpoint
-      cache:
-         # Gets the cache name by calling
-         # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquito
     get:
       tags:
         - 'Mosquito'
@@ -244,20 +216,16 @@ paths:
   /v1/population:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
     get:
       tags:
         - 'Population'
       description: Returns all countries for which we have population. For population worldpop id used as default source
       # used as the method name of the controller
       operationId: getPopulation
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - user
       responses:
         "200":
           description: Success
@@ -280,6 +248,10 @@ paths:
             # a pointer to a definition
             $ref: "#/definitions/PopulationResponse"
         # responses may fall through to errors
+        "403":
+          description: Access denied
+          schema:
+            $ref: "#/definitions/AccessErrorResponse"
         default:
           description: Error
           schema:
@@ -287,14 +259,6 @@ paths:
   /v1/population/sources/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationProperties
     get:
       tags:
         - 'Population'
@@ -323,14 +287,6 @@ paths:
   /v1/population/sources/{source}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
     get:
       tags:
         - 'Population'
@@ -371,14 +327,6 @@ paths:
   /v1/population/countries/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationCountries
     get:
       tags:
         - 'Population'
@@ -411,14 +359,6 @@ paths:
   /v1/population/countries/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationCountries
     get:
       tags:
         - 'Population'
@@ -474,14 +414,6 @@ paths:
   /v1/population/sources/{source}/countries/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationProperties
     get:
       tags:
         - 'Population'
@@ -518,14 +450,6 @@ paths:
   /v1/population/sources/{source}/countries/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulation
     get:
       tags:
         - 'Population'
@@ -585,14 +509,6 @@ paths:
   /v1/cases/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -620,14 +536,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -661,14 +569,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -707,14 +607,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCases
     get:
       tags:
         - 'Cases'
@@ -764,14 +656,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCases
     get:
       tags:
         - 'Cases'
@@ -970,3 +854,9 @@ definitions:
     properties:
       message:
         type: object
+  AccessErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
