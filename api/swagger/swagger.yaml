@@ -2,7 +2,9 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Open data aggregated by administrative regions
-  description: "This API is just for information purposes.
+  description: "<p>This API is just for information purposes.</p><p>Please note that population and mosquito prevalence are derived from raster files. These files are cut into 100 by 100 tiles and imported into a postgres db, one per table row, before aggregating by shapefiles. Therefore, values will not be 100% accurate.</p>
+
+- Code to <a href='https://github.com/unicef/shapefile-ingest'>process shapefiles</a> and <a href='https://github.com/unicef/aggregate_rasters_by_admin'>aggregate rasters</a>
 
 - Case data is from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
 
