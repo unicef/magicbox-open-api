@@ -36,6 +36,18 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   cacheOptions.key = getCacheKey
   app.use(cache.expressMiddleware().cache(cacheOptions))
 
+
+  // eliminate path that has x-hide property
+    let paths = swaggerExpress.runner.swagger.paths
+    let new_paths = Object.keys(paths).reduce((obj, path) => {
+      if (!paths[path]['x-hide']) {
+        obj[path] = paths[path]
+      }
+      return obj
+    }, {})
+
+    swaggerExpress.runner.swagger.paths = new_paths
+
   app.use(SwaggerUi(swaggerExpress.runner.swagger))
 
   // Serve the Swagger documents and Swagger UI

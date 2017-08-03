@@ -889,6 +889,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /v1/token/:
     x-swagger-router-controller: general
+    x-hide: true
     post:
       description: Auth0 get
       operationId: showToken
