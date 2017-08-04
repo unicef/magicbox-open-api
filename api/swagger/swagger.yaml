@@ -2,14 +2,23 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Open data aggregated by administrative regions
-  description: "This API is just for information purposes."
+  description: "<p>This API is just for information purposes.</p><p>Please note that population and mosquito prevalence are derived from raster files. These files are cut into 100 by 100 tiles and imported into a postgres db, one per table row, before aggregating by shapefiles. Therefore, values will not be 100% accurate.</p>
+
+- Code to <a href='https://github.com/unicef/shapefile-ingest'>process shapefiles</a> and <a href='https://github.com/unicef/aggregate_rasters_by_admin'>aggregate rasters</a>
+
+- Case data is from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
+
+- Population is from worldpop.org.uk
+
+- Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)"
+
 # during dev, should point to your local machine
-host: localhost:8000
+host: magicbox-open-api.azurewebsites.net
 # basePath prefixes all resource paths
 basePath: /api/
 tags:
 - name: "Population"
-  description: "worldpop.org aggregated by gadm2-8 shapefiles"
+  # description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
 - name: "Cases"
 - name: "Access Control"
@@ -461,7 +470,6 @@ paths:
       tags:
         - 'Population'
       description: Returns list of all the countries for which we have population data. For this worldpop is used as default source.
-      summary: arg, bra, col
       # used as the method name of the controller
       operationId: getProperties
       responses:
@@ -492,7 +500,7 @@ paths:
     get:
       tags:
         - 'Population'
-      summary: arg, bra, col
+      description: Returns admin level population at highest admin level available by gadm.org
       parameters:
         - name: country
           type: string
