@@ -11,9 +11,8 @@ tags:
 - name: "Population"
   description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
-  # description: "No one is too small to have an impact"
 - name: "Cases"
-  # description: "Case data of epidemics"
+- name: "Access Control"
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -854,6 +853,8 @@ paths:
   /v1/getAccess:
     x-swagger-router-controller: general
     get:
+      tags:
+        - 'Access Control'
       description: Auth0 try
       operationId: getToken
       responses:

@@ -4,6 +4,7 @@ import SwaggerSecurity from 'swagger-tools/middleware/swagger-security'
 import volosCache from 'volos-cache-memory'
 import compression from 'compression'
 import express from 'express'
+import deepcopy from 'deepcopy'
 import * as auth from './api/helpers/auth'
 
 
@@ -20,9 +21,7 @@ const config = {
 const app = express()
 
 app.use(compression())
-
 app.use(requestIp.mw())
-
 app.use(logger.logRequest)
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
@@ -38,17 +37,17 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
 
 
   // eliminate path that has x-hide property
-    let paths = swaggerExpress.runner.swagger.paths
-    let new_paths = Object.keys(paths).reduce((obj, path) => {
-      if (!paths[path]['x-hide']) {
-        obj[path] = paths[path]
-      }
-      return obj
-    }, {})
+  let swaggerObject = deepcopy(swaggerExpress.runner.swagger)
+  let new_paths = Object.keys(swaggerObject.paths).reduce((obj, path) => {
+    if (!swaggerObject.paths[path]['x-hide']) {
+      obj[path] = swaggerObject.paths[path]
+    }
+    return obj
+  }, {})
 
-    swaggerExpress.runner.swagger.paths = new_paths
+  swaggerObject.paths = new_paths
 
-  app.use(SwaggerUi(swaggerExpress.runner.swagger))
+  app.use(SwaggerUi(swaggerObject))
 
   // Serve the Swagger documents and Swagger UI
   // app.use(swaggerExpress.runner.swaggerTools.swaggerUi());

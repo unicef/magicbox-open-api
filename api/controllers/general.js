@@ -21,7 +21,7 @@ export function getMosquito(request, response) {
   // let [ key, kind, country ] = request._key.split('_')
 
   let key = 'mosquito'
-  let [ kind, country ] = getParams(request)
+  let { kind: kind, country:country } = getParams(request)
 
 
   const source = config[key].source
@@ -36,7 +36,7 @@ export function getMosquito(request, response) {
       data: data
     }))
     .catch(err => {
-      logger.error({ desc: err })
+      logger.logErrorResponse(request, err)
       response.json({message: err})
     })
 }
@@ -57,8 +57,8 @@ export function getPopulation(request, response) {
 
   // When no source or country are specified: 'population'
   // If country is specified: [ worldpop, country_name ]
-  let [ source, country ] = getParams(request)
 
+  let {source = config.population.default_source, country:country } = getParams(request)
 
   const data_source = (source !== undefined) ? source : config.population.source
   general_helper
@@ -69,7 +69,7 @@ export function getPopulation(request, response) {
         data: data
       }))
     .catch(err => {
-      logger.error({ desc: err })
+      logger.logErrorResponse(request, err)
       response.json({message: err})
     })
 }
@@ -91,7 +91,7 @@ export function getCases(request, response) {
   // const [ key, kind, weekType, week ] = request._key.split('_')
 
   let key = 'cases'
-  let [ kind, weekType, week ] = getParams(request)
+  let { kind: kind, weekType: weekType, date: week } = getParams(request)
 
   const source = config.cases[kind].source
   const source_url = config.cases[kind].source_url
@@ -106,7 +106,7 @@ export function getCases(request, response) {
       cases: cases
     }))
     .catch(error => {
-      logger.error({ desc: err })
+      logger.logErrorResponse(request, error)
       response.json({ message: error })
     })
 }
@@ -120,17 +120,12 @@ export function getCases(request, response) {
  */
 export function getProperties(request, response) {
 
-  // general_helper
-  // .getProperties(request._key)
-  // .then(properties => response.json ({
-  //   key: properties.key,
-  //   properties: properties.properties
-  // }))
+  // key was request._key before
 
   let key = request.swagger.apiPath.split('/')[2]
   let params = getParams(request)
-  if (params.length > 0) {
-    key += '_' + getParams(request).join("_")
+  if (Object.keys(params).length > 0) {
+    key += '_' + Object.keys(params).map(property => params[property]).join("_")
   }
 
   general_helper
@@ -140,11 +135,16 @@ export function getProperties(request, response) {
     properties: properties.properties
   }))
   .catch(err => {
-    logger.error({ desc: err })
+    logger.logErrorResponse(request, err)
     return reject(err)
   })
 }
 
+/**
+ * Returns a clickable link to Auth0 for users to login and get access token
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
 export const getToken = (request, response) => {
   let url = auth.getAuthorizeUrl()
   response.format({
@@ -154,6 +154,12 @@ export const getToken = (request, response) => {
   })
 }
 
+
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
 export const showToken = (request, response) => {
   let authObject = qs.parse(request.body)
   let token = (authObject.error) ? authObject.error_description : 'Token:' + authObject.access_token
@@ -164,10 +170,15 @@ export const showToken = (request, response) => {
   })
 }
 
+/**
+ * Returns object with all request parameters
+ * @param{String} request - request object
+ * @return {object} params all request parameters
+ */
 const getParams = (request) => {
-  let params = Object.keys(request.swagger.params).reduce((paramsList, property) => {
-    paramsList.push(request.swagger.params[property].value)
-    return paramsList
-  }, [])
+  let params = {}
+  Object.keys(request.swagger.params).forEach(property => {
+    params[property] = request.swagger.params[property].value
+  })
   return params
 }

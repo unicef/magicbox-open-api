@@ -287,8 +287,9 @@ export const readCaseFiles = (caseFiles) => {
 export const get_cases = (key, kind, weekType, week) => {
   return new Promise((resolve, reject) => {
     getCaseFiles(key, kind, weekType, week)
-    .then(readCaseFiles)
+    .then(readCaseFiles).catch(reject)
     .then(cases => { resolve(cases) })
+    .catch(reject)
   });
 }
 
@@ -398,6 +399,7 @@ export const getPopulation = (key, source, country) => {
         .then(data => {
           return resolve(data)
         })
+        .catch(reject)
         break
       }
 
@@ -410,6 +412,7 @@ export const getPopulation = (key, source, country) => {
             return resolve(content)
           }
         })
+        .catch(reject)
         break
       }
     }
@@ -429,6 +432,9 @@ export const getMosquito = (key, kind, country) => {
     countries_with_this_kind_data(key, kind + '/' + config.mosquito.default_source, country)
     .then(data => {
       return resolve(data)
+    })
+    .catch(error => {
+      return reject(error)
     })
   });
 }

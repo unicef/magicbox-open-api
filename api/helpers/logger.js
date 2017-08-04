@@ -11,11 +11,7 @@ const mixpanel = Mixpanel.init(config.logger.key);
  */
 export const logRequest = (request, response, next) => {
   if (request.url.indexOf('/api/v1/') !== -1) {
-    let logObject = {
-      clientIp: request.clientIp,
-      path: request.url.replace('/api/v1/', ''),
-      query: request.param
-    }
+    let logObject = getRequestParams(request)
     log('REQUEST', logObject)
   }
   next()
@@ -54,4 +50,28 @@ export const error = (logObject) => {
 export const log = (eventName, logObject) => {
   logObject.timestamp = dataFormatter(Date.now(), 'isoDateTime')
   mixpanel.track(eventName, logObject)
+}
+
+/**
+ * Logs error for the request
+ * @param  {object} request request object
+ * @param  {object} err     error object
+ */
+export const logErrorResponse = (request, err) => {
+  let logObject = getRequestParams(request)
+  logObject.desc = err
+  error(logObject)
+}
+
+/**
+ * Returns ip, path and query of the request
+ * @param  {object} request request object
+ * @return {object} object with ip, path and query of the request
+ */
+export const getRequestParams = (request) => {
+  return {
+    clientIp: request.clientIp,
+    path: request.url.replace('/api/v1/', ''),
+    query: request.param
+  }
 }
