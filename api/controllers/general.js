@@ -124,6 +124,13 @@ export function getProperties(request, response) {
 
   let key = request.swagger.apiPath.split('/')[2]
   let params = getParams(request)
+
+  if (key === 'population') {
+    if (!('source' in params)) {
+      params.source = config.population.default_source
+    }
+  }
+
   if (Object.keys(params).length > 0) {
     key += '_' + Object.keys(params).map(property => params[property]).join("_")
   }
