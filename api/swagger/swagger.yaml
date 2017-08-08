@@ -21,9 +21,8 @@ tags:
 - name: "Population"
   # description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
-  # description: "No one is too small to have an impact"
 - name: "Cases"
-  # description: "Case data of epidemics"
+- name: "Access Control"
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -31,33 +30,31 @@ schemes:
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
+  - application/x-www-form-urlencoded
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+  - text/html
+securityDefinitions:
+  Bearer:
+      type: apiKey
+      name: Token
+      in: header
 
 x-volos-resources:
   #Defines our cache
   cache:
-      ## Uncomment one cache provider
-      # provider: volos-cache-apigee
+      name: magic-box-cache
       provider: volos-cache-memory
-      #provider: volos-cache-redis
       options:
-        name: weather-cache
         ttl: 90000000
+        encoding: utf8
+        maxEntries: 10000
 
 paths:
   /v1/mosquito/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquitoProperties
     get:
       tags:
         - 'Mosquito'
@@ -87,14 +84,6 @@ paths:
   /v1/mosquito/kinds/{kind}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquito
     get:
       tags:
         - 'Mosquito'
@@ -142,14 +131,6 @@ paths:
   /v1/mosquito/kinds/{kind}/countries/:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-       # Applies the cache to our endpoint
-      cache:
-         # Gets the cache name by calling
-         # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquitoProperties
     get:
       tags:
         - 'Mosquito'
@@ -184,14 +165,6 @@ paths:
   /v1/mosquito/kinds/{kind}/countries/{country}:
      # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-       # Applies the cache to our endpoint
-      cache:
-         # Gets the cache name by calling
-         # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheMosquito
     get:
       tags:
         - 'Mosquito'
@@ -249,6 +222,118 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  # #/population/{format}/{country}:
+  # /v1/population:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all countries for which we have population. For population worldpop id used as default source
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     security:
+  #       - Bearer: []
+  #     x-security-scopes:
+  #       - user
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       "403":
+  #         description: Access denied
+  #         schema:
+  #           $ref: "#/definitions/AccessErrorResponse"
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns list of different sources from which population data is available
+  #     # used as the method name of the controller
+  #     operationId: getProperties
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: {
+  #                         "key": "population",
+  #                         "properties": [
+  #                             "worldbank",
+  #                             "worldpop"
+  #                           ]
+  #                         }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/ValueResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  # /v1/population/sources/{source}:
+  #   # binds a127 app logic to a route
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Population'
+  #     description: Returns all countries for which we have population from specified source
+  #     parameters:
+  #       - name: source
+  #         type: string
+  #         in: path
+  #         required: true
+  #     # used as the method name of the controller
+  #     operationId: getPopulation
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "data_kind": "population",
+  #                               "data": {
+  #                                 "afg": [
+  #                                       { "country": "afg",
+  #                                       "data_source": "worldpop",
+  #                                       "shapefile_set": "gadm2-8",
+  #                                       "admin_level": "2",
+  #                                       "sum": 45155184,
+  #                                       "sq_km": 248596,
+  #                                       "density": 181.64083090637018,
+  #                                       "raster": "popmap15adj" }
+  #                                 ]
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/PopulationResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   # # #/population/{format}/{country}:
   # /v1/population:
   #   # binds a127 app logic to a route
@@ -382,14 +467,6 @@ paths:
   /v1/population/countries/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationCountries
     get:
       tags:
         - 'Population'
@@ -421,14 +498,6 @@ paths:
   /v1/population/countries/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cachePopulationCountries
     get:
       tags:
         - 'Population'
@@ -594,14 +663,6 @@ paths:
   /v1/cases/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -629,14 +690,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -670,14 +723,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCasesProperties
     get:
       tags:
         - 'Cases'
@@ -716,14 +761,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCases
     get:
       tags:
         - 'Cases'
@@ -773,14 +810,6 @@ paths:
   /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
-    x-volos-apply:
-      # Applies the cache to our endpoint
-      cache:
-        # Gets the cache name by calling
-        # cacheKey() in /helpers/volos.js
-        key:
-            helper: volos
-            function: cacheCases
     get:
       tags:
         - 'Cases'
@@ -799,6 +828,88 @@ paths:
           in: path
           required: true
       operationId: getCases
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: { "cases": {
+                                  "2016-11-17": {
+                                    "can": {
+                                        "country": "Canada",
+                                        "autochthonous_cases_suspected": 0,
+                                        "autochthonous_cases_confirmed": 0,
+                                        "imported_cases": 374,
+                                        "incidence_rate": 0,
+                                        "deaths": 0,
+                                        "confirmed_congenital": 0,
+                                        "population_x_1k": 36286,
+                                        "congenital_suspected": 0,
+                                        "congenital_probable": 0,
+                                        "gbs_total": 0,
+                                        "gbs_confirmed": 0
+                                    }
+                                  }
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/casesResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  # /v1/getAccess:
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Access Control'
+  #     description: Auth0 try
+  #     operationId: getToken
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "cases": {
+  #                                 "2016-11-17": {
+  #                                   "can": {
+  #                                       "country": "Canada",
+  #                                       "autochthonous_cases_suspected": 0,
+  #                                       "autochthonous_cases_confirmed": 0,
+  #                                       "imported_cases": 374,
+  #                                       "incidence_rate": 0,
+  #                                       "deaths": 0,
+  #                                       "confirmed_congenital": 0,
+  #                                       "population_x_1k": 36286,
+  #                                       "congenital_suspected": 0,
+  #                                       "congenital_probable": 0,
+  #                                       "gbs_total": 0,
+  #                                       "gbs_confirmed": 0
+  #                                   }
+  #                                 }
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/casesResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
+  /v1/token/:
+    x-swagger-router-controller: general
+    x-hide: true
+    post:
+      description: Auth0 get
+      operationId: showToken
+      parameters:
+      - name: token
+        in: body
+        description: The pet JSON you want to post
+        schema:
+          type: string
+        required: true
       responses:
         "200":
           description: Success
@@ -900,3 +1011,9 @@ definitions:
     properties:
       message:
         type: object
+  AccessErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
