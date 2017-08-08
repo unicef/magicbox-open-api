@@ -858,44 +858,44 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/getAccess:
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Access Control'
-      description: Auth0 try
-      operationId: getToken
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: { "cases": {
-                                  "2016-11-17": {
-                                    "can": {
-                                        "country": "Canada",
-                                        "autochthonous_cases_suspected": 0,
-                                        "autochthonous_cases_confirmed": 0,
-                                        "imported_cases": 374,
-                                        "incidence_rate": 0,
-                                        "deaths": 0,
-                                        "confirmed_congenital": 0,
-                                        "population_x_1k": 36286,
-                                        "congenital_suspected": 0,
-                                        "congenital_probable": 0,
-                                        "gbs_total": 0,
-                                        "gbs_confirmed": 0
-                                    }
-                                  }
-                                }
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/casesResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+  # /v1/getAccess:
+  #   x-swagger-router-controller: general
+  #   get:
+  #     tags:
+  #       - 'Access Control'
+  #     description: Auth0 try
+  #     operationId: getToken
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         examples:
+  #           application/json: { "cases": {
+  #                                 "2016-11-17": {
+  #                                   "can": {
+  #                                       "country": "Canada",
+  #                                       "autochthonous_cases_suspected": 0,
+  #                                       "autochthonous_cases_confirmed": 0,
+  #                                       "imported_cases": 374,
+  #                                       "incidence_rate": 0,
+  #                                       "deaths": 0,
+  #                                       "confirmed_congenital": 0,
+  #                                       "population_x_1k": 36286,
+  #                                       "congenital_suspected": 0,
+  #                                       "congenital_probable": 0,
+  #                                       "gbs_total": 0,
+  #                                       "gbs_confirmed": 0
+  #                                   }
+  #                                 }
+  #                               }
+  #                             }
+  #         schema:
+  #           # a pointer to a definition
+  #           $ref: "#/definitions/casesResponse"
+  #       # responses may fall through to errors
+  #       default:
+  #         description: Error
+  #         schema:
+  #           $ref: "#/definitions/ErrorResponse"
   /v1/token/:
     x-swagger-router-controller: general
     x-hide: true
