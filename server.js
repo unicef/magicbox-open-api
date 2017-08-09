@@ -33,7 +33,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   let cacheName = swaggerExpress.runner.swagger[VOLOS_RESOURCE].cache.name
   let cache = volosCache.create(cacheName, cacheOptions)
   cacheOptions.key = getCacheKey
-  app.use(cache.expressMiddleware().cache(cacheOptions))
+  // app.use(cache.expressMiddleware().cache(cacheOptions))
 
 
   // eliminate path that has x-hide property
@@ -44,8 +44,6 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     }
     return obj
   }, {})
-
-  console.log("new Paths", new_paths);
 
   swaggerObject.paths = new_paths
 
