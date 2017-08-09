@@ -45,6 +45,8 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
     return obj
   }, {})
 
+  console.log("new Paths", new_paths);
+
   swaggerObject.paths = new_paths
 
   app.use(SwaggerUi(swaggerObject))
