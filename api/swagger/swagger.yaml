@@ -48,7 +48,6 @@ x-volos-resources:
       provider: volos-cache-memory
       options:
         ttl: 90000000
-        encoding: utf8
         maxEntries: 10000
 
 paths:
