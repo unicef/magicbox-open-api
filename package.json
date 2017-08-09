@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "prod": "babel-node server.js",
+    "prod": "node index.js",
     "dev": "babel-watch server.js"
   },
   "devDependencies": {
