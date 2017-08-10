@@ -64,7 +64,6 @@ export const countries_with_this_kind_data = (kind, source, country) => {
  * @return {Promise} Fulfilled  when geo-properties are returned
  */
 const getGeoProperties = (shapefileSet) => {
-
   return new Promise((resolve, reject) => {
     let fileName = shapefileSet.fileName
     let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() + '.json'
@@ -388,11 +387,6 @@ const fetchProperty = (key, path, splitOn, part) => {
 export const getPopulation = (key, source, country) => {
   return new Promise((resolve, reject) => {
     source = (source !== undefined) ? source : config[key].default_source
-    // Temp solution until we aggregate worldpop by all admin zeros.
-    if (!country) {
-      source = 'worldbank';
-    }
-
     switch(source) {
       case 'worldpop': {
         countries_with_this_kind_data(key, source, country)
@@ -403,18 +397,18 @@ export const getPopulation = (key, source, country) => {
         break
       }
 
-      case 'worldbank': {
-        azure_utils.read_file('population', source, 'population.json')
-        .then(content => {
-          if (country !== undefined) {
-            return resolve(content[country])
-          } else {
-            return resolve(content)
-          }
-        })
-        .catch(reject)
-        break
-      }
+      // case 'worldbank': {
+      //   azure_utils.read_file('population', source, 'population.json')
+      //   .then(content => {
+      //     if (country !== undefined) {
+      //       return resolve(content[country])
+      //     } else {
+      //       return resolve(content)
+      //     }
+      //   })
+      //   .catch(reject)
+      //   break
+      // }
     }
   });
 }
@@ -447,7 +441,8 @@ export const getMosquito = (key, kind, country) => {
  * @return{Promise} Admin poperties obj
  */
 function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids) {
-  return admin_properties_ary.find(p => {
+  let index_short_cut = parseInt(spark_output_ids[spark_output_ids.length-1]) -1;
+  return admin_properties_ary.slice(index_short_cut).find(p => {
     let count = 0;
     const temp_admin_id = Object.keys(p).reduce((ary, k) => {
       if (k == 'ID_' + count) {
@@ -456,6 +451,7 @@ function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids
       }
       return ary;
     }, [])
+
     return temp_admin_id.join('_') === spark_output_ids.join('_');
   })
 }
