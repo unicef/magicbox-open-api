@@ -28,10 +28,7 @@
     "swagger-express-mw": "^0.1.0",
     "swagger-tools": "^0.10.1",
     "volos-cache-memory": "^0.10.1",
-    "volos-swagger": "^0.8.0",
-    "dateformat": "^2.0.0",
-    "mixpanel": "^0.7.0",
-    "request-ip": "^2.0.2"
+    "volos-swagger": "^0.8.0"
   },
   "scripts": {
     "start": "node index.js",
