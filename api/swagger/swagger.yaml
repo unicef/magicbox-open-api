@@ -23,6 +23,7 @@ tags:
 - name: "Mosquito"
 - name: "Cases"
 - name: "Access Control"
+- name: 'Schools'
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -858,44 +859,44 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  # /v1/getAccess:
-  #   x-swagger-router-controller: general
-  #   get:
-  #     tags:
-  #       - 'Access Control'
-  #     description: Auth0 try
-  #     operationId: getToken
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         examples:
-  #           application/json: { "cases": {
-  #                                 "2016-11-17": {
-  #                                   "can": {
-  #                                       "country": "Canada",
-  #                                       "autochthonous_cases_suspected": 0,
-  #                                       "autochthonous_cases_confirmed": 0,
-  #                                       "imported_cases": 374,
-  #                                       "incidence_rate": 0,
-  #                                       "deaths": 0,
-  #                                       "confirmed_congenital": 0,
-  #                                       "population_x_1k": 36286,
-  #                                       "congenital_suspected": 0,
-  #                                       "congenital_probable": 0,
-  #                                       "gbs_total": 0,
-  #                                       "gbs_confirmed": 0
-  #                                   }
-  #                                 }
-  #                               }
-  #                             }
-  #         schema:
-  #           # a pointer to a definition
-  #           $ref: "#/definitions/casesResponse"
-  #       # responses may fall through to errors
-  #       default:
-  #         description: Error
-  #         schema:
-  #           $ref: "#/definitions/ErrorResponse"
+  /v1/getAccess:
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Access Control'
+      description: Auth0 try
+      operationId: getToken
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: { "cases": {
+                                  "2016-11-17": {
+                                    "can": {
+                                        "country": "Canada",
+                                        "autochthonous_cases_suspected": 0,
+                                        "autochthonous_cases_confirmed": 0,
+                                        "imported_cases": 374,
+                                        "incidence_rate": 0,
+                                        "deaths": 0,
+                                        "confirmed_congenital": 0,
+                                        "population_x_1k": 36286,
+                                        "congenital_suspected": 0,
+                                        "congenital_probable": 0,
+                                        "gbs_total": 0,
+                                        "gbs_confirmed": 0
+                                    }
+                                  }
+                                }
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/casesResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /v1/token/:
     x-swagger-router-controller: general
     x-hide: true
@@ -935,6 +936,39 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/casesResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/schools/country/{country_code}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Schools'
+      description: Returns list of weeks for which requested data is available. List has first day of week.
+      summary: zika/epi
+      parameters:
+        - name: country_code
+          type: string
+          in: path
+          required: true
+        - name: queryString
+          type: string
+          in: query
+          required: false
+      operationId: getSchools
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - proco
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SchoolsResponse"
         # responses may fall through to errors
         default:
           description: Error
@@ -1016,3 +1050,12 @@ definitions:
     properties:
       message:
         type: string
+  SchoolsResponse:
+    required:
+      - count
+      - result
+    properties:
+      count:
+        type: string
+      result:
+        type: object

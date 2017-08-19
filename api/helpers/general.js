@@ -1,7 +1,12 @@
 import config from '../../config'
 import async from 'async'
 import bluebird from 'bluebird'
+import PostgresHelper from './postgres'
+const dbClient = new PostgresHelper()
 import * as azure_utils from '../../utils/azure'
+
+
+let cursors = {}
 
 /**
  * Returns name of the a country's shapefile from` the List of shapefiles
@@ -438,7 +443,7 @@ export const getMosquito = (key, kind, country) => {
  * Return admin properties that matches spark output ids
  * @param  {Array} admin_properties_ary admin properties per a country
  * @param  {Array} spark_output_ids ids from spark aggregation output
- * @return{Promise} Admin poperties obj
+ * @return{Promise} Fullfilled Admin poperties obj
  */
 function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids) {
   let index_short_cut = parseInt(spark_output_ids[spark_output_ids.length-1]) -1;
@@ -453,5 +458,26 @@ function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids
     }, [])
 
     return temp_admin_id.join('_') === spark_output_ids.join('_');
+  })
+}
+
+
+/**
+ * Fetches schools based on country and other options specified
+ * @param  {string} country country code
+ * @param  {object} options other options as connectivity, environment, water etc.
+ *                          to limit number of schools use option max_limit
+ * @return{Promise} Fullfilled when schools are returned
+ */
+export const getSchools = (country, options) => {
+  return new Promise((resolve, reject) => {
+
+    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, admin_code, admin_id, altitude, availability_connectivity, connectivity, country_code, datasource, description, educ_level, electricity, environment, frequency, latency_connectivity, lat, lon, name, num_classrooms, num_latrines, num_teachers, num_students, num_sections, phone_number, postal_code, speed_connectivity, type_conectivity, type_school, water, created_at, updated_at FROM schools'
+
+    options.country_code = country
+
+    dbClient.execute(select, options)
+    .then(resolve)
+    .catch(reject)
   })
 }

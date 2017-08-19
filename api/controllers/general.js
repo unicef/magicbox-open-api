@@ -143,7 +143,7 @@ export function getProperties(request, response) {
   }))
   .catch(err => {
     logger.logErrorResponse(request, err)
-    return reject(err)
+    response.json({ message: error })
   })
 }
 
@@ -174,6 +174,22 @@ export const showToken = (request, response) => {
     'text/html': function(){
       response.send("<html><body><h3>"+ token +"</h3></body></html>")
     }
+  })
+}
+
+export const getSchools = (request, response) => {
+
+  const { country_code:country } = getParams(request)
+  const options = qs.parse(request.query)
+  general_helper
+  .getSchools(country, options)
+  .then(result => response.json ({
+    count: result.length,
+    result: result
+  }))
+  .catch(err => {
+    logger.logErrorResponse(request, err)
+    response.json({ message: err })
   })
 }
 

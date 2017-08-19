@@ -57,20 +57,19 @@ export const getUserInfo = (token) => {
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
 
-  let errorObject = {message: "Invalid token"}
+  let errorObject = {message: "Access Denied. Please check your token"}
 
   if (token && token.indexOf(tokenPrefix) !== -1) {
     let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
     let requiredRoles = req.swagger.operation[keyScope]
-
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
       let verified = requiredRoles.every(role => {
-        return userRoles.indexOf(role) !== -1
+        return userRoles.indexOf(role) >= 0
       })
 
-      if (verified) {
+      if (verified || userRoles.indexOf('admin') !== -1) {
         return callback(null)
       } else {
         return callback(errorObject)
