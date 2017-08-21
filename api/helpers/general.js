@@ -476,6 +476,9 @@ export const getSchools = (country, options) => {
 
     options.country_code = country
 
+    // let select = 'SELECT * from home_temp'
+    // options.dept = country
+
     dbClient.execute(select, options)
     .then(resolve)
     .catch(reject)

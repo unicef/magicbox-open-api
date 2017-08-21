@@ -61,14 +61,20 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
 
   if (token && token.indexOf(tokenPrefix) !== -1) {
     let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
+
+    // get all the required roles from swagger doc.
     let requiredRoles = req.swagger.operation[keyScope]
+
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
+
+      // check if user has all the required roles
       let verified = requiredRoles.every(role => {
         return userRoles.indexOf(role) >= 0
       })
 
+      // check if user is verified or if he is admin
       if (verified || userRoles.indexOf('admin') !== -1) {
         return callback(null)
       } else {

@@ -15,6 +15,7 @@ class PostgresHelper {
     return new Promise((resolve, reject) => {
       let select = query
       let options = params ? params : {}
+      const result = {hasNext: true}
 
       const {where:where, paramList:paramList} = this.buildWhere(params)
 
@@ -27,9 +28,11 @@ class PostgresHelper {
         }
         if (rows.length < config.max_query_result) {
           this.removeCursor(cursor)
+          result.hasNext = false
         }
-        console.log(this.cursors);
-        resolve(rows)
+        result.rows = rows
+        result.count = rows.length
+        resolve(result)
       })
     })
   }
@@ -41,9 +44,10 @@ class PostgresHelper {
     if ('max_limit' in params && params.max_limit <= config.max_query_result) {
       maxLimit = params.max_limit
       delete params.max_limit
-    } else {
-      maxLimit = config.max_query_result
     }
+    // else {
+    //   maxLimit = config.max_query_result
+    // }
 
     if ( Object.keys(params).length > 0) {
       let wherePart = ' WHERE '
@@ -59,9 +63,12 @@ class PostgresHelper {
       where += wherePart.substring(0, wherePart.length - 5)
     }
 
-    let limit = ' LIMIT $' + count
-    paramList.push(maxLimit)
-    where += limit
+    if (maxLimit > 0) {
+      let limit = ' LIMIT $' + count
+      paramList.push(maxLimit)
+      where += limit
+    }
+
     return {where, paramList}
   }
 

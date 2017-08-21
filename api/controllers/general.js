@@ -184,8 +184,9 @@ export const getSchools = (request, response) => {
   general_helper
   .getSchools(country, options)
   .then(result => response.json ({
-    count: result.length,
-    result: result
+    count: result.count,
+    result: result.rows,
+    hasNext: result.hasNext
   }))
   .catch(err => {
     logger.logErrorResponse(request, err)

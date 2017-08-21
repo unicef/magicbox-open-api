@@ -941,7 +941,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/schools/country/{country_code}:
+  /v1/schools/countries/{country_code}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     get:
@@ -1054,8 +1054,11 @@ definitions:
     required:
       - count
       - result
+      - hasNext
     properties:
       count:
         type: string
       result:
         type: object
+      hasNext:
+        type: boolean
