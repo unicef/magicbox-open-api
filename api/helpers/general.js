@@ -2,10 +2,9 @@ import config from '../../config'
 import async from 'async'
 import bluebird from 'bluebird'
 import PostgresHelper from './postgres'
-const dbClient = new PostgresHelper()
 import * as azure_utils from '../../utils/azure'
 
-
+const dbClient = new PostgresHelper()
 let cursors = {}
 
 /**

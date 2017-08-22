@@ -5,9 +5,10 @@ import * as auth from '../helpers/auth'
 import bluebird from 'bluebird'
 import fs from 'fs'
 import qs from 'qs'
-const readFile = bluebird.promisify(fs.readFile)
+import geojson from 'geojson'
 import * as logger from './../helpers/logger'
 
+const readFile = bluebird.promisify(fs.readFile)
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
@@ -185,7 +186,7 @@ export const getSchools = (request, response) => {
   .getSchools(country, options)
   .then(result => response.json ({
     count: result.count,
-    result: result.rows,
+    result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
     hasNext: result.hasNext
   }))
   .catch(err => {
