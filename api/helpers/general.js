@@ -154,7 +154,6 @@ const readShapeFile = (shapefileSet) => {
  * @return {Promise} Fulfilled  when geo-properties are merged with shapefile content
  */
 const mergePropertiesWithShapefile = (shapefileSet) => {
-
   return new Promise((resolve, reject) => {
     let { kind, source: dir, fileName, country, admin_properties, shapefile } = shapefileSet
     let [ raster, source  ] = fileName.split('^').slice(1, 3)
@@ -168,7 +167,6 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
       }).map(key => {
         return element[key]
       })
-
       let temp_map = {}
       temp_map[country + '_' + tempList.join('_') + '_' + dir] = element[config[kind].val_type]
 
@@ -177,7 +175,7 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
 
       ary.push(Object.assign(
         {
-          admin_id: country + '_' + tempList.join('_') + '_' + dir,
+          admin_id: country + '_' + tempList.join('_') + '_' + fileName.split('/')[0],
           value: element[config[kind].val_type]
         },
         admin_props
