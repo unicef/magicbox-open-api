@@ -8,6 +8,7 @@
   "license": "",
   "main": "./server.js",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "a127-magic": "^0.12.1",
     "auth0": "^2.7.0",
     "auth0-js": "^8.8.0",
@@ -41,7 +42,6 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^6.1.2",
-    "babel-preset-es2015": "^6.24.1",
     "babel-watch": "^2.0.6",
     "csvtojson": "^1.1.7",
     "eslint": "^3.19.0",
