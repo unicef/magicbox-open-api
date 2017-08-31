@@ -24,7 +24,6 @@ app.use(logger.logRequest)
 
 
 SwaggerExpress.create(config, (err, swaggerExpress) => {
-  
   if (err) {
     throw err
   }
