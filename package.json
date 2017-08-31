@@ -39,7 +39,8 @@
   "scripts": {
     "start": "node index.js",
     "prod": "babel-node server.js",
-    "dev": "babel-watch server.js"
+    "dev": "babel-watch server.js",
+    "precommit": "./preCommitChecks.sh"
   },
   "devDependencies": {
     "chai": "^4.0.2",
