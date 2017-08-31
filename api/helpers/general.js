@@ -1,5 +1,4 @@
 import config from '../../config'
-import async from 'async'
 import bluebird from 'bluebird'
 import * as azure_utils from '../../utils/azure'
 
@@ -12,7 +11,7 @@ import * as azure_utils from '../../utils/azure'
 const getFile = (shapefiles, country) => {
   let fileName = ''
   let files = shapefiles.filter(shapefile => {
-    const fileName = shapefile.split('/')[1]
+    fileName = shapefile.split('/')[1]
     return fileName.split('_')[0] === country
   })
   if (files.length > 0) {
@@ -66,7 +65,8 @@ export const countries_with_this_kind_data = (kind, source, country) => {
 const getGeoProperties = (shapefileSet) => {
   return new Promise((resolve, reject) => {
     let fileName = shapefileSet.fileName
-    let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() + '.json'
+    let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() +
+    '.json'
     azure_utils.read_file('geo-properties', 'gadm2-8', geo_props_file_name)
     .then(admin_properties => {
       shapefileSet.admin_properties = admin_properties
@@ -117,7 +117,7 @@ export const aggregateShapeFiles = (shapefileSet) => {
     shapefileSet.shapefiles.forEach(shapefile => {
       const fileName = shapefile.split('/')[1]
       const record = file_to_record(fileName);
-      if(population[record.country]) {
+      if (population[record.country]) {
         population[record.country].push(record);
       } else {
         population[record.country] = [record];
@@ -136,8 +136,8 @@ export const aggregateShapeFiles = (shapefileSet) => {
  */
 const readShapeFile = (shapefileSet) => {
   return new Promise((resolve, reject) => {
-    let { kind, source, fileName, country } = shapefileSet
-    const [ database, file ] = fileName.split('/')
+    let {kind, source, fileName} = shapefileSet
+    const [database, file] = fileName.split('/')
     azure_utils.read_file(kind, source + '/' + database, file)
     .then(content => {
       shapefileSet.shapefile = content
@@ -155,27 +155,38 @@ const readShapeFile = (shapefileSet) => {
  */
 const mergePropertiesWithShapefile = (shapefileSet) => {
   return new Promise((resolve, reject) => {
-    let { kind, source: dir, fileName, country, admin_properties, shapefile } = shapefileSet
-    let [ raster, source  ] = fileName.split('^').slice(1, 3)
+    let {
+      kind, source: dir, fileName, country, admin_properties, shapefile
+    } = shapefileSet
+    let [raster, source] = fileName.split('^').slice(1, 3)
     let admin_to_value_map = {}
     admin_to_value_map.raster = raster
     admin_to_value_map.source = source
     admin_to_value_map.population = {}
-    var value_map = shapefile.reduce((ary, element) => {
-      var tempList = Object.keys(element).filter(key => {
+    let value_map = shapefile.reduce((ary, element) => {
+      let tempList = Object.keys(element).filter(key => {
         return ( key.startsWith('id_') )
       }).map(key => {
         return element[key]
       })
       let temp_map = {}
-      temp_map[country + '_' + tempList.join('_') + '_' + dir] = element[config[kind].val_type]
+      temp_map[country + '_' +
+      tempList.join('_') + '_' +
+      dir] = element[config[kind].val_type]
 
       // Enrich each object with the feature properties from the original shapefile
-      var admin_props = assign_correct_admin_from_admins(admin_properties, tempList);
+      let admin_props = assign_correct_admin_from_admins(
+        admin_properties,
+        tempList
+      );
 
       ary.push(Object.assign(
         {
-          admin_id: country + '_' + tempList.join('_') + '_' + fileName.split('/')[0],
+          admin_id: country +
+          '_' +
+          tempList.join('_') +
+          '_' +
+          fileName.split('/')[0],
           value: element[config[kind].val_type]
         },
         admin_props
@@ -188,21 +199,22 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
   });
 }
 
-
 /**
  * Return object for raster that contains metadata gleaned from the raster file name
- * @param{Object} raster_blob_obj - raster blob object from storage
+ * @param{Object} file_obj - raster blob object from storage
  * @return{Object} Raster metadata
  */
 function file_to_record(file_obj) {
-  let [ ary, raster, data_source, sum, sq_km ] = file_obj.split(/\^/);
-  let [ country, admin_level, shapefile ] = ary.split('_')
+  let [ary, raster, data_source, sum, sq_km] = file_obj.split(/\^/);
+  let [country, admin_level, shapefile] = ary.split('_')
   sum = parseFloat(sum);
   sq_km = parseInt(sq_km.replace(/.json/, ''));
   raster = raster.replace(/.json$/, '')
   let density = (sum/sq_km)
 
-  return { country, data_source, shapefile, admin_level, sum, sq_km, density, raster }
+  return {
+    country, data_source, shapefile, admin_level, sum, sq_km, density, raster
+  }
 }
 
 
@@ -212,7 +224,9 @@ function file_to_record(file_obj) {
  * @return {List}     List of names of directories
  */
 function extract_dirs(ary) {
-  return ary.map(e => { return e.name;});
+  return ary.map(e => {
+    return e.name;
+  });
 }
 
 
@@ -235,7 +249,7 @@ export const getCaseFiles = (key, kind, weekType, week) => {
           return file.name.replace(/.json/g, '') === week;
         });
         if (files.length !== 1) {
-          console.error("Error -> File not found", week);
+          console.error('Error -> File not found', week);
           return reject()
         }
       }
@@ -253,17 +267,17 @@ export const getCaseFiles = (key, kind, weekType, week) => {
  */
 export const readCaseFiles = (caseFiles) => {
   return new Promise((resolve, reject) => {
-    var returnObj = {}
-    let { key: key, kind:kind, weekType: weekType, files: files } = caseFiles
+    let returnObj = {}
+    let {key: key, kind: kind, weekType: weekType} = caseFiles
     bluebird.each(caseFiles.files, file => {
-      var objKey = file.name.replace(/.json/g, '')
+      let objKey = file.name.replace(/.json/g, '')
       let filePath = config[key][kind].path + '/' + weekType
       return azure_utils.read_file(key, filePath, file.name)
       .then(content => {
         returnObj[objKey] = content.countries
       })
       .catch(error => {
-        console.log("Error", error)
+        console.log('Error', error)
       });
     }, {concurrency: 1})
     .then(() => {
@@ -277,15 +291,17 @@ export const readCaseFiles = (caseFiles) => {
  * Fetches cases of specified kind for specified week. To get all the cases set week to null
  * @param  {String} key       Key for azure_helper (should always be cases)
  * @param  {String} kind      name of disease
- * @param  {String} week      Last day of the week
  * @param  {String} weekType  type of week (epi or iso)
+ * @param  {String} week      Last day of the week
  * @return {Promise} Fulfilled when records are returned
  */
 export const get_cases = (key, kind, weekType, week) => {
   return new Promise((resolve, reject) => {
     getCaseFiles(key, kind, weekType, week)
     .then(readCaseFiles).catch(reject)
-    .then(cases => { resolve(cases) })
+    .then(cases => {
+      resolve(cases)
+    })
     .catch(reject)
   });
 }
@@ -301,7 +317,7 @@ export const getProperties = (queryString) => {
     let queryParts = queryString.split('_')
     let key = queryParts[0]
     let path = ''
-    switch(key) {
+    switch (key) {
       case 'population': {
         if (queryParts.length === 2) {
           if (queryParts[1] === 'worldpop') {
@@ -309,7 +325,9 @@ export const getProperties = (queryString) => {
           } else {
             azure_utils.read_file(key, 'worldbank', 'population.json')
             .then(content => {
-              let properties = { key: queryParts.join('_'), properties: Object.keys(content) }
+              let properties = {
+                key: queryParts.join('_'), properties: Object.keys(content)
+              }
               return resolve(properties)
             })
             break;
@@ -317,7 +335,9 @@ export const getProperties = (queryString) => {
         }
         fetchProperty(key, path, '_', 0)
         .then(propertyList => {
-          let properties = { key: queryParts.join('_'), properties: propertyList }
+          let properties = {
+            key: queryParts.join('_'), properties: propertyList
+          }
           return resolve(properties)
         })
         break;
@@ -325,11 +345,15 @@ export const getProperties = (queryString) => {
 
       case 'mosquito': {
         if (queryParts.length === 2) {
-          path += queryParts[1] + '/' + config.mosquito.default_source + '/' + config.mosquito.default_database
+          path += queryParts[1] + '/' +
+          config.mosquito.default_source + '/' +
+          config.mosquito.default_database
         }
         fetchProperty(key, path, '_', 0)
         .then(propertyList => {
-          let properties = { key: queryParts.join('_'), properties: propertyList }
+          let properties = {
+            key: queryParts.join('_'), properties: propertyList
+          }
           return resolve(properties)
         })
         break
@@ -337,11 +361,14 @@ export const getProperties = (queryString) => {
 
       case 'cases': {
         if (queryParts.length > 1) {
-          path += config.cases[ queryParts[1] ].path + queryParts.slice(2).join('/')
+          path += config.cases[queryParts[1]].path +
+          queryParts.slice(2).join('/')
         }
         fetchProperty(key, path, '.', 0)
         .then(propertyList => {
-          let properties = { key: queryParts.join('_'), properties: propertyList }
+          let properties = {
+            key: queryParts.join('_'), properties: propertyList
+          }
           return resolve(properties)
         })
         break
@@ -363,8 +390,8 @@ const fetchProperty = (key, path, splitOn, part) => {
   return new Promise((resolve, reject) => {
     azure_utils.get_file_list(key, path)
     .then(fileList => {
-
-      let propertyList = fileList.entries.directories.length > 0  ? fileList.entries.directories: fileList.entries.files;
+      let propertyList = fileList.entries.directories.length > 0 ?
+      fileList.entries.directories: fileList.entries.files;
       propertyList = propertyList.reduce((list, element) => {
         list.push(element.name.split(splitOn)[part])
         return list
@@ -378,6 +405,7 @@ const fetchProperty = (key, path, splitOn, part) => {
 /**
   * Returns population metadata available from specified source for specified country.
   * If country is not specified it will return data for all countries.
+ * @param  {String} key      key
  * @param  {String} source      Source for the population data
  * @param  {String} country     country for which we need the data
  * @return {Promise} Fulfilled  when records are returned
@@ -385,7 +413,7 @@ const fetchProperty = (key, path, splitOn, part) => {
 export const getPopulation = (key, source, country) => {
   return new Promise((resolve, reject) => {
     source = (source !== undefined) ? source : config[key].default_source
-    switch(source) {
+    switch (source) {
       case 'worldpop': {
         countries_with_this_kind_data(key, source, country)
         .then(data => {
@@ -415,13 +443,15 @@ export const getPopulation = (key, source, country) => {
 /**
   * Returns mosquito metadata available from specified source for specified country.
   * If country is not specified it will return data for all countries.
- * @param  {String} source      Source for the mosquito data
+ * @param  {String} key      key
+ * @param  {String} kind      Source for the mosquito data
  * @param  {String} country     country for which we need the data
  * @return {Promise} Fulfilled  when records are returned
  */
 export const getMosquito = (key, kind, country) => {
   return new Promise((resolve, reject) => {
-    countries_with_this_kind_data(key, kind + '/' + config.mosquito.default_source, country)
+    countries_with_this_kind_data(key, kind +
+      '/' + config.mosquito.default_source, country)
     .then(data => {
       return resolve(data)
     })
@@ -438,8 +468,12 @@ export const getMosquito = (key, kind, country) => {
  * @param  {Array} spark_output_ids ids from spark aggregation output
  * @return{Promise} Admin poperties obj
  */
-function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids) {
-  let index_short_cut = parseInt(spark_output_ids[spark_output_ids.length-1]) -1;
+function assign_correct_admin_from_admins(
+  admin_properties_ary, spark_output_ids
+  ) {
+  let index_short_cut = parseInt(
+    spark_output_ids[spark_output_ids.length-1]
+  ) -1;
   return admin_properties_ary.slice(index_short_cut).find(p => {
     let count = 0;
     const temp_admin_id = Object.keys(p).reduce((ary, k) => {

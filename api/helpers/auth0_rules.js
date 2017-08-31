@@ -33,11 +33,11 @@ const addPropertyToUser = function (user, context, callback) {
   }
 
   auth0.users.updateUserMetadata(user.user_id, user.user_metadata)
-    .then(function(){
+    .then(() => {
         callback(null, user, context);
     })
-    .catch(function(err){
-        callback(err);
+    .catch(error => {
+        callback(error);
     });
 }
 
@@ -53,7 +53,7 @@ const setRoles = function (user, context, callback) {
   user.app_metadata = user.app_metadata || {};
   // You can add a Role based on what you want
   // In this case I check domain
-  var addRolesToUser = function(user, cb) {
+  let addRolesToUser = function(user, cb) {
     if (user.email && (user.email.indexOf('unicef.org') > -1)) {
       cb(null, ['admin']);
     } else {
@@ -67,12 +67,12 @@ const setRoles = function (user, context, callback) {
     } else {
       user.app_metadata.roles = roles;
       auth0.users.updateAppMetadata(user.user_id, user.app_metadata)
-        .then(function(){
+        .then(() => {
           context.idToken['magic-box/roles'] = user.app_metadata.roles;
           callback(null, user, context);
         })
-        .catch(function(err){
-          callback(err);
+        .catch(error => {
+          callback(error)
         });
     }
   });
@@ -88,34 +88,32 @@ const setRoles = function (user, context, callback) {
  */
 const trackLogins = function (user, context, callback) {
   // Property object
-  var properties = {
-        "distinct_id": user.name,
-        "token": "mixpanel_token_here",
-        "timestamp": new Date().toISOString(),
-        "clientIp": context.request.ip,
-        "name": user.name
+  let properties = {
+        'distinct_id': user.name,
+        'token': 'mixpanel_token_here',
+        'timestamp': new Date().toISOString(),
+        'clientIp': context.request.ip,
+        'name': user.name
     };
 
   // mix-panel even object
-  var mpEvent = {};
+  let mpEvent = {};
 
   // check if user is signing up or logging in
   if (user.user_metadata.signedUp) {
-
     // if user is logging in then event is LOGIN, also add roles to properties
-    mpEvent.event = "LOGIN";
+    mpEvent.event = 'LOGIN';
     properties.roles = user.roles;
   } else {
-
     // else if user signing up then event is SIGNUP
-    mpEvent.event = "SIGNUP";
+    mpEvent.event = 'SIGNUP';
   }
 
   // set properties of mix-panel event object
   mpEvent.properties = properties;
 
   // base64 String of mpEvent (not sure why, this template was provided by Auth0)
-  var base64Event = new Buffer(JSON.stringify(mpEvent)).toString('base64');
+  let base64Event = new Buffer(JSON.stringify(mpEvent)).toString('base64');
 
   // sending event to mix-panel
   request.get({
@@ -123,12 +121,11 @@ const trackLogins = function (user, context, callback) {
     qs: {
       data: base64Event
     }
-  }, function (e, r, b){
+  }, function(e, r, b) {
     // don’t wait for the MixPanel API call to finish, return right away (the request will continue on the sandbox)`
     callback(null, user, context);
   });
 }
-
 
 /**
  * Checks if the user's email address is verified. If it isn't UnauthorizedError is sent back.
@@ -138,7 +135,9 @@ const trackLogins = function (user, context, callback) {
  */
 const forceEmailVerifivation = function (user, context, callback) {
   if (!user.email_verified) {
-    return callback(new UnauthorizedError('Please verify your email before logging in.'));
+    return callback(
+      new UnauthorizedError('Please verify your email before logging in.')
+    );
   } else {
     return callback(null, user, context);
   }

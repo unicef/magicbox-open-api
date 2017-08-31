@@ -1,14 +1,10 @@
-import a127 from 'a127-magic'
 import SwaggerExpress from 'swagger-express-mw'
 import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
-import SwaggerSecurity from 'swagger-tools/middleware/swagger-security'
 import volosCache from 'volos-cache-memory'
 import compression from 'compression'
 import express from 'express'
 import deepcopy from 'deepcopy'
 import * as auth from './api/helpers/auth'
-import volosSwagger from 'volos-swagger'
-
 
 const VOLOS_RESOURCE = 'x-volos-resources'
 import requestIp from 'request-ip'
@@ -17,7 +13,7 @@ import * as logger from './api/helpers/logger'
 const config = {
   appRoot: __dirname,
   port: process.env.PORT || 8000,
-  swaggerSecurityHandlers: { Bearer: auth.verifyToken }
+  swaggerSecurityHandlers: {Bearer: auth.verifyToken}
 }
 
 const app = express()
@@ -36,7 +32,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   let cacheName = swaggerExpress.runner.swagger[VOLOS_RESOURCE].cache.name
   let cache = volosCache.create(cacheName, cacheOptions)
   cacheOptions.key = getCacheKey
-  app.use(cache.expressMiddleware().cache({ key: getCacheKey }))
+  app.use(cache.expressMiddleware().cache({key: getCacheKey}))
 
 
   // eliminate path that has x-hide property
@@ -63,7 +59,11 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   })
 })
 
-
+/**
+ * Extracts and returns data from shapefiles
+ * @param  {object} req request object
+ * @return {sting} cacheKey
+ */
 const getCacheKey = (req) => {
   let cacheKey = null
   let url = req.originalUrl

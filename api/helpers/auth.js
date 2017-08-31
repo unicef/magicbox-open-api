@@ -1,7 +1,5 @@
 import config from '../../config'
 import authZeroWeb from 'auth0-js'
-import bluebird from 'bluebird'
-import qs from 'qs'
 import authZero from 'auth0'
 
 const tokenPrefix = 'Bearer '
@@ -54,13 +52,15 @@ export const getUserInfo = (token) => {
  * @param  {object} authOrSecDef auth and security definations from swagger file
  * @param  {string} token token string provided with request
  * @param  {Function} callback callback function
+ * @return {Array} user roles
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
-
-  let errorObject = {message: "Invalid token"}
+  let errorObject = {message: 'Invalid token'}
 
   if (token && token.indexOf(tokenPrefix) !== -1) {
-    let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
+    let accessToken = token.substring(
+      token.indexOf(tokenPrefix) + tokenPrefix.length
+    )
     let requiredRoles = req.swagger.operation[keyScope]
 
     getUserInfo(accessToken)
