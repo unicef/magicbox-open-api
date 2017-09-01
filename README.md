@@ -12,7 +12,8 @@ You can access the API [here](http://magicbox-open-api.azurewebsites.net/docs).
 ### running development
 ```bash
   git clone https://github.com/unicef/magicbox-open-api.git
-  cd to/the/project
+  cd magicbox-open-api
+  cp config-sample.js config.js
   npm install
-  babel-watch server.js
+  npm run start
 ```
