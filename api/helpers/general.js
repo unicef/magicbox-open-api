@@ -1,6 +1,6 @@
 import config from '../../config'
 import bluebird from 'bluebird'
-import * as azure_utils from '../../utils/azure'
+import * as data_access from '../../utils/data_access'
 
 /**
  * Returns name of the a country's shapefile from` the List of shapefiles
@@ -67,7 +67,7 @@ const getGeoProperties = (shapefileSet) => {
     let fileName = shapefileSet.fileName
     let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() +
     '.json'
-    azure_utils.read_file('geo-properties', 'gadm2-8', geo_props_file_name)
+    data_access.read_file('geo-properties', 'gadm2-8', geo_props_file_name)
     .then(admin_properties => {
       shapefileSet.admin_properties = admin_properties
       return resolve(shapefileSet)
@@ -86,12 +86,12 @@ const getGeoProperties = (shapefileSet) => {
  */
 export const getShapeFiles = (kind, source) => {
   return new Promise((resolve, reject) => {
-    azure_utils.get_file_list(kind, source)
+    data_access.get_file_list(kind, source)
     .then(directories => {
       let dirs_shapefiles = extract_dirs(directories.entries.directories)
       let shapefiles = []
       bluebird.each(dirs_shapefiles, directory => {
-        return azure_utils.get_file_list(kind, source + '/' + directory)
+        return data_access.get_file_list(kind, source + '/' + directory)
         .then(fileList => {
           fileList.entries.files.forEach(file => {
             shapefiles.push(directory + '/' + file.name)
@@ -138,7 +138,7 @@ const readShapeFile = (shapefileSet) => {
   return new Promise((resolve, reject) => {
     let {kind, source, fileName} = shapefileSet
     const [database, file] = fileName.split('/')
-    azure_utils.read_file(kind, source + '/' + database, file)
+    data_access.read_file(kind, source + '/' + database, file)
     .then(content => {
       shapefileSet.shapefile = content
       resolve(shapefileSet)
@@ -161,6 +161,7 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
     let [raster, source] = fileName.split('^').slice(1, 3)
     let admin_to_value_map = {}
     admin_to_value_map.raster = raster
+    // source refers to raster source
     admin_to_value_map.source = source
     admin_to_value_map.population = {}
     let value_map = shapefile.reduce((ary, element) => {
@@ -170,6 +171,8 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
         return element[key]
       })
       let temp_map = {}
+      // config[kind].val_type is sum or mean
+      // element[config[kind].val_type] is a floating point
       temp_map[country + '_' +
       tempList.join('_') + '_' +
       dir] = element[config[kind].val_type]
@@ -179,19 +182,22 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
         admin_properties,
         tempList
       );
-
-      ary.push(Object.assign(
-        {
-          admin_id: country +
-          '_' +
-          tempList.join('_') +
-          '_' +
-          fileName.split('/')[0],
-          value: element[config[kind].val_type]
-        },
-        admin_props
+      console.log(fileName, '^^^^')
+      ary.push(
+        Object.assign(
+          {
+            admin_id: country +
+            '_' +
+            tempList.join('_') +
+            '_' +
+            // gadm2-8 or santiblanko: gadm2-8/afg_2_gadm2-8^popmap15adj^worldpop^42348516^248596^641869.188.json
+            // a bit of a hack to put the shapefile source in the id
+            fileName.split('/')[0],
+            value: element[config[kind].val_type]
+          },
+          admin_props
+        )
       )
-    )
       return ary
     }, []);
     admin_to_value_map.population = value_map;
@@ -241,7 +247,7 @@ function extract_dirs(ary) {
 export const getCaseFiles = (key, kind, weekType, week) => {
   return new Promise((resolve, reject) => {
     let casesPath = config[key][kind].path + '/' + weekType
-    azure_utils.get_file_list(key, casesPath)
+    data_access.get_file_list(key, casesPath)
     .then(files => {
       files = files.entries.files
       if (week !== undefined) {
@@ -272,7 +278,7 @@ export const readCaseFiles = (caseFiles) => {
     bluebird.each(caseFiles.files, file => {
       let objKey = file.name.replace(/.json/g, '')
       let filePath = config[key][kind].path + '/' + weekType
-      return azure_utils.read_file(key, filePath, file.name)
+      return data_access.read_file(key, filePath, file.name)
       .then(content => {
         returnObj[objKey] = content.countries
       })
@@ -323,7 +329,7 @@ export const getProperties = (queryString) => {
           if (queryParts[1] === 'worldpop') {
             path += 'worldpop/' + config.population.default_database
           } else {
-            azure_utils.read_file(key, 'worldbank', 'population.json')
+            data_access.read_file(key, 'worldbank', 'population.json')
             .then(content => {
               let properties = {
                 key: queryParts.join('_'), properties: Object.keys(content)
@@ -388,7 +394,7 @@ export const getProperties = (queryString) => {
  */
 const fetchProperty = (key, path, splitOn, part) => {
   return new Promise((resolve, reject) => {
-    azure_utils.get_file_list(key, path)
+    data_access.get_file_list(key, path)
     .then(fileList => {
       let propertyList = fileList.entries.directories.length > 0 ?
       fileList.entries.directories: fileList.entries.files;
