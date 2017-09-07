@@ -163,7 +163,7 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
     admin_to_value_map.raster = raster
     // source refers to raster source
     admin_to_value_map.source = source
-    admin_to_value_map.population = {}
+    admin_to_value_map.values = {}
     let value_map = shapefile.reduce((ary, element) => {
       let tempList = Object.keys(element).filter(key => {
         return ( key.startsWith('id_') )
@@ -182,7 +182,6 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
         admin_properties,
         tempList
       );
-      console.log(fileName, '^^^^')
       ary.push(
         Object.assign(
           {
@@ -200,7 +199,7 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
       )
       return ary
     }, []);
-    admin_to_value_map.population = value_map;
+    admin_to_value_map.values = value_map;
     resolve(admin_to_value_map)
   });
 }
