@@ -193,7 +193,7 @@ paths:
                           "source": "simon_hay",
                           "population": [
                                   {
-                                  "admin_id": "afg_1_16_170_aegypti/simon_hay",
+                                  "admin_id": "afg_1_16_170_gadm2-8",
                                   "value": 0.134451949145065,
                                   "ID_0": 1,
                                   "ISO": "AFG",
