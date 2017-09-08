@@ -56,7 +56,7 @@ export const getUserInfo = (token) => {
  * @param  {Function} callback callback function
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
-
+  console.error('CCCCXXXX', authOrSecDef, token)
   let errorObject = {message: "Access Denied. Please check your token"}
 
   if (token && token.indexOf(tokenPrefix) !== -1) {
