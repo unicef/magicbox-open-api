@@ -1,13 +1,12 @@
 import a127 from 'a127-magic'
 import SwaggerExpress from 'swagger-express-mw'
 import SwaggerUi from 'swagger-tools/middleware/swagger-ui'
-import SwaggerSecurity from 'swagger-tools/middleware/swagger-security'
+// import SwaggerSecurity from 'swagger-tools/middleware/swagger-security'
 import volosCache from 'volos-cache-memory'
 import compression from 'compression'
 import express from 'express'
 import deepcopy from 'deepcopy'
 import * as auth from './api/helpers/auth'
-import volosSwagger from 'volos-swagger'
 
 
 const VOLOS_RESOURCE = 'x-volos-resources'
@@ -36,7 +35,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   let cacheName = swaggerExpress.runner.swagger[VOLOS_RESOURCE].cache.name
   let cache = volosCache.create(cacheName, cacheOptions)
   cacheOptions.key = getCacheKey
-  app.use(cache.expressMiddleware().cache({ key: getCacheKey }))
+
 
 
   // eliminate path that has x-hide property
@@ -55,6 +54,11 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   // Serve the Swagger documents and Swagger UI
   // app.use(swaggerExpress.runner.swaggerTools.swaggerUi());
   // install middleware
+  app.use(swaggerExpress.runner.swaggerTools.swaggerMetadata())
+  app.use(swaggerExpress.runner.swaggerTools.swaggerSecurity(config.swaggerSecurityHandlers))
+
+  app.use(cache.expressMiddleware().cache({ key: getCacheKey }))
+  // Provide the security handlers
 
   swaggerExpress.register(app)
 
