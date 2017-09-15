@@ -1,17 +1,17 @@
-import { Client } from 'pg'
+import { Pool } from 'pg'
 // import Cursor from 'pg-cursor'
 import * as config from '../../config'
 
 class PostgresHelper {
 
   constructor() {
-    this.dbClient = new Client(config.db)
-    this.dbClient.connect()
+    this.dbPool = new Pool(config.db)
+    this.dbPool.connect()
     // this.cursors = {}
   }
 
   execute(query, params) {
-
+    console.log('Execute', query, params, '!!!!')
     return new Promise((resolve, reject) => {
       let select = query
       let options = params ? params : {}
@@ -37,7 +37,7 @@ class PostgresHelper {
         // resolve(result)
       // })
 
-      this.dbClient.query(select, paramList)
+      this.dbPool.query(select, paramList)
       .then(queryResult => {
         if (queryResult.rowCount < config.max_query_result) {
           result.hasNext = false
@@ -54,7 +54,12 @@ class PostgresHelper {
 
   buildWhere(params) {
 
-    let where = '', paramList = [], count = 1, maxLimit = 0, offset = 0, page_number = 0
+    let where = '',
+    paramList = [],
+    count = 1,
+    maxLimit = 0,
+    offset = 0,
+    page_number = 0
 
     if ('offset' in params) {
       offset = params.offset
