@@ -1,4 +1,5 @@
 import config from '../../config'
+import request from 'request'
 import authZeroWeb from 'auth0-js'
 import bluebird from 'bluebird'
 import qs from 'qs'
@@ -67,6 +68,17 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
+      if(!userRoles) {
+        console.log('no roles');
+        if (userInfo.email && userInfo.email_verified) {
+          console.log('email all good')
+          var email_domain = userInfo.email.split('@');
+          if (config.auth0.roles[email_domain[1]]) {
+            console.log('assign some roles', email_domain[1])
+            userRoles = [config.auth0.roles[email_domain[1]]]
+          }
+        }
+      }
 
       // check if user has all the required roles
       let verified = requiredRoles.every(role => {
@@ -86,4 +98,56 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
   } else {
     return callback(errorObject)
   }
+}
+
+/**
+ * Verifies if user has required level of authorisation
+ * @param  {object} code fetched from auth0
+ */
+export const getRefreshToken = code => {
+  return new Promise((resolve, reject) => {
+    var options = { method: 'POST',
+    url: config.auth0.auth_url,
+    headers: { 'content-type': 'application/json' },
+    body:
+     { grant_type: 'authorization_code',
+       client_id: config.auth0.client_id,
+       client_secret: config.auth0.client_secret,
+       scope: 'profile+roles',
+       code: code,
+       redirect_uri: 'http://localhost:8000/login' },
+    json: true };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      // Object has refresh token
+      return resolve(body);
+    });
+  })
+}
+
+/**
+ * Gets new access token
+ * @param  {object} refresh_token fetched from auth0
+ */
+export const refreshAccessToken = refresh_token => {
+  return new Promise((resolve, reject) => {
+    var options = { method: 'POST',
+    url: config.auth0.auth_url,
+    headers: { 'content-type': 'application/json' },
+    body:
+     { grant_type: 'refresh_token',
+       client_id: config.auth0.client_id,
+       client_secret: config.auth0.client_secret,
+       responseType: 'token id_token',
+       refresh_token: refresh_token,
+       state: 'innovation',
+       redirect_uri: 'http://localhost:8000/login' },
+    json: true };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      return resolve(body);
+    });
+  })
 }

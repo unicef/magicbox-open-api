@@ -1,4 +1,5 @@
 import util from 'util'
+import request from 'request'
 import * as general_helper from '../helpers/general'
 import config from '../../config'
 import * as auth from '../helpers/auth'
@@ -163,6 +164,42 @@ export const getToken = (request, response) => {
 }
 
 
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
+export const getRefreshToken = (request, response) => {
+  const code = request.query.code
+  auth.getRefreshToken(code)
+  .then(object => {
+    response.format({
+      'text/html': function(){
+        response.send("<html><body><h3>Refresh token: "+ object.refresh_token +"</h3></body></html>")
+      }
+    })
+  })
+}
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
+export const refreshToken = (request, response) => {
+  var params = getParams(request)
+  const refresh_token = params.refresh_token
+  auth.refreshAccessToken(refresh_token)
+  .then(object => {
+    if (object.error) {
+      return response.json(object);
+    }
+    response.format({
+      'text/html': function(){
+        response.send("<html><body><h3>Access token: "+ object.access_token +"</h3></body></html>")
+      }
+    })
+  })
+}
 /**
  * Displays the token or error received from Auth0.
  * @param{String} request - request object
