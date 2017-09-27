@@ -173,6 +173,8 @@ export const getRefreshToken = (request, response) => {
   const code = request.query.code
   auth.getRefreshToken(code)
   .then(object => {
+    console.log(object);
+    console.error(object);
     response.format({
       'text/html': function(){
         response.send("<html><body><h3>Refresh token: "+ object.refresh_token +"</h3></body></html>")
@@ -190,6 +192,8 @@ export const refreshToken = (request, response) => {
   const refresh_token = params.refresh_token
   auth.refreshAccessToken(refresh_token)
   .then(object => {
+    console.log(object);
+    console.warn(object);
     if (object.error) {
       return response.json(object);
     }
