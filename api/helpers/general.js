@@ -471,7 +471,7 @@ function assign_correct_admin_from_admins(admin_properties_ary, spark_output_ids
 export const getSchools = (country, options) => {
   return new Promise((resolve, reject) => {
 
-    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, admin_code, admin_id, altitude, availability_connectivity, connectivity, country_code, datasource, description, educ_level, electricity, environment, frequency, latency_connectivity, lat, lon, name, num_classrooms, num_latrines, num_teachers, num_students, num_sections, phone_number, postal_code, speed_connectivity, type_conectivity, type_school, water, created_at, updated_at FROM schools'
+    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, admin_code, admin_id, altitude, availability_connectivity, connectivity, country_code, datasource, description, educ_level, electricity, environment, frequency, latency_connectivity, lat, lon, name, num_classrooms, num_latrines, num_teachers, num_students, num_sections, phone_number, postal_code, speed_connectivity, type_connectivity, type_school, water, created_at, updated_at FROM schools'
 
     options.country_code = country
 
