@@ -40,15 +40,15 @@ export const getAuthorizeUrl = () => {
  * @return {Promise} Fullfilled when user information is fetched
  */
 export const getUserInfo = (token) => {
-  console.log("BBBB", token)
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
-      console.error(userInfo)
-      //return resolve(JSON.parse(userInfo))
+      if (typeof userInfo === 'string') {
+        return resolve(JSON.parse(userInfo))
+      }
       return resolve(userInfo)
     })
-    .catch(console.error)
+    .catch(reject)
   })
 }
 
@@ -61,7 +61,7 @@ export const getUserInfo = (token) => {
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
   let errorObject = {message: "Access Denied. Please check your token"}
-  console.error("AAAAA", token)
+
   if (token && token.indexOf(tokenPrefix) !== -1) {
     let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
 
@@ -70,11 +70,8 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
 
     getUserInfo(accessToken)
     .then(userInfo => {
-      console.error(userInfo);
-      console.error("___+++")
       let userRoles = userInfo[keyRoles]
       if(!userRoles) {
-        console.log('no roles');
         if (userInfo.email && userInfo.email_verified) {
           console.log('email all good')
           var email_domain = userInfo.email.split('@');
@@ -120,7 +117,7 @@ export const getRefreshToken = code => {
        client_secret: config.auth0.client_secret,
        scope: 'profile+roles',
        code: code,
-       redirect_uri: config.auth0.redirect_uri + '/login' },
+       redirect_uri: 'http://localhost:8000/login' },
     json: true };
 
     request(options, function (error, response, body) {
@@ -147,7 +144,7 @@ export const refreshAccessToken = refresh_token => {
        responseType: 'token id_token',
        refresh_token: refresh_token,
        state: 'innovation',
-       redirect_uri: config.auth0.redirect_uri + '/login' },
+       redirect_uri: 'http://localhost:8000/login' },
     json: true };
 
     request(options, function (error, response, body) {
