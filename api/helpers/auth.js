@@ -40,12 +40,15 @@ export const getAuthorizeUrl = () => {
  * @return {Promise} Fullfilled when user information is fetched
  */
 export const getUserInfo = (token) => {
+  console.log(GGGG, token)
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
+      console.error(userInfo)
+      console.error(JSON.stringify(userInfo));
       return resolve(JSON.parse(userInfo))
     })
-    .catch(reject)
+    .catch(console.error)
   })
 }
 
@@ -58,7 +61,7 @@ export const getUserInfo = (token) => {
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
   let errorObject = {message: "Access Denied. Please check your token"}
-
+  console.error("AAAAA", token)
   if (token && token.indexOf(tokenPrefix) !== -1) {
     let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
 
@@ -67,6 +70,8 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
 
     getUserInfo(accessToken)
     .then(userInfo => {
+      console.error(userInfo);
+      console.error("___+++")
       let userRoles = userInfo[keyRoles]
       if(!userRoles) {
         console.log('no roles');
