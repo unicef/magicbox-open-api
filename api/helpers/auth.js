@@ -40,12 +40,11 @@ export const getAuthorizeUrl = () => {
  * @return {Promise} Fullfilled when user information is fetched
  */
 export const getUserInfo = (token) => {
-  console.log("GGGG", token)
+  console.log("BBBB", token)
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
       console.error(userInfo)
-      console.error(JSON.stringify(userInfo));
       return resolve(JSON.parse(userInfo))
     })
     .catch(console.error)
