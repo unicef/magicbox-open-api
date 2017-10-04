@@ -45,7 +45,8 @@ export const getUserInfo = (token) => {
     authClient.getProfile(token)
     .then(userInfo => {
       console.error(userInfo)
-      return resolve(JSON.parse(userInfo))
+      //return resolve(JSON.parse(userInfo))
+      return resolve(userInfo)
     })
     .catch(console.error)
   })
