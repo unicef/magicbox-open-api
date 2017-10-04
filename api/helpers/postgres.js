@@ -36,7 +36,6 @@ class PostgresHelper {
         // result.count = rows.length
         // resolve(result)
       // })
-
       this.dbPool.query(select, paramList)
       .then(queryResult => {
         if (queryResult.rowCount < config.max_query_result) {
@@ -79,7 +78,7 @@ class PostgresHelper {
     }
 
     if ( Object.keys(params).length > 0) {
-      let wherePart = ' WHERE '
+      let wherePart = ' WHERE lat is not null and lon is not null and '
       wherePart += Object.keys(params).reduce((whereString, key) => {
         whereString += `${key} = $${count} and `
         paramList.push(params[key])
