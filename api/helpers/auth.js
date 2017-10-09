@@ -44,16 +44,25 @@ export const getUserInfo = (token) => {
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
-      if (!isJSON(userInfo)) {
+      if (userInfo === "Unauthorized") {
+        console.log("userInfo is Unauthorized")
         // If access token is bad
         // userInfo returns as "Unauthoraized"
         userInfo = {message: userInfo}
       }
+      // if (!isJSON(userInfo)) {
+      //   console.log("NOT JSON", userInfo)
+      //   // If access token is bad
+      //   // userInfo returns as "Unauthoraized"
+      //   userInfo = {message: userInfo}
+      // }
 
       if (typeof userInfo === 'string') {
+        console.error("userInfo is string", userInfo)
         logger.log('userInfo', JSON.parse(userInfo))
         return resolve(JSON.parse(userInfo))
       }
+        console.error("userInfo is Object", userInfo)
       logger.log('userInfo', userInfo)
       return resolve(userInfo)
     })
