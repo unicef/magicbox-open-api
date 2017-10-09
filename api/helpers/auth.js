@@ -1,11 +1,9 @@
 import config from '../../config'
 import request from 'request'
 import authZeroWeb from 'auth0-js'
-import bluebird from 'bluebird'
-import qs from 'qs'
 import authZero from 'auth0'
 import * as logger from './../helpers/logger'
-import isJSON from 'is-json'
+// import isJSON from 'is-json'
 const tokenPrefix = 'Bearer '
 const keyScope = 'x-security-scopes'
 const keyRoles = 'magic-box/roles'
@@ -76,12 +74,15 @@ export const getUserInfo = (token) => {
  * @param  {object} authOrSecDef auth and security definations from swagger file
  * @param  {string} token token string provided with request
  * @param  {Function} callback callback function
+ * @return {Array} user roles
  */
 export const verifyToken = (req, authOrSecDef, token, callback) => {
-  let errorObject = {message: "Access Denied. Please check your token"}
+  let errorObject = {message: 'Access Denied. Please check your token'}
 
   if (token && token.indexOf(tokenPrefix) !== -1) {
-    let accessToken = token.substring(token.indexOf(tokenPrefix) + tokenPrefix.length)
+    let accessToken = token.substring(
+      token.indexOf(tokenPrefix) + tokenPrefix.length
+    )
 
     // get all the required roles from swagger doc.
     let requiredRoles = req.swagger.operation[keyScope]
@@ -92,7 +93,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       if(!userRoles) {
         if (userInfo.email && userInfo.email_verified) {
           console.log('email all good')
-          var email_domain = userInfo.email.split('@');
+          let email_domain = userInfo.email.split('@');
           if (config.auth0.roles[email_domain[1]]) {
             console.log('assign some roles', email_domain[1])
             userRoles = [config.auth0.roles[email_domain[1]]]
@@ -126,19 +127,19 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
  */
 export const getRefreshToken = code => {
   return new Promise((resolve, reject) => {
-    var options = { method: 'POST',
+    let options = {method: 'POST',
     url: config.auth0.auth_url,
-    headers: { 'content-type': 'application/json' },
+    headers: {'content-type': 'application/json'},
     body:
-     { grant_type: 'authorization_code',
+     {grant_type: 'authorization_code',
        client_id: config.auth0.client_id,
        client_secret: config.auth0.client_secret,
        scope: 'profile+roles',
        code: code,
-       redirect_uri: 'http://localhost:8000/login' },
-    json: true };
+       redirect_uri: 'http://localhost:8000/login'},
+    json: true};
 
-    request(options, function (error, response, body) {
+    request(options, function(error, response, body) {
       if (error) throw new Error(error);
       // Object has refresh token
       return resolve(body);
@@ -152,20 +153,20 @@ export const getRefreshToken = code => {
  */
 export const refreshAccessToken = refresh_token => {
   return new Promise((resolve, reject) => {
-    var options = { method: 'POST',
+    let options = {method: 'POST',
     url: config.auth0.auth_url,
-    headers: { 'content-type': 'application/json' },
+    headers: {'content-type': 'application/json'},
     body:
-     { grant_type: 'refresh_token',
+     {grant_type: 'refresh_token',
        client_id: config.auth0.client_id,
        client_secret: config.auth0.client_secret,
        responseType: 'token id_token',
        refresh_token: refresh_token,
        state: 'innovation',
-       redirect_uri: 'http://localhost:8000/login' },
-    json: true };
+       redirect_uri: 'http://localhost:8000/login'},
+    json: true};
 
-    request(options, function (error, response, body) {
+    request(options, function(error, response, body) {
       if (error) throw new Error(error);
       return resolve(body);
     });
