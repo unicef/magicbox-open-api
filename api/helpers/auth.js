@@ -4,7 +4,8 @@ import authZeroWeb from 'auth0-js'
 import bluebird from 'bluebird'
 import qs from 'qs'
 import authZero from 'auth0'
-
+import * as logger from './../helpers/logger'
+import isJSON from 'is-json'
 const tokenPrefix = 'Bearer '
 const keyScope = 'x-security-scopes'
 const keyRoles = 'magic-box/roles'
@@ -43,9 +44,17 @@ export const getUserInfo = (token) => {
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
+      if (!isJSON(userInfo)) {
+        // If access token is bad
+        // userInfo returns as "Unauthoraized"
+        userInfo = {message: userInfo}
+      }
+
       if (typeof userInfo === 'string') {
+        logger.log('userInfo', JSON.parse(userInfo))
         return resolve(JSON.parse(userInfo))
       }
+      logger.log('userInfo', userInfo)
       return resolve(userInfo)
     })
     .catch(reject)
