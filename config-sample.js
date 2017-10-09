@@ -2,7 +2,7 @@ module.exports = {
   azure: {
     storage_account: 'storage_account_name',
     key1: 'azure_storage_key',
-    directory: 'base_dir'
+    directory: 'aggregations'
   },
   auth0: {
     auth_domain: 'auth0_domain',
