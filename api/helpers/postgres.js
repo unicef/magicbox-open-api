@@ -1,23 +1,33 @@
-import { Pool } from 'pg'
+import {Pool} from 'pg'
 // import Cursor from 'pg-cursor'
 import * as config from '../../config'
 
+/**
+ * PostgresHelper
+ */
 class PostgresHelper {
-
+  /**
+   * Constructor
+   */
   constructor() {
     this.dbPool = new Pool(config.db)
     this.dbPool.connect()
     // this.cursors = {}
   }
 
+  /**
+   * Returns user's information fetched using the access token provide by the user.
+   * @param  {string} query user's access token
+   * @param  {string} params user's access token
+   * @return {Promise} Fullfilled when user information is fetched
+   */
   execute(query, params) {
     console.log('Execute', query, params, '!!!!')
     return new Promise((resolve, reject) => {
       let select = query
-      let options = params ? params : {}
       const result = {hasNext: true}
 
-      const {where:where, paramList:paramList} = this.buildWhere(params)
+      const {where: where, paramList: paramList} = this.buildWhere(params)
 
       select += where
 
@@ -51,14 +61,19 @@ class PostgresHelper {
     })
   }
 
+  /**
+   * buildWhere.
+   * @param  {Object} params user's access token
+  * @return{string} where clause
+   */
   buildWhere(params) {
-
     let where = '',
     paramList = [],
     count = 1,
     maxLimit = 0,
     offset = 0,
     page_number = 0
+    page_number
 
     if ('offset' in params) {
       offset = params.offset
@@ -78,7 +93,8 @@ class PostgresHelper {
     }
 
     if ( Object.keys(params).length > 0) {
-      let wherePart = ' WHERE lat is not null and lon is not null and '
+      let wherePart = ' WHERE lat is not null and lon is not ' +
+      'null and coords_within_country is true '
       wherePart += Object.keys(params).reduce((whereString, key) => {
         whereString += `${key} = $${count} and `
         paramList.push(params[key])
@@ -100,14 +116,11 @@ class PostgresHelper {
       paramList.push(maxLimit)
       where += limit
     }
-
     return {where, paramList}
   }
-
   //
   // getCursor(query, params) {
   //   let key = this.getQueryStatement(query, params)
-  //
   //   if (!(key in this.cursors)) {
   //     let cursor = new Cursor(query, params)
   //     this.cursors[key] = this.dbClient.query(cursor)
@@ -131,7 +144,6 @@ class PostgresHelper {
   //   })
   //   return key
   // }
-
 }
 
 export default PostgresHelper
