@@ -94,7 +94,7 @@ class PostgresHelper {
 
     if ( Object.keys(params).length > 0) {
       let wherePart = ' WHERE lat is not null and lon is not ' +
-      'null and coords_within_country is true '
+      'null and coords_within_country is true and '
       wherePart += Object.keys(params).reduce((whereString, key) => {
         whereString += `${key} = $${count} and `
         paramList.push(params[key])
