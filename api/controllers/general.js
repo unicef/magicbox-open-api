@@ -148,7 +148,7 @@ export function getProperties(request, response) {
   })
   .catch(err => {
     logger.logErrorResponse(request, err)
-    response.json({ message: error })
+    response.json({message: error})
   })
 }
 
@@ -161,7 +161,7 @@ export const getToken = (request, response) => {
   let url = auth.getAuthorizeUrl()
   response.format({
     'text/html': function() {
-      response.send('"<html><body><h3>Please click <a href="' +
+      response.send('<html><body><h3>Please click <a href="' +
       url +
       '"> HERE </a>' +
       ' and follow next steps to get access token</h3></body></html>')
@@ -180,7 +180,7 @@ export const getRefreshToken = (request, response) => {
   auth.getRefreshToken(code)
   .then(object => {
     response.format({
-      'text/html': function(){
+      'text/html': () => {
         response.json({refresh_token: object.refresh_token})
       }
     })
@@ -192,7 +192,7 @@ export const getRefreshToken = (request, response) => {
  * @param{String} response - response object
  */
 export const refreshToken = (request, response) => {
-  var params = getParams(request)
+  let params = getParams(request)
   const refresh_token = params.refresh_token
   auth.refreshAccessToken(refresh_token)
   .then(object => {
@@ -200,7 +200,7 @@ export const refreshToken = (request, response) => {
       return response.json(object);
     }
     response.format({
-      'text/html': function(){
+      'text/html': () => {
         response.json({access_token: object.access_token})
       }
     })
@@ -222,16 +222,23 @@ export const showToken = (request, response) => {
   })
 }
 
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
 export const getSchools = (request, response) => {
-  const {country_code:country} = getParams(request)
+  const {country_code: country} = getParams(request)
   const options = qs.parse(request.query)
   general_helper
   .getSchools(country, options)
-  .then(result => response.json ({
-    count: result.count,
-    result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
-    hasNext: result.hasNext
-  }))
+  .then(result => {
+    response.json({
+      count: result.count,
+      result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
+      hasNext: result.hasNext
+    })
+  })
   .catch(err => {
     logger.logErrorResponse(request, err)
     response.json({message: err})
