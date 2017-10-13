@@ -149,7 +149,7 @@ export const getRefreshToken = code => {
        client_secret: config.auth0.client_secret,
        scope: 'profile+roles',
        code: code,
-       redirect_uri: 'http://localhost:8000/login'},
+       redirect_uri: config.auth0.redirect_uri},
     json: true};
 
     request(options, function(error, response, body) {
@@ -177,7 +177,7 @@ export const refreshAccessToken = refresh_token => {
        responseType: 'token id_token',
        refresh_token: refresh_token,
        state: 'innovation',
-       redirect_uri: 'http://localhost:8000/login'},
+       redirect_uri: config.auth0.redirect_uri},
     json: true};
 
     request(options, function(error, response, body) {
