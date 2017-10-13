@@ -4,9 +4,12 @@ import authZeroWeb from 'auth0-js'
 import authZero from 'auth0'
 import * as logger from './../helpers/logger'
 import isJSON from 'is-json'
+import moment from 'moment'
 const tokenPrefix = 'Bearer '
 const keyScope = 'x-security-scopes'
 const keyRoles = 'magic-box/roles'
+
+let seen_users = {};
 
 const authProperties = {
   domain: config.auth0.auth_domain,
@@ -32,6 +35,27 @@ export const getAuthorizeUrl = () => {
   return url
 }
 
+/**
+ * Returns user's information fetched using the access token provide by the user.
+ * @param  {string} access_token user's access token
+ * @return {boolean} User was seen within a certain amount of time.
+ */
+function user_seen(access_token) {
+  console.log('Taking a look', access_token)
+  if (seen_users[access_token] && seen_users[access_token].timestamp) {
+    let time_registered = (moment.now() - seen_users[access_token].timestamp)
+    console.log('User has been seen', time_registered, 'ago')
+    if (time_registered < 60000) {
+      console.log('Still within reasonable time')
+      return true;
+    } else {
+      console.log('Delete user')
+      delete seen_users[access_token];
+      return false
+    }
+  }
+  return false
+}
 
 /**
  * Returns user's information fetched using the access token provide by the user.
@@ -40,6 +64,12 @@ export const getAuthorizeUrl = () => {
  */
 export const getUserInfo = (token) => {
   return new Promise((resolve, reject) => {
+    console.log('Check if user has been seen')
+    if (user_seen(token)) {
+      console.log('No need to hit Auth0')
+      return resolve(seen_users[token])
+    }
+    console.log('User has not been seen')
     authClient.getProfile(token)
     .then(userInfo => {
       if (userInfo === 'Unauthorized') {
@@ -65,14 +95,12 @@ export const getUserInfo = (token) => {
 
       if (typeof userInfo === 'string') {
         if (isJSON(userInfo)) {
-          console.error('userInfo is JSON string !!', userInfo)
           userInfo = JSON.parse(userInfo);
           return resolve(userInfo)
         } else {
-          console.log('Not json string', userInfo)
+          console.log('Not json string')
         }
       }
-        console.error('userInfo is Object', userInfo)
       logger.log('userInfo', userInfo)
       return resolve(userInfo)
     })
@@ -104,8 +132,13 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       if (userInfo.error) {
         return callback(userInfo)
       }
+
+      if (!seen_users[token]) {
+        console.log('Add user to hash')
+        Object.assign(userInfo, {timestamp: Date.now()})
+        seen_users[accessToken] = userInfo;
+      }
       let userRoles = userInfo[keyRoles]
-      console.log('userRoles', !!userRoles, userRoles)
       if (!userRoles) {
         if (userInfo.email && userInfo.email_verified) {
           console.log('Email all good')
@@ -115,19 +148,14 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
             userRoles = [config.auth0.roles[email_domain[1]]]
             console.log('User roles', userRoles)
           }
-          console.log('aaaaa')
         }
-          console.log('bbbbb')
       }
-      console.log('cccc')
       console.log('Required roles', requiredRoles)
       // check if user has all the required roles
       let verified = requiredRoles.every(role => {
         return userRoles.indexOf(role) >= 0
       })
-      console.log('dddd')
-      console.log(verified)
-      console.log('eeee')
+
       // check if user is verified or if he is admin
       if (verified || userRoles.indexOf('admin') !== -1) {
         console.log('Verified OR user is admin')
@@ -140,17 +168,13 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       }
     })
     .catch(error => {
-      console.log(error)
-      console.error('2222')
       Object.assign(errorObject, {second: '222'})
       return callback(errorObject)
     })
   } else {
-    console.error('3333')
     Object.assign(errorObject, {second: '3333'})
     return callback(errorObject)
   }
-  console.log('444444')
 }
 
 /**
