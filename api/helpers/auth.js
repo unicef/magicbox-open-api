@@ -56,7 +56,7 @@ export const getUserInfo = (token) => {
       // }
 
       if (typeof userInfo === 'string') {
-        console.error('userInfo is string', userInfo)
+        console.error('userInfo is string !!', userInfo)
         logger.log('userInfo', JSON.parse(userInfo))
         userInfo = JSON.parse(userInfo);
         console.log(userInfo)
@@ -119,6 +119,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       console.log('eeee')
       // check if user is verified or if he is admin
       if (verified || userRoles.indexOf('admin') !== -1) {
+        console.log('Verified OR user is admin')
         return callback(null)
       } else {
         console.error('111 check if user is verified or if he is admin',
@@ -137,6 +138,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
     Object.assign(errorObject, {second: '3333'})
     return callback(errorObject)
   }
+  console.log('444444')
 }
 
 /**
