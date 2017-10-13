@@ -179,6 +179,8 @@ export const getRefreshToken = (request, response) => {
   const code = request.query.code
   auth.getRefreshToken(code)
   .then(object => {
+    console.log(code)
+    console.log('xxxx')
     response.format({
       'text/html': () => {
         response.json({refresh_token: object.refresh_token})
