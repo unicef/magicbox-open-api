@@ -24,6 +24,7 @@
     "deepcopy": "^0.6.3",
     "express": "^4.12.3",
     "geojson": "^0.5.0",
+    "is-json": "^2.0.1",
     "jsonfile": "^4.0.0",
     "mixpanel": "^0.7.0",
     "pg": "^7.1.2",

@@ -3,7 +3,7 @@ import request from 'request'
 import authZeroWeb from 'auth0-js'
 import authZero from 'auth0'
 import * as logger from './../helpers/logger'
-// import isJSON from 'is-json'
+import isJSON from 'is-json'
 const tokenPrefix = 'Bearer '
 const keyScope = 'x-security-scopes'
 const keyRoles = 'magic-box/roles'
@@ -46,13 +46,15 @@ export const getUserInfo = (token) => {
         console.error('userInfo is Unauthorized')
         // If access token is bad
         // userInfo returns as "Unauthoraized"
-        userInfo = {message: userInfo}
+        resolve(
+          {error: userInfo}
+        )
       }
       if (userInfo === 'Too Many Requests') {
         console.error('userInfo is Too Many Requests')
         // If access token is bad
         // userInfo returns as "Unauthoraized"
-        userInfo = {message: userInfo}
+        resolve({error: userInfo})
       }
       // if (!isJSON(userInfo)) {
       //   console.log("NOT JSON", userInfo)
@@ -62,13 +64,13 @@ export const getUserInfo = (token) => {
       // }
 
       if (typeof userInfo === 'string') {
-        console.error('userInfo is string !!', userInfo)
-        logger.log('userInfo', JSON.parse(userInfo))
-        userInfo = JSON.parse(userInfo);
-        console.log(userInfo)
-        console.log(userInfo.email)
-        console.log('_____')
-        return resolve(userInfo)
+        if (isJSON(userInfo)) {
+          console.error('userInfo is JSON string !!', userInfo)
+          userInfo = JSON.parse(userInfo);
+          return resolve(userInfo)
+        } else {
+          console.log('Not json string', userInfo)
+        }
       }
         console.error('userInfo is Object', userInfo)
       logger.log('userInfo', userInfo)
@@ -99,6 +101,9 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
 
     getUserInfo(accessToken)
     .then(userInfo => {
+      if (userInfo.error) {
+        return callback(userInfo)
+      }
       let userRoles = userInfo[keyRoles]
       console.log('userRoles', !!userRoles, userRoles)
       if (!userRoles) {
