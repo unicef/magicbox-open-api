@@ -42,8 +42,8 @@ export const getUserInfo = (token) => {
   return new Promise((resolve, reject) => {
     authClient.getProfile(token)
     .then(userInfo => {
-      if (userInfo === "Unauthorized") {
-        console.log("userInfo is Unauthorized")
+      if (userInfo === 'Unauthorized') {
+        console.error('userInfo is Unauthorized')
         // If access token is bad
         // userInfo returns as "Unauthoraized"
         userInfo = {message: userInfo}
@@ -56,11 +56,11 @@ export const getUserInfo = (token) => {
       // }
 
       if (typeof userInfo === 'string') {
-        console.error("userInfo is string", userInfo)
+        console.error('userInfo is string', userInfo)
         logger.log('userInfo', JSON.parse(userInfo))
         return resolve(JSON.parse(userInfo))
       }
-        console.error("userInfo is Object", userInfo)
+        console.error('userInfo is Object', userInfo)
       logger.log('userInfo', userInfo)
       return resolve(userInfo)
     })
@@ -83,14 +83,15 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
     let accessToken = token.substring(
       token.indexOf(tokenPrefix) + tokenPrefix.length
     )
-
+    console.error('Access token', accessToken)
     // get all the required roles from swagger doc.
     let requiredRoles = req.swagger.operation[keyScope]
 
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
-      if(!userRoles) {
+      console.warn('userRoles', !!userRoles)
+      if (!userRoles) {
         if (userInfo.email && userInfo.email_verified) {
           console.log('email all good')
           let email_domain = userInfo.email.split('@');
@@ -110,13 +111,20 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       if (verified || userRoles.indexOf('admin') !== -1) {
         return callback(null)
       } else {
+        console.error('111 check if user is verified or if he is admin',
+        errorObject, userRoles)
+        Object.assign(errorObject, {second: '111'})
         return callback(errorObject)
       }
     })
     .catch(error => {
+      console.error('2222')
+      Object.assign(errorObject, {second: '222'})
       return callback(errorObject)
     })
   } else {
+    console.error('3333')
+    Object.assign(errorObject, {second: '3333'})
     return callback(errorObject)
   }
 }
@@ -124,6 +132,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
 /**
  * Verifies if user has required level of authorisation
  * @param  {object} code fetched from auth0
+ * @return {object} object with ip, path and query of the request
  */
 export const getRefreshToken = code => {
   return new Promise((resolve, reject) => {
@@ -150,6 +159,7 @@ export const getRefreshToken = code => {
 /**
  * Gets new access token
  * @param  {object} refresh_token fetched from auth0
+ * @return {object} object with ip, path and query of the request
  */
 export const refreshAccessToken = refresh_token => {
   return new Promise((resolve, reject) => {
