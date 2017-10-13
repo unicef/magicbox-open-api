@@ -58,7 +58,11 @@ export const getUserInfo = (token) => {
       if (typeof userInfo === 'string') {
         console.error('userInfo is string', userInfo)
         logger.log('userInfo', JSON.parse(userInfo))
-        return resolve(JSON.parse(userInfo))
+        userInfo = JSON.parse(userInfo);
+        console.log(userInfo)
+        console.log(userInfo.email)
+        console.log('_____')
+        return resolve(userInfo)
       }
         console.error('userInfo is Object', userInfo)
       logger.log('userInfo', userInfo)
