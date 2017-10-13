@@ -48,6 +48,12 @@ export const getUserInfo = (token) => {
         // userInfo returns as "Unauthoraized"
         userInfo = {message: userInfo}
       }
+      if (userInfo === 'Too Many Requests') {
+        console.error('userInfo is Too Many Requests')
+        // If access token is bad
+        // userInfo returns as "Unauthoraized"
+        userInfo = {message: userInfo}
+      }
       // if (!isJSON(userInfo)) {
       //   console.log("NOT JSON", userInfo)
       //   // If access token is bad
