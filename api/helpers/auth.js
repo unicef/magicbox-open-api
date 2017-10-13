@@ -129,6 +129,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
       }
     })
     .catch(error => {
+      console.log(error)
       console.error('2222')
       Object.assign(errorObject, {second: '222'})
       return callback(errorObject)
