@@ -90,7 +90,7 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
-      console.warn('userRoles', !!userRoles)
+      console.warn('userRoles', !!userRoles, userRoles)
       if (!userRoles) {
         if (userInfo.email && userInfo.email_verified) {
           console.log('email all good')
