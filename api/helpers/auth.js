@@ -94,23 +94,29 @@ export const verifyToken = (req, authOrSecDef, token, callback) => {
     getUserInfo(accessToken)
     .then(userInfo => {
       let userRoles = userInfo[keyRoles]
-      console.warn('userRoles', !!userRoles, userRoles)
+      console.log('userRoles', !!userRoles, userRoles)
       if (!userRoles) {
         if (userInfo.email && userInfo.email_verified) {
-          console.log('email all good')
+          console.log('Email all good')
           let email_domain = userInfo.email.split('@');
           if (config.auth0.roles[email_domain[1]]) {
-            console.log('assign some roles', email_domain[1])
+            console.log('Assign some roles', email_domain[1])
             userRoles = [config.auth0.roles[email_domain[1]]]
+            console.log('User roles', userRoles)
           }
+          console.log('aaaaa')
         }
+          console.log('bbbbb')
       }
-
+      console.log('cccc')
+      console.log('Required roles', requiredRoles)
       // check if user has all the required roles
       let verified = requiredRoles.every(role => {
         return userRoles.indexOf(role) >= 0
       })
-
+      console.log('dddd')
+      console.log(verified)
+      console.log('eeee')
       // check if user is verified or if he is admin
       if (verified || userRoles.indexOf('admin') !== -1) {
         return callback(null)
