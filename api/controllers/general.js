@@ -180,7 +180,9 @@ export const getRefreshToken = (request, response) => {
   auth.getRefreshToken(code)
   .then(object => {
     console.log(code)
-    console.log('xxxx')
+    console.log('ooooo')
+    console.log(object.refresh_token)
+    console.log(object)
     response.format({
       'text/html': () => {
         response.json({refresh_token: object.refresh_token})
