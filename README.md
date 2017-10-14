@@ -22,6 +22,6 @@ You can access the API [here](http://magicbox-open-api.azurewebsites.net/docs).
 ```
 ### Sample end points
 #### Population
-/api/v1/countries returns a list of country codes (ISO 3) for which exists population data on the server.
-[/api/v1/population/countries](magicbox-open-api.azurewebsites.net/api/v1/population/countries)
+[/api/v1/population/countries](magicbox-open-api.azurewebsites.net/api/v1/population/countries) returns a list of country codes (ISO 3) for which exists population data on the server.
+
 ![ScreenShot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/rsz_2countries.png)
