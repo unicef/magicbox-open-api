@@ -11,10 +11,8 @@ Current available data includes:
 You can access the API [here](http://magicbox-open-api.azurewebsites.net/docs).
 
 [Here](https://medium.com/@mikefabrikant/unicefs-open-api-70b6d8530b99) is an article that introduces it.
-### Dependencies
-- Swagger
 
-### running development
+### Set up, install and run
 ```bash
   git clone https://github.com/unicef/magicbox-open-api.git
   cd magicbox-open-api
@@ -22,3 +20,6 @@ You can access the API [here](http://magicbox-open-api.azurewebsites.net/docs).
   npm install
   npm run start
 ```
+### Sample end points
+[/api/v1/population/countries](magicbox-open-api.azurewebsites.net/api/v1/population/countries)
+![ScreenShot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/rsz_2countries.png)
