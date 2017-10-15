@@ -24,4 +24,5 @@ You can access the API [here](http://magicbox-open-api.azurewebsites.net/docs).
 #### Population
 [/api/v1/population/countries](magicbox-open-api.azurewebsites.net/api/v1/population/countries) returns a list of country codes (ISO 3) for which exists population data on the server.
 
-![ScreenShot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/rsz_2countries.png)
+[/api/v1/population/countries/afg](magicbox-open-api.azurewebsites.net/api/v1/population/countries) returns an array of geo-properties along with an admin ID and population value. Each country is served according to the highest admin level available by gadm.org.
+![ScreenShot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/rsz_afghanistan_population.png.png)
