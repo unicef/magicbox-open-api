@@ -45,7 +45,7 @@ function user_seen(access_token) {
   if (seen_users[access_token] && seen_users[access_token].timestamp) {
     let time_registered = (moment.now() - seen_users[access_token].timestamp)
     console.log('User has been seen', time_registered, 'ago')
-    if (time_registered < 60000) {
+    if (time_registered < 6000000) {
       console.log('Still within reasonable time')
       return true;
     } else {
