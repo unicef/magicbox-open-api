@@ -242,7 +242,8 @@ export const getSchools = (request, response) => {
       if (i % 100 === 0) {
         console.log(i)
       }
-      return i === 0 ? Object.keys(e) : Object.values(e);
+      return Object.values(e)
+      // return i === 0 ? Object.keys(e) : Object.values(e);
     });
     console.log(csv_like_array.length, '&&&&&')
     response.json({
