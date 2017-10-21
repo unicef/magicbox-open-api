@@ -2,7 +2,7 @@ import * as general_helper from '../helpers/general'
 import config from '../../config'
 import * as auth from '../helpers/auth'
 import qs from 'qs'
-import geojson from 'geojson'
+// import geojson from 'geojson'
 import * as logger from './../helpers/logger'
 
 /**
@@ -237,9 +237,13 @@ export const getSchools = (request, response) => {
   general_helper
   .getSchools(country, options)
   .then(result => {
+    let csv_like_array = result.rows.map((e, i) => {
+      return i === 0 ? Object.keys(e) : Object.values(e)
+    });
     response.json({
       count: result.count,
-      result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
+      result: csv_like_array,
+      // result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
       hasNext: result.hasNext
     })
   })
