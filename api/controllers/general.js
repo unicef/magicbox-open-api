@@ -237,9 +237,11 @@ export const getSchools = (request, response) => {
   general_helper
   .getSchools(country, options)
   .then(result => {
+    console.log(result.rows.length, '^^^^')
     let csv_like_array = result.rows.map((e, i) => {
       return i === 0 ? Object.keys(e) : Object.values(e)
     });
+    console.log(csv_like_array.length, '&&&&&')
     response.json({
       count: result.count,
       result: csv_like_array,
