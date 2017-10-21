@@ -14,7 +14,7 @@ const config = {
   port: process.env.PORT || 8000,
   swaggerSecurityHandlers: {Bearer: auth.verifyToken}
 }
-
+console.log(process.version);
 const app = express()
 
 app.use(compression())
