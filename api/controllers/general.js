@@ -239,8 +239,8 @@ export const getSchools = (request, response) => {
   .then(result => {
     console.log(result.rows.length, '^^^^')
     let csv_like_array = result.rows.map((e, i) => {
-      if (i&100===0) {
-        console.log(i, e)
+      if (i % 100 === 0) {
+        console.log(i)
       }
       return i === 0 ? Object.keys(e) : Object.values(e);
     });
