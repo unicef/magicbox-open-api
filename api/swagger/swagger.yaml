@@ -806,7 +806,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks/{date}:
+  /v1/cases/kinds/{kind}/weekTypes/{weekType}/week/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     get:
