@@ -27,6 +27,69 @@ Now browse to: localhost:8000/docs
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.gif)
 
-Expand ‘population’ and you’ll see *two* end points.
+The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: [ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
 
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.png)
+The second endpoint returns population data for a single country. For instance, to fetch the population for Afghanistan at the district level, browse to: localhost:8000/api/v1/population/countries/afg
+
+	[
+ 	  { admin_id: ‘afg_1_5_50_gadm2–8’, value: 165297 },
+	  { admin_id: ‘afg_1_4_33_gadm2–8’, value: 175117 },
+	  { admin_id: ‘afg_1_7_57_gadm2–8’, value: 49994},
+	  { admin_id: ‘afg_1_11_102_gadm2–8’, value: 50304 },
+	  
+	  … 228 more items 
+	]
+
+### What does this mean?
+The value points to number of people. But, what swath of land does each admin_id refer to?
+
+Answer: An admin ID points to a specific shape in a shapefile that represents an individual country.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_shapefile.png)
+
+To understand where afg_1_11_102-gadm2–8 points to, first note that Afghanistan has three levels of administrative boundaries:
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_levels.png)
+
+The admin_id has three integers, one per admin level:
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_levels_arrows.png)
+
+The first integer is 1 because Afghanistan is the first country in the collection of 254 available at gadm.org.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_thru_zwe.png)
+
+As for the second and third integers: Afghanistan has 34 shapes at admin level one. Within the shape file, each shape is assigned an ID.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_admin_1.png)
+
+Zoom into admin 11 (a whole province), and you’ll see a number of districts, including number 102.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_11_2.png)
+
+Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it is related to:
+
+- The first country in the gadm collection.
+- The 11th shape in the admin 1 level shapefile.
+- The 102nd shape in the admin 2 level shapefile.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_id_explain_all.png)
+
+### Mosquito Prevalence (University of Oxford)
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/mos_endpoints.png)
+
+- Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for: [ ‘aegypti’, ‘albopictus’ ].
+- Browse to localhost:8000/api/v1/mosquito/kinds/aegypti for a country by country list:
+
+	{
+	  abw: 0.92733,
+	  afg: 0.12469,
+	  …
+	  zwe: 0.54493
+	}
+
+Similar to Population, you can also use:
+
+- /api/v1/mosquito/kinds/aegypti/countries to retrieve a list of country_codes
+- /api/v1/mosquito/kinds/aegypti/countries/afg/ to get mosquito prevalence scores per district.
