@@ -26,3 +26,7 @@ Types of data currently available to the public include:
 Now browse to: localhost:8000/docs
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.gif)
+
+Expand ‘population’ and you’ll see *two* end points.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.png)
