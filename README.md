@@ -78,7 +78,11 @@ Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it 
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/mos_endpoints.png)
 
-- Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for: [ ‘aegypti’, ‘albopictus’ ].
+- Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for:
+
+````
+[ ‘aegypti’, ‘albopictus’ ]
+````
 - Browse to localhost:8000/api/v1/mosquito/kinds/aegypti for a country by country list:
 ````
 	{
