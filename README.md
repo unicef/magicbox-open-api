@@ -81,15 +81,28 @@ Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it 
 
 - Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for: [ ‘aegypti’, ‘albopictus’ ].
 - Browse to localhost:8000/api/v1/mosquito/kinds/aegypti for a country by country list:
-
+````
 	{
 	  abw: 0.92733,
 	  afg: 0.12469,
 	  …
 	  zwe: 0.54493
 	}
+````
 
 Similar to Population, you can also use:
 
 - /api/v1/mosquito/kinds/aegypti/countries to retrieve a list of country_codes
 - /api/v1/mosquito/kinds/aegypti/countries/afg/ to get mosquito prevalence scores per district.
+
+### Zika Case Data (Paho)
+
+The API serves Zika case data for the Americas (national level) as published by the Pan American Health Organization in excel files each epi week. In order to overlay with travel data given to us by Amadeus, we’ve also used a *really* simple algorithm to group the cases by ISO week.
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/epi_iso.png)
+
+To fetch all zika case data to date for either week type, use these end points:
+- localhost:8000/api/v1/cases/kinds/zika/weekType/iso
+- localhost:8000/api/v1/cases/kinds/zika/weekType/epi
+
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/case_output.png)
