@@ -61,11 +61,7 @@ The first integer is 1 because Afghanistan is the first country in the collectio
 
 As for the second and third integers: Afghanistan has 34 shapes at admin level one. Within the shape file, each shape is assigned an ID.
 
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_admin_1.png)
-
-Zoom into admin 11 (a whole province), and you’ll see a number of districts, including number 102.
-
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_11_2.png)
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_1_and_2.png)
 
 Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it is related to:
 
