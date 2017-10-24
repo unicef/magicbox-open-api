@@ -27,7 +27,10 @@ Now browse to: localhost:8000/docs
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.gif)
 
-The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: [ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
+The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: 
+```` 
+[ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
+````
 
 The second endpoint returns population data for a single country. For instance, to fetch the population for Afghanistan at the district level, browse to: localhost:8000/api/v1/population/countries/afg
 
@@ -61,11 +64,7 @@ The first integer is 1 because Afghanistan is the first country in the collectio
 
 As for the second and third integers: Afghanistan has 34 shapes at admin level one. Within the shape file, each shape is assigned an ID.
 
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_admin_1.png)
-
-Zoom into admin 11 (a whole province), and you’ll see a number of districts, including number 102.
-
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_11_2.png)
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_1_and_2.png)
 
 Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it is related to:
 
@@ -79,7 +78,11 @@ Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it 
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/mos_endpoints.png)
 
-- Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for: [ ‘aegypti’, ‘albopictus’ ].
+- Currently, the API serves prevalence scores at both a national and district/province level per country. Scores range from 0 to 1. Browse to localhost:8000/api/v1/mosquito/kinds to see what mosquito types we have data for:
+
+````
+[ ‘aegypti’, ‘albopictus’ ]
+````
 - Browse to localhost:8000/api/v1/mosquito/kinds/aegypti for a country by country list:
 ````
 	{
