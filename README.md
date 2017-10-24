@@ -27,7 +27,10 @@ Now browse to: localhost:8000/docs
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.gif)
 
-The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: [ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
+The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: 
+```` 
+[ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
+````
 
 The second endpoint returns population data for a single country. For instance, to fetch the population for Afghanistan at the district level, browse to: localhost:8000/api/v1/population/countries/afg
 
