@@ -1,6 +1,6 @@
 # The Magic Box API
 
-Magic Box is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
+[Magic Box](https://github.com/unicef/magicbox/wiki) is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
 
 ### Quick Start: Installing the API that serves the data
 
