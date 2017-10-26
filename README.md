@@ -15,6 +15,12 @@ Types of data currently available to the public include:
 
 ...aggregated at municipal, state, and national levels.
 
+
+### Dependencies:
+#### NVM
+	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+#### Node.js
+	nvm install 8
 ## Setup
 
 	git clone https://github.com/unicef/magicbox-open-api.git
