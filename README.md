@@ -15,6 +15,12 @@ Types of data currently available to the public include:
 
 ...aggregated at municipal, state, and national levels.
 
+
+### Dependencies:
+#### NVM
+	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+#### Node.js
+	nvm install 8
 ## Setup
 
 	git clone https://github.com/unicef/magicbox-open-api.git
@@ -62,9 +68,9 @@ The first integer is 1 because Afghanistan is the first country in the collectio
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/afg_thru_zwe.png)
 
-As for the second and third integers: Afghanistan has 34 shapes at admin level one. Within the shape file, each shape is assigned an ID.
+As for the second and third integers, Afghanistan has 34 shapes at admin level one (each shape is assigned an ID), and 320 shapes in admin 2.
 
-![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_1_and_2.png)
+![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/admin_1_and_2v2.png)
 
 Thus, afg_1_11_102-gadm2–8 indicates that any population value attached to it is related to:
 
