@@ -115,3 +115,5 @@ To fetch all zika case data to date for either week type, use these end points:
 - localhost:8000/api/v1/cases/kinds/zika/weekType/epi
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/case_output.png)
+
+To serve the same data as the [live API](http://magicbox-open-api.azurewebsites.net/docs), follow the [Magic Box Wiki](https://github/unicef/magicbox/wiki)!
