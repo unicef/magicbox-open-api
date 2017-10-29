@@ -1,8 +1,8 @@
 # The Magic Box API
 
-Magic Box is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
+[Magic Box](https://github.com/unicef/magicbox/wiki) is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
 
-### Quick Start: Installing the API that serves the data
+### Install the API that serves the data
 
 Magic Box API serves information useful to the data science team at the Office Of Innovation at UNICEF. This section describes how to install a local instance. It comes with sample data, but you can follow links below for code to download and aggregate many of the open data sets.
 
@@ -115,3 +115,5 @@ To fetch all zika case data to date for either week type, use these end points:
 - localhost:8000/api/v1/cases/kinds/zika/weekType/epi
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/case_output.png)
+
+#### To serve the same data as the [live API](http://magicbox-open-api.azurewebsites.net/docs), follow the [Magic Box Wiki](https://github.com/unicef/magicbox/wiki)!
