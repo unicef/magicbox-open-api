@@ -27,7 +27,10 @@ For detailed instructions on how to use this API, please read this <a href='http
 </p>
 
 <p>
-You can clone and install the <a href='https://github.com/unicef/magicbox-open-api/'>Magic Box API</a> locally, it comes with sample data.  If you would like to generate the same data sets we serve, please go to the The <a href='https://github.com/unicef/aggregate_rasters_by_admin'>Magic Box Wiki</a>.
+You can clone and install the <a href='https://github.com/unicef/magicbox-open-api/'>Magic Box API</a> locally, it comes with sample data.  If you would like to generate the same data sets we serve, please go to the The <a href='https://github.com/unicef/magicbox/wiki'>Magic Box Wiki</a>.
+</p>
+<p>
+  Most data comes with an admin ID, which is explained <a href='https://github.com/unicef/magicbox-open-api/'>here</a>. We will provide the option to request geojson with that data shortly.
 </p>
 "
 
