@@ -7,9 +7,10 @@ info:
 This API serves information used by the data science team at the Office of Innovation at UNICEF.
 </p>
 <p>
-Currently available:
-
+For detailed instructions on how to use this API, please read this <a href='https://medium.com/@mikefabrikant/the-magic-box-wiki-a69e20a1dcfe'>wiki</a>.
 </p>
+<br/><br/>
+  <u>Currently available</u>:
 
 <p>
 <ul>
@@ -27,9 +28,6 @@ Currently available:
 
 <p>
 You can clone and install the <a href='https://github.com/unicef/magicbox-open-api/'>Magic Box API</a> locally, it comes with sample data.  If you would like to generate the same data sets we serve, please go to the The <a href='https://github.com/unicef/aggregate_rasters_by_admin'>Magic Box Wiki</a>.
-</p>
-<p>
-For detailed instructinons on how to use this API, please read this <a href='https://medium.com/@mikefabrikant/the-magic-box-wiki-a69e20a1dcfe'>wiki</a>.
 </p>
 "
 
