@@ -5,7 +5,7 @@ import * as azure_utils from './azure'
 import fs from 'fs'
 
 const storage_account = config.azure.storage_account
-const azure_key = config.azure.key1
+const azure_key = (process.env.NODE_ENV !== 'test') ? config.azure.key1 : ''
 const fileSvc = is_valid_key(azure_key) ?
   azure_storage.createFileService(storage_account, azure_key) :
   null
