@@ -190,7 +190,7 @@ export const showToken = (request, response) => {
  * @param{String} request - request object
  * @return {object} params all request parameters
  */
-const getParams = (request) => {
+export const getParams = (request) => {
   let params = {}
   Object.keys(request.swagger.params).forEach(property => {
     params[property] = request.swagger.params[property].value
