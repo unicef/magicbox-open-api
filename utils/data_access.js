@@ -6,6 +6,9 @@ import fs from 'fs'
 
 const storage_account = config.azure.storage_account
 const azure_key = (process.env.NODE_ENV !== 'test') ? config.azure.key1 : ''
+// Magicbox open api pulls from Azure.
+// If you don't have a valid azure storage key
+// then data will be served from the public directory
 const fileSvc = is_valid_key(azure_key) ?
   azure_storage.createFileService(storage_account, azure_key) :
   null
