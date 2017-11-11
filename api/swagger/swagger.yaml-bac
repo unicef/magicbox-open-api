@@ -1,37 +1,16 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Welcome to The Magic Box Open API!
-  description: "
-<p>
-This API serves information used by the data science team at the Office of Innovation at UNICEF.
-</p>
-<p>
-For detailed instructions on how to use this API, please read this <a href='https://medium.com/@mikefabrikant/the-magic-box-wiki-a69e20a1dcfe'>wiki</a>.
-</p>
-<br/><br/>
-  <u>Currently available</u>:
+  title: Open data aggregated by administrative regions
+  description: "<p>This API is just for information purposes. Click <a href='https://medium.com/@mikefabrikant/unicefs-open-api-70b6d8530b99'>here</a> for an explanation.</p><p>Please note that population and mosquito prevalence are derived from raster files. These files are cut into 100 by 100 tiles and imported into a postgres db, one per table row, before aggregating by shapefiles. Therefore, values will not be 100% accurate.</p>
 
-<p>
-<ul>
-  <li>
-    Case data from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
-  </li>
-  <li>
-    Population from <a href='http://worldpop.org.uk'>worldpop</a>
-  </li>
-  <li>
-    Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)
-  </li>
-</ul>
-</p>
+- Code to <a href='https://github.com/unicef/shapefile-ingest'>process shapefiles</a> and <a href='https://github.com/unicef/aggregate_rasters_by_admin'>aggregate rasters</a>
 
-<p>
-You can clone and install the <a href='https://github.com/unicef/magicbox-open-api/'>Magic Box API</a> locally, it comes with sample data.  If you would like to generate the same data sets we serve, please go to the the <a href='https://github.com/unicef/magicbox/wiki'>Magic Box Wiki</a>.
-</p>
-<p>
-  Most data comes with an admin ID, which is explained <a href='https://github.com/unicef/magicbox-open-api/'>here</a>. We will provide the option to request geojson with that data shortly.
-</p>
+- Case data is from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
+
+- Population is from worldpop.org.uk
+
+- Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)
 "
 
 # during dev, should point to your local machine
@@ -43,7 +22,6 @@ tags:
   # description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
 - name: "Cases"
-- name: "Mobility"
 - name: "Access Control"
 schemes:
   # tip: remove http to make production-grade
@@ -73,161 +51,6 @@ x-volos-resources:
         maxEntries: 10000
 
 paths:
-  /v1/mobility/sources/:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Mobility'
-      description: Returns list of sources for mobility
-      summary: amadeus, telefonica...
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                                "key": "mosquito",
-                                "properties": [
-                                    "amadeus",
-                                    "telefonica"
-                                ]
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/mobility/sources/{source}/series/:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Mobility'
-      description: Returns list shapefile series
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-       # used as the method n
-      summary: gadm2-8, santiblanko...
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                                "key": "mosquito",
-                                "properties": [
-                                    "gadm2-8",
-                                    "santiblanko"
-                                ]
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/mobility/sources/{source}/series/{series}/countries/{country}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Mobility'
-      description: Returns list dates with mobility for specified source, shapefile set, country
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-        - name: series
-          type: string
-          in: path
-          required: true
-        - name: country
-          type: string
-          in: path
-          required: true
-       # used as the method n
-      summary: gadm2-8, santiblanko...
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                                "key": "mosquito",
-                                "properties": [
-                                    "gadm2-8",
-                                    "santiblanko"
-                                ]
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /v1/mobility/sources/{source}/series/{series}/countries/{country}/{csv}:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: general
-    get:
-      tags:
-        - 'Mobility'
-      description: Returns list dates with mobility for specified source, shapefile set, country
-      parameters:
-        - name: source
-          type: string
-          in: path
-          required: true
-        - name: series
-          type: string
-          in: path
-          required: true
-        - name: country
-          type: string
-          in: path
-          required: true
-        - name: csv
-          type: string
-          in: path
-          required: true
-       # used as the method n
-      summary: gadm2-8, santiblanko...
-      # used as the method name of the controller
-      operationId: getProperties
-      responses:
-        "200":
-          description: Success
-          examples:
-            application/json: {
-                                "key": "mosquito",
-                                "properties": [
-                                    "gadm2-8",
-                                    "santiblanko"
-                                ]
-                              }
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/ValueResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-
   /v1/mosquito/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
@@ -370,7 +193,7 @@ paths:
                           "source": "simon_hay",
                           "population": [
                                   {
-                                  "admin_id": "afg_1_16_170_gadm2-8",
+                                  "admin_id": "afg_1_16_170_aegypti/simon_hay",
                                   "value": 0.134451949145065,
                                   "ID_0": 1,
                                   "ISO": "AFG",
@@ -983,7 +806,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /v1/cases/kinds/{kind}/weekTypes/{weekType}/week/{date}:
+  /v1/cases/kinds/{kind}/weekTypes/{weekType}/weeks/{date}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     get:
