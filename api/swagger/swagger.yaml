@@ -43,6 +43,7 @@ tags:
   # description: "worldpop.org aggregated by gadm2-8 shapefiles"
 - name: "Mosquito"
 - name: "Cases"
+- name: "Mobility"
 - name: "Access Control"
 schemes:
   # tip: remove http to make production-grade
@@ -72,6 +73,161 @@ x-volos-resources:
         maxEntries: 10000
 
 paths:
+  /v1/mobility/sources/:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Mobility'
+      description: Returns list of sources for mobility
+      summary: amadeus, telefonica...
+      # used as the method name of the controller
+      operationId: getProperties
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                                "key": "mosquito",
+                                "properties": [
+                                    "amadeus",
+                                    "telefonica"
+                                ]
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/mobility/sources/{source}/series/:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Mobility'
+      description: Returns list shapefile series
+      parameters:
+        - name: source
+          type: string
+          in: path
+          required: true
+       # used as the method n
+      summary: gadm2-8, santiblanko...
+      # used as the method name of the controller
+      operationId: getProperties
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                                "key": "mosquito",
+                                "properties": [
+                                    "gadm2-8",
+                                    "santiblanko"
+                                ]
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/mobility/sources/{source}/series/{series}/countries/{country}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Mobility'
+      description: Returns list dates with mobility for specified source, shapefile set, country
+      parameters:
+        - name: source
+          type: string
+          in: path
+          required: true
+        - name: series
+          type: string
+          in: path
+          required: true
+        - name: country
+          type: string
+          in: path
+          required: true
+       # used as the method n
+      summary: gadm2-8, santiblanko...
+      # used as the method name of the controller
+      operationId: getProperties
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                                "key": "mosquito",
+                                "properties": [
+                                    "gadm2-8",
+                                    "santiblanko"
+                                ]
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/mobility/sources/{source}/series/{series}/countries/{country}/{csv}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Mobility'
+      description: Returns list dates with mobility for specified source, shapefile set, country
+      parameters:
+        - name: source
+          type: string
+          in: path
+          required: true
+        - name: series
+          type: string
+          in: path
+          required: true
+        - name: country
+          type: string
+          in: path
+          required: true
+        - name: csv
+          type: string
+          in: path
+          required: true
+       # used as the method n
+      summary: gadm2-8, santiblanko...
+      # used as the method name of the controller
+      operationId: getProperties
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                                "key": "mosquito",
+                                "properties": [
+                                    "gadm2-8",
+                                    "santiblanko"
+                                ]
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
   /v1/mosquito/kinds/:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
