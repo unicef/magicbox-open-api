@@ -140,10 +140,14 @@ export function getProperties(request, response) {
   return general_helper
   .getProperties(key)
   .then(properties => {
-    return response.json({
-      key: properties.key,
-      properties: properties.properties
-    })
+    if (properties.properties) {
+      return response.json({
+        key: properties.key,
+        properties: properties.properties
+      })
+    } else {
+      return response.json(properties);
+    }
   })
   .catch(err => {
     logger.logErrorResponse(request, err)

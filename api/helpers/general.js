@@ -349,11 +349,15 @@ export const getProperties = (queryString) => {
         break;
       }
       case 'mobility': {
-        path = queryParts.slice(1).join('/')
-        // Not sure why this is here.
-        if (queryParts.length === 2) {
-          path += queryParts[1]
+        if (queryParts.find(e => {
+          return e.match(/\.csv$/)
+        })) {
+          let file = queryParts.pop();
+          path = queryParts.slice(1).join('/')
+          console.log('BBBBBB')
+          return resolve(data_access.read_file(key, path, file))
         }
+        path = queryParts.slice(1).join('/')
         fetchProperty(key, path, '_', 0)
         .then(propertyList => {
           let properties = {

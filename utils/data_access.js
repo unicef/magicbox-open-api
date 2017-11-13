@@ -3,6 +3,7 @@ import azure_storage from 'azure-storage'
 import jsonfile from 'jsonfile'
 import * as azure_utils from './azure'
 import fs from 'fs'
+const csv = require('csvtojson')
 
 const storage_account = config.azure.storage_account
 const azure_key = (process.env.NODE_ENV !== 'test') ? config.azure.key1 : ''
@@ -78,6 +79,10 @@ export function read_file(key, dir, fileName) {
       .catch(console.log)
       .then(resolve)
     } else {
+      if (fileName.match(/\.csv$/)) {
+        let path = './public/' + [base_dir, key, dir, fileName].join('/')
+        return read_csv(path).then(resolve);
+      }
       console.log('./public/' + [base_dir, key, dir, fileName].join('/'))
       jsonfile.readFile(
         './public/' + [base_dir, key, dir, fileName].join('/'),
@@ -87,4 +92,12 @@ export function read_file(key, dir, fileName) {
       )
     }
   });
+}
+
+function read_csv(path) {
+  return new Promise((resolve, reject) => {
+    csv().fromFile(path).on('end_parsed', (jsonArrayObj) => { // when parse finished, result will be emitted here.
+      return resolve(jsonArrayObj);
+    })
+  })
 }
