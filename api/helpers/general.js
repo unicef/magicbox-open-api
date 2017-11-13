@@ -499,6 +499,7 @@ export const getSchools = (country, options) => {
     'lon, name, num_classrooms, num_latrines, num_teachers, num_students, ' +
     'num_sections, phone_number, postal_code, speed_connectivity, ' +
     'type_connectivity, type_school, water, created_at, updated_at, ' +
+    'probe_id, probe_provider, isp_id, school_id, ' +
     'id_0, id_1, id_2, id_3, id_4, id_5 FROM schools'
 
     options.country_code = country
