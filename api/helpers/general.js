@@ -278,7 +278,7 @@ export const readCaseFiles = (caseFiles) => {
     let returnObj = {}
     let {key: key, kind: kind, weekType: weekType} = caseFiles
     bluebird.each(caseFiles.files, file => {
-      let objKey = file.name.replace(/.json/g, '');
+      let objKey = file.name.replace(/.json/g, '')
       let filePath = config[key][kind].path + '/' + weekType
       return data_access.read_file(key, filePath, file.name)
       .then(content => {
