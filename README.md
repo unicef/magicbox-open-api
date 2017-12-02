@@ -111,8 +111,8 @@ The API serves Zika case data for the Americas (national level) as published by 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/epi_iso.png)
 
 To fetch all zika case data to date for either week type, use these end points:
-- localhost:8000/api/v1/cases/kinds/zika/weekType/iso
-- localhost:8000/api/v1/cases/kinds/zika/weekType/epi
+- localhost:8000/api/v1/cases/kinds/zika/weekTypes/iso
+- localhost:8000/api/v1/cases/kinds/zika/weekTypes/epi
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/case_output.png)
 
