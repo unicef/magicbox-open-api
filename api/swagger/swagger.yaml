@@ -1027,13 +1027,44 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /v1/schools/countries/:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Schools'
+      description: Returns list of countries with for which we have school data
+      # used as the method name of the controller
+      operationId: getCountriesWithSchools
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                            "key": "population_worldpop",
+                            "properties": [
+                                    "afg",
+                                    "ago",
+                                    "arg",
+                                    "arm"
+                                ]
+                            }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
   /v1/schools/countries/{country_code}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     get:
       tags:
         - 'Schools'
-      description: Returns list of weeks for which requested data is available. List has first day of week.
+      description: Returns schools for country
       summary: zika/epi
       parameters:
         - name: country_code

@@ -31,8 +31,6 @@ class PostgresHelper {
 
       select += where
 
-      console.log(select, paramList);
-
       // let cursor = this.getCursor(select, paramList)
       // cursor.read(config.max_query_result, (error, rows) => {
       //   if (error) {
@@ -67,6 +65,11 @@ class PostgresHelper {
   * @return{string} where clause
    */
   buildWhere(params) {
+    let group_by = null;
+    if (params.group_by) {
+      group_by = params.group_by;
+      delete params.group_by
+    }
     let where = '',
     paramList = [],
     count = 1,
@@ -104,7 +107,9 @@ class PostgresHelper {
 
       where += wherePart.substring(0, wherePart.length - 5)
     }
-
+    if (group_by) {
+      where += ' group by ' + group_by;
+    }
     let offsetStr = ' OFFSET $' + count
     paramList.push(offset)
     count += 1
@@ -116,6 +121,7 @@ class PostgresHelper {
       paramList.push(maxLimit)
       where += limit
     }
+
     return {where, paramList}
   }
   //

@@ -113,6 +113,27 @@ export function getCases(request, response) {
     })
 }
 
+/**
+ * Fetches schools based on country and other options specified
+ * @param{String} request - request object
+ * @param{String} response - response object
+ * @return{Promise} Fullfilled when schools are returned
+ */
+export const getCountriesWithSchools = (request, response) => {
+  const options = qs.parse(request.query);
+  options.group_by = 'country_code';
+  return new Promise((resolve, reject) => {
+    general_helper.getCountriesWithSchools(options)
+    .then(results => {
+      results.countries = results.rows.map(r => {
+        return r.country_code;
+      }).sort();
+      // Remove "[{country_code": "GT}...]"
+      delete results.rows;
+      response.json(results);
+    })
+  })
+}
 
 /**
  * Returns an object with properties for specific key
@@ -125,7 +146,6 @@ export function getProperties(request, response) {
 
   let key = request.swagger.apiPath.split('/')[2]
   let params = getParams(request)
-
   if (key === 'population') {
     if (!('source' in params)) {
       params.source = config.population.default_source
@@ -179,10 +199,6 @@ export const getRefreshToken = (request, response) => {
   const code = request.query.code
   auth.getRefreshToken(code)
   .then(object => {
-    console.log(code)
-    console.log('ooooo')
-    console.log(object.refresh_token)
-    console.log(object)
     response.format({
       'text/html': () => {
         response.json({refresh_token: object.refresh_token})
@@ -237,11 +253,9 @@ export const getSchools = (request, response) => {
   general_helper
   .getSchools(country, options)
   .then(result => {
-    console.log(result.rows.length, '^^^^')
     let csv_like_array = result.rows.map((e, i) => {
       return i === 0 ? Object.keys(e) : Object.values(e);
     });
-    console.log(csv_like_array.length, '&&&&&')
     response.json({
       count: result.count,
       result: csv_like_array,

@@ -366,7 +366,6 @@ export const getProperties = (queryString) => {
         })
         break
       }
-
       case 'cases': {
         if (queryParts.length > 1) {
           path += config.cases[queryParts[1]].path +
@@ -482,6 +481,20 @@ function assign_correct_admin_from_admins(
   })
 }
 
+/**
+ * Fetches schools based on country and other options specified
+ * @param  {object} options other options as connectivity, environment, water etc.
+ *                          to limit number of schools use option max_limit
+ * @return{Promise} Fullfilled when schools are returned
+ */
+export const getCountriesWithSchools = (options) => {
+  return new Promise((resolve, reject) => {
+    let select = 'SELECT country_code FROM schools'
+    dbClient.execute(select, options)
+    .then(resolve)
+    .catch(reject)
+  })
+}
 
 /**
  * Fetches schools based on country and other options specified
