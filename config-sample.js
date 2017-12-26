@@ -7,7 +7,6 @@ module.exports = {
   auth0: {
     auth_domain: 'auth0_domain',
     client_id: 'auth0_client_id',
-    // callback_url: 'http://magicbox-open-api.azurewebsites.net/api/v1/token/'
     callback_url: 'http://localhost:8000/api/v1/token/'
   },
   mosquito: {
@@ -39,5 +38,13 @@ module.exports = {
   },
   logger: {
     key: 'mixpanel_token'
-  }
+  },
+  db: {
+    user: 'DB_USER',
+    host: 'DB_HOST',
+    database: 'DB_NAME',
+    password: 'DB_PASSWORD',
+    port: 'DB_PORT',
+  },
+  max_query_result: 50
 };

@@ -1,6 +1,9 @@
 import config from '../../config'
 import bluebird from 'bluebird'
+import PostgresHelper from './postgres'
 import * as data_access from '../../utils/data_access'
+
+const dbClient = new PostgresHelper()
 
 /**
  * Returns name of the a country's shapefile from` the List of shapefiles
@@ -275,7 +278,7 @@ export const readCaseFiles = (caseFiles) => {
     let returnObj = {}
     let {key: key, kind: kind, weekType: weekType} = caseFiles
     bluebird.each(caseFiles.files, file => {
-      let objKey = file.name.replace(/.json/g, '')
+      let objKey = file.name.replace(/.json/g, '');
       let filePath = config[key][kind].path + '/' + weekType
       return data_access.read_file(key, filePath, file.name)
       .then(content => {
@@ -446,23 +449,9 @@ export const getPopulation = (key, source, country) => {
         .catch(reject)
         break
       }
-
-      // case 'worldbank': {
-      //   azure_utils.read_file('population', source, 'population.json')
-      //   .then(content => {
-      //     if (country !== undefined) {
-      //       return resolve(content[country])
-      //     } else {
-      //       return resolve(content)
-      //     }
-      //   })
-      //   .catch(reject)
-      //   break
-      // }
     }
   });
 }
-
 
 /**
   * Returns mosquito metadata available from specified source for specified country.
@@ -490,7 +479,7 @@ export const getMosquito = (key, kind, country) => {
  * Return admin properties that matches spark output ids
  * @param  {Array} admin_properties_ary admin properties per a country
  * @param  {Array} spark_output_ids ids from spark aggregation output
- * @return{Promise} Admin poperties obj
+ * @return{Promise} Fullfilled Admin poperties obj
  */
 function assign_correct_admin_from_admins(
   admin_properties_ary, spark_output_ids
@@ -509,5 +498,36 @@ function assign_correct_admin_from_admins(
     }, [])
 
     return temp_admin_id.join('_') === spark_output_ids.join('_');
+  })
+}
+
+
+/**
+ * Fetches schools based on country and other options specified
+ * @param  {string} country country code
+ * @param  {object} options other options as connectivity, environment, water etc.
+ *                          to limit number of schools use option max_limit
+ * @return{Promise} Fullfilled when schools are returned
+ */
+export const getSchools = (country, options) => {
+  return new Promise((resolve, reject) => {
+    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, ' +
+    'admin_code, admin_id, altitude, availability_connectivity, ' +
+    'connectivity, country_code, datasource, description, educ_level, ' +
+    'electricity, environment, frequency, latency_connectivity, lat, '+
+    'lon, name, num_classrooms, num_latrines, num_teachers, num_students, ' +
+    'num_sections, phone_number, postal_code, speed_connectivity, ' +
+    'type_connectivity, type_school, water, created_at, updated_at, ' +
+    'probe_id, probe_provider, isp_id, school_id, ' +
+    'id_0, id_1, id_2, id_3, id_4, id_5 FROM schools'
+
+    options.country_code = country
+
+    // let select = 'SELECT * from home_temp'
+    // options.dept = country
+
+    dbClient.execute(select, options)
+    .then(resolve)
+    .catch(reject)
   })
 }

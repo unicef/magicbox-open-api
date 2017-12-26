@@ -2,6 +2,7 @@ import * as general_helper from '../helpers/general'
 import config from '../../config'
 import * as auth from '../helpers/auth'
 import qs from 'qs'
+// import geojson from 'geojson'
 import * as logger from './../helpers/logger'
 
 /**
@@ -151,7 +152,7 @@ export function getProperties(request, response) {
   })
   .catch(err => {
     logger.logErrorResponse(request, err)
-    return reject(err)
+    response.json({message: error})
   })
 }
 
@@ -164,7 +165,7 @@ export const getToken = (request, response) => {
   let url = auth.getAuthorizeUrl()
   response.format({
     'text/html': function() {
-      response.send('"<html><body><h3>Please click <a href="' +
+      response.send('<html><body><h3>Please click <a href="' +
       url +
       '"> HERE </a>' +
       ' and follow next steps to get access token</h3></body></html>')
@@ -178,6 +179,46 @@ export const getToken = (request, response) => {
  * @param{String} request - request object
  * @param{String} response - response object
  */
+export const getRefreshToken = (request, response) => {
+  const code = request.query.code
+  auth.getRefreshToken(code)
+  .then(object => {
+    console.log(code)
+    console.log('ooooo')
+    console.log(object.refresh_token)
+    console.log(object)
+    response.format({
+      'text/html': () => {
+        response.json({refresh_token: object.refresh_token})
+      }
+    })
+  })
+}
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
+export const refreshToken = (request, response) => {
+  let params = getParams(request)
+  const refresh_token = params.refresh_token
+  auth.refreshAccessToken(refresh_token)
+  .then(object => {
+    if (object.error) {
+      return response.json(object);
+    }
+    response.format({
+      'text/html': () => {
+        response.json({access_token: object.access_token})
+      }
+    })
+  })
+}
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
 export const showToken = (request, response) => {
   let authObject = qs.parse(request.body)
   let token = (authObject.error) ? authObject.error_description : 'Token:' +
@@ -186,6 +227,35 @@ export const showToken = (request, response) => {
     'text/html': function() {
       response.send('<html><body><h3>' + token + '</h3></body></html>')
     }
+  })
+}
+
+/**
+ * Displays the token or error received from Auth0.
+ * @param{String} request - request object
+ * @param{String} response - response object
+ */
+export const getSchools = (request, response) => {
+  const {country_code: country} = getParams(request)
+  const options = qs.parse(request.query)
+  general_helper
+  .getSchools(country, options)
+  .then(result => {
+    console.log(result.rows.length, '^^^^')
+    let csv_like_array = result.rows.map((e, i) => {
+      return i === 0 ? Object.keys(e) : Object.values(e);
+    });
+    console.log(csv_like_array.length, '&&&&&')
+    response.json({
+      count: result.count,
+      result: csv_like_array,
+      // result: geojson.parse(result.rows, {Point: ['lat', 'lon']}),
+      hasNext: result.hasNext
+    })
+  })
+  .catch(err => {
+    logger.logErrorResponse(request, err)
+    response.json({message: err})
   })
 }
 

@@ -33,8 +33,8 @@ Now browse to: localhost:8000/docs
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/expand_pop.gif)
 
-The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data: 
-```` 
+The first endpoint: /api/v1/population/countries, returns a list of codes for countries for which we have population data:
+````
 [ ‘afg’, ‘ago’, ‘arg’ … ‘zwe’]
 ````
 
@@ -45,8 +45,8 @@ The second endpoint returns population data for a single country. For instance, 
 	  { admin_id: ‘afg_1_4_33_gadm2–8’, value: 175117 },
 	  { admin_id: ‘afg_1_7_57_gadm2–8’, value: 49994},
 	  { admin_id: ‘afg_1_11_102_gadm2–8’, value: 50304 },
-	  
-	  … 228 more items 
+
+	  … 228 more items
 	]
 
 ### What does this mean?
@@ -111,8 +111,8 @@ The API serves Zika case data for the Americas (national level) as published by 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/epi_iso.png)
 
 To fetch all zika case data to date for either week type, use these end points:
-- localhost:8000/api/v1/cases/kinds/zika/weekType/iso
-- localhost:8000/api/v1/cases/kinds/zika/weekType/epi
+- localhost:8000/api/v1/cases/kinds/zika/weekTypes/iso
+- localhost:8000/api/v1/cases/kinds/zika/weekTypes/epi
 
 ![Screenshot](https://github.com/unicef/magicbox-open-api/blob/master/public/images/case_output.png)
 

@@ -5,7 +5,6 @@ import compression from 'compression'
 import express from 'express'
 import deepcopy from 'deepcopy'
 import * as auth from './api/helpers/auth'
-
 const VOLOS_RESOURCE = 'x-volos-resources'
 import requestIp from 'request-ip'
 import * as logger from './api/helpers/logger'
@@ -15,7 +14,7 @@ const config = {
   port: process.env.PORT || 8000,
   swaggerSecurityHandlers: {Bearer: auth.verifyToken}
 }
-
+console.log(process.version);
 const app = express()
 
 app.use(compression())
@@ -32,8 +31,6 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   let cacheName = swaggerExpress.runner.swagger[VOLOS_RESOURCE].cache.name
   let cache = volosCache.create(cacheName, cacheOptions)
   cacheOptions.key = getCacheKey
-  app.use(cache.expressMiddleware().cache({key: getCacheKey}))
-
 
   // eliminate path that has x-hide property
   let swaggerObject = deepcopy(swaggerExpress.runner.swagger)
@@ -51,6 +48,11 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   // Serve the Swagger documents and Swagger UI
   // app.use(swaggerExpress.runner.swaggerTools.swaggerUi());
   // install middleware
+  app.use(swaggerExpress.runner.swaggerTools.swaggerMetadata())
+  app.use(swaggerExpress.runner.swaggerTools.swaggerSecurity(config.swaggerSecurityHandlers))
+
+  app.use(cache.expressMiddleware().cache({ key: getCacheKey }))
+  // Provide the security handlers
 
   swaggerExpress.register(app)
 
