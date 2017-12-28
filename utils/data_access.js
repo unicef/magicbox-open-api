@@ -3,9 +3,13 @@ import azure_storage from 'azure-storage'
 import jsonfile from 'jsonfile'
 import * as azure_utils from './azure'
 import fs from 'fs'
+const csv = require('csvtojson')
 
 const storage_account = config.azure.storage_account
-const azure_key = config.azure.key1
+const azure_key = (process.env.NODE_ENV !== 'test') ? config.azure.key1 : ''
+// Magicbox open api pulls from Azure.
+// If you don't have a valid azure storage key
+// then data will be served from the public directory
 const fileSvc = is_valid_key(azure_key) ?
   azure_storage.createFileService(storage_account, azure_key) :
   null
@@ -75,6 +79,10 @@ export function read_file(key, dir, fileName) {
       .catch(console.log)
       .then(resolve)
     } else {
+      if (fileName.match(/\.csv$/)) {
+        let path = './public/' + [base_dir, key, dir, fileName].join('/')
+        return read_csv(path).then(resolve);
+      }
       console.log('./public/' + [base_dir, key, dir, fileName].join('/'))
       jsonfile.readFile(
         './public/' + [base_dir, key, dir, fileName].join('/'),
@@ -84,4 +92,12 @@ export function read_file(key, dir, fileName) {
       )
     }
   });
+}
+
+function read_csv(path) {
+  return new Promise((resolve, reject) => {
+    csv().fromFile(path).on('end_parsed', (jsonArrayObj) => { // when parse finished, result will be emitted here.
+      return resolve(jsonArrayObj);
+    })
+  })
 }

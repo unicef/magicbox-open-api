@@ -321,6 +321,7 @@ export const get_cases = (key, kind, weekType, week) => {
  * @return {Promise} Fulfilled when records are returned
  */
 export const getProperties = (queryString) => {
+  console.log(queryString, '****')
   return new Promise((resolve, reject) => {
     let queryParts = queryString.split('_')
     let key = queryParts[0]
@@ -350,7 +351,25 @@ export const getProperties = (queryString) => {
         })
         break;
       }
-
+      case 'mobility': {
+        if (queryParts.find(e => {
+          return e.match(/\.csv$/)
+        })) {
+          let file = queryParts.pop();
+          path = queryParts.slice(1).join('/')
+          console.log('BBBBBB')
+          return resolve(data_access.read_file(key, path, file))
+        }
+        path = queryParts.slice(1).join('/')
+        fetchProperty(key, path, '_', 0)
+        .then(propertyList => {
+          let properties = {
+            key: queryParts.join('_'), properties: propertyList
+          }
+          return resolve(properties)
+        })
+        break
+      }
       case 'mosquito': {
         if (queryParts.length === 2) {
           path += queryParts[1] + '/' +

@@ -161,10 +161,14 @@ export function getProperties(request, response) {
   return general_helper
   .getProperties(key)
   .then(properties => {
-    return response.json({
-      key: properties.key,
-      properties: properties.properties
-    })
+    if (properties.properties) {
+      return response.json({
+        key: properties.key,
+        properties: properties.properties
+      })
+    } else {
+      return response.json(properties);
+    }
   })
   .catch(err => {
     logger.logErrorResponse(request, err)
@@ -274,7 +278,7 @@ export const getSchools = (request, response) => {
  * @param{String} request - request object
  * @return {object} params all request parameters
  */
-const getParams = (request) => {
+export const getParams = (request) => {
   let params = {}
   Object.keys(request.swagger.params).forEach(property => {
     params[property] = request.swagger.params[property].value
