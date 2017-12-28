@@ -1250,7 +1250,7 @@ paths:
       tags:
         - 'Schools'
       description: Returns list of weeks for which requested data is available. List has first day of week.
-      summary: zika/epi
+      summary: Schools in country
       parameters:
         - name: country_code
           type: string
