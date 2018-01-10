@@ -35,26 +35,26 @@ export const countries_with_this_kind_data = (kind, source, country) => {
   return new Promise((resolve, reject) => {
     // Get country name for each shapefile
     getShapeFiles(kind, source)
-    .then(shapefileSet => {
-      if (country) {
-        let fileName = getFile(shapefileSet.shapefiles, country)
-        if (fileName.length > 0) {
-          shapefileSet.country = country
-          shapefileSet.fileName = fileName
-          shapefileSet.shapefiles = []
-          return getGeoProperties(shapefileSet)
-                  .then(readShapeFile)
-                  .then(mergePropertiesWithShapefile)
+      .then(shapefileSet => {
+        if (country) {
+          let fileName = getFile(shapefileSet.shapefiles, country)
+          if (fileName.length > 0) {
+            shapefileSet.country = country
+            shapefileSet.fileName = fileName
+            shapefileSet.shapefiles = []
+            return getGeoProperties(shapefileSet)
+              .then(readShapeFile)
+              .then(mergePropertiesWithShapefile)
+          } else {
+            return reject('country not found')
+          }
         } else {
-          return reject('country not found')
+          return aggregateShapeFiles(shapefileSet)
         }
-      } else {
-        return aggregateShapeFiles(shapefileSet)
-      }
-    })
-    .then(population => {
-      return resolve(population)
-    })
+      })
+      .then(population => {
+        return resolve(population)
+      })
   })
 }
 
@@ -69,15 +69,15 @@ const getGeoProperties = (shapefileSet) => {
   return new Promise((resolve, reject) => {
     let fileName = shapefileSet.fileName
     let geo_props_file_name = fileName.match(/[a-z]{3}_\d/)[0].toUpperCase() +
-    '.json'
+      '.json'
     data_access.read_file('geo-properties', 'gadm2-8', geo_props_file_name)
-    .then(admin_properties => {
-      shapefileSet.admin_properties = admin_properties
-      return resolve(shapefileSet)
-    })
-    .catch(error => {
-      return reject('Error getting geo-properties for ' + shapefileSet.country)
-    })
+      .then(admin_properties => {
+        shapefileSet.admin_properties = admin_properties
+        return resolve(shapefileSet)
+      })
+      .catch(error => {
+        return reject('Error getting geo-properties for ' + shapefileSet.country)
+      })
   })
 }
 
@@ -90,21 +90,27 @@ const getGeoProperties = (shapefileSet) => {
 export const getShapeFiles = (kind, source) => {
   return new Promise((resolve, reject) => {
     data_access.get_file_list(kind, source)
-    .then(directories => {
-      let dirs_shapefiles = extract_dirs(directories.entries.directories)
-      let shapefiles = []
-      bluebird.each(dirs_shapefiles, directory => {
-        return data_access.get_file_list(kind, source + '/' + directory)
-        .then(fileList => {
-          fileList.entries.files.forEach(file => {
-            shapefiles.push(directory + '/' + file.name)
+      .then(directories => {
+        let dirs_shapefiles = extract_dirs(directories.entries.directories)
+        let shapefiles = []
+        bluebird.each(dirs_shapefiles, directory => {
+            return data_access.get_file_list(kind, source + '/' + directory)
+              .then(fileList => {
+                fileList.entries.files.forEach(file => {
+                  shapefiles.push(directory + '/' + file.name)
+                })
+              })
+          }, {
+            concurrency: 1
           })
-        })
-      }, {concurrency: 1})
-      .then(() => {
-        resolve({kind, source, shapefiles})
+          .then(() => {
+            resolve({
+              kind,
+              source,
+              shapefiles
+            })
+          })
       })
-    })
   })
 }
 
@@ -139,13 +145,17 @@ export const aggregateShapeFiles = (shapefileSet) => {
  */
 const readShapeFile = (shapefileSet) => {
   return new Promise((resolve, reject) => {
-    let {kind, source, fileName} = shapefileSet
+    let {
+      kind,
+      source,
+      fileName
+    } = shapefileSet
     const [database, file] = fileName.split('/')
     data_access.read_file(kind, source + '/' + database, file)
-    .then(content => {
-      shapefileSet.shapefile = content
-      resolve(shapefileSet)
-    })
+      .then(content => {
+        shapefileSet.shapefile = content
+        resolve(shapefileSet)
+      })
   });
 }
 
@@ -159,7 +169,12 @@ const readShapeFile = (shapefileSet) => {
 const mergePropertiesWithShapefile = (shapefileSet) => {
   return new Promise((resolve, reject) => {
     let {
-      kind, source: dir, fileName, country, admin_properties, shapefile
+      kind,
+      source: dir,
+      fileName,
+      country,
+      admin_properties,
+      shapefile
     } = shapefileSet
     let [raster, source] = fileName.split('^').slice(1, 3)
     let admin_to_value_map = {}
@@ -169,7 +184,7 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
     admin_to_value_map.values = {}
     let value_map = shapefile.reduce((ary, element) => {
       let tempList = Object.keys(element).filter(key => {
-        return ( key.startsWith('id_') )
+        return (key.startsWith('id_'))
       }).map(key => {
         return element[key]
       })
@@ -177,8 +192,8 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
       // config[kind].val_type is sum or mean
       // element[config[kind].val_type] is a floating point
       temp_map[country + '_' +
-      tempList.join('_') + '_' +
-      dir] = element[config[kind].val_type]
+        tempList.join('_') + '_' +
+        dir] = element[config[kind].val_type]
 
       // Enrich each object with the feature properties from the original shapefile
       let admin_props = assign_correct_admin_from_admins(
@@ -186,15 +201,14 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
         tempList
       );
       ary.push(
-        Object.assign(
-          {
+        Object.assign({
             admin_id: country +
-            '_' +
-            tempList.join('_') +
-            '_' +
-            // gadm2-8 or santiblanko: gadm2-8/afg_2_gadm2-8^popmap15adj^worldpop^42348516^248596^641869.188.json
-            // a bit of a hack to put the shapefile source in the id
-            fileName.split('/')[0],
+              '_' +
+              tempList.join('_') +
+              '_' +
+              // gadm2-8 or santiblanko: gadm2-8/afg_2_gadm2-8^popmap15adj^worldpop^42348516^248596^641869.188.json
+              // a bit of a hack to put the shapefile source in the id
+              fileName.split('/')[0],
             value: element[config[kind].val_type]
           },
           admin_props
@@ -218,10 +232,17 @@ function file_to_record(file_obj) {
   sum = parseFloat(sum);
   sq_km = parseInt(sq_km.replace(/.json/, ''));
   raster = raster.replace(/.json$/, '')
-  let density = (sum/sq_km)
+  let density = (sum / sq_km)
 
   return {
-    country, data_source, shapefile, admin_level, sum, sq_km, density, raster
+    country,
+    data_source,
+    shapefile,
+    admin_level,
+    sum,
+    sq_km,
+    density,
+    raster
   }
 }
 
@@ -250,19 +271,24 @@ export const getCaseFiles = (key, kind, weekType, week) => {
   return new Promise((resolve, reject) => {
     let casesPath = config[key][kind].path + '/' + weekType
     data_access.get_file_list(key, casesPath)
-    .then(files => {
-      files = files.entries.files
-      if (week !== undefined) {
-        files = files.filter(file => {
-          return file.name.replace(/.json/g, '') === week;
-        });
-        if (files.length !== 1) {
-          console.error('Error -> File not found', week);
-          return reject()
+      .then(files => {
+        files = files.entries.files
+        if (week !== undefined) {
+          files = files.filter(file => {
+            return file.name.replace(/.json/g, '') === week;
+          });
+          if (files.length !== 1) {
+            console.error('Error -> File not found', week);
+            return reject()
+          }
         }
-      }
-      return resolve({key, kind, weekType, files})
-    })
+        return resolve({
+          key,
+          kind,
+          weekType,
+          files
+        })
+      })
   })
 }
 
@@ -276,21 +302,27 @@ export const getCaseFiles = (key, kind, weekType, week) => {
 export const readCaseFiles = (caseFiles) => {
   return new Promise((resolve, reject) => {
     let returnObj = {}
-    let {key: key, kind: kind, weekType: weekType} = caseFiles
+    let {
+      key: key,
+      kind: kind,
+      weekType: weekType
+    } = caseFiles
     bluebird.each(caseFiles.files, file => {
-      let objKey = file.name.replace(/.json/g, '');
-      let filePath = config[key][kind].path + '/' + weekType
-      return data_access.read_file(key, filePath, file.name)
-      .then(content => {
-        returnObj[objKey] = content.countries
+        let objKey = file.name.replace(/.json/g, '');
+        let filePath = config[key][kind].path + '/' + weekType
+        return data_access.read_file(key, filePath, file.name)
+          .then(content => {
+            returnObj[objKey] = content.countries
+          })
+          .catch(error => {
+            console.log('Error', error)
+          });
+      }, {
+        concurrency: 1
       })
-      .catch(error => {
-        console.log('Error', error)
-      });
-    }, {concurrency: 1})
-    .then(() => {
-      return resolve(returnObj)
-    })
+      .then(() => {
+        return resolve(returnObj)
+      })
   })
 }
 
@@ -306,11 +338,11 @@ export const readCaseFiles = (caseFiles) => {
 export const get_cases = (key, kind, weekType, week) => {
   return new Promise((resolve, reject) => {
     getCaseFiles(key, kind, weekType, week)
-    .then(readCaseFiles).catch(reject)
-    .then(cases => {
-      resolve(cases)
-    })
-    .catch(reject)
+      .then(readCaseFiles).catch(reject)
+      .then(cases => {
+        resolve(cases)
+      })
+      .catch(reject)
   });
 }
 
@@ -327,78 +359,87 @@ export const getProperties = (queryString) => {
     let key = queryParts[0]
     let path = ''
     switch (key) {
-      case 'population': {
-        if (queryParts.length === 2) {
-          if (queryParts[1] === 'worldpop') {
-            path += 'worldpop/' + config.population.default_database
-          } else {
-            data_access.read_file(key, 'worldbank', 'population.json')
-            .then(content => {
-              let properties = {
-                key: queryParts.join('_'), properties: Object.keys(content)
-              }
-              return resolve(properties)
-            })
-            break;
+      case 'population':
+        {
+          if (queryParts.length === 2) {
+            if (queryParts[1] === 'worldpop') {
+              path += 'worldpop/' + config.population.default_database
+            } else {
+              data_access.read_file(key, 'worldbank', 'population.json')
+                .then(content => {
+                  let properties = {
+                    key: queryParts.join('_'),
+                    properties: Object.keys(content)
+                  }
+                  return resolve(properties)
+                })
+              break;
+            }
           }
+          fetchProperty(key, path, '_', 0)
+          .then(propertyList => {
+            let properties = {
+              key: queryParts.join('_'),
+              properties: propertyList
+            }
+            return resolve(properties)
+          })
+          break;
         }
-        fetchProperty(key, path, '_', 0)
-        .then(propertyList => {
-          let properties = {
-            key: queryParts.join('_'), properties: propertyList
+      case 'mobility':
+        {
+          if (queryParts.find(e => {
+              return e.match(/\.csv$/)
+            })) {
+            let file = queryParts.pop();
+            path = queryParts.slice(1).join('/')
+            console.log('BBBBBB')
+            return resolve(data_access.read_file(key, path, file))
           }
-          return resolve(properties)
-        })
-        break;
-      }
-      case 'mobility': {
-        if (queryParts.find(e => {
-          return e.match(/\.csv$/)
-        })) {
-          let file = queryParts.pop();
           path = queryParts.slice(1).join('/')
-          console.log('BBBBBB')
-          return resolve(data_access.read_file(key, path, file))
+          fetchProperty(key, path, '_', 0)
+          .then(propertyList => {
+            let properties = {
+              key: queryParts.join('_'),
+              properties: propertyList
+            }
+            return resolve(properties)
+          })
+          break
         }
-        path = queryParts.slice(1).join('/')
-        fetchProperty(key, path, '_', 0)
-        .then(propertyList => {
-          let properties = {
-            key: queryParts.join('_'), properties: propertyList
+      case 'mosquito':
+        {
+          if (queryParts.length === 2) {
+            path += queryParts[1] + '/' +
+              config.mosquito.default_source + '/' +
+              config.mosquito.default_database
           }
-          return resolve(properties)
-        })
-        break
-      }
-      case 'mosquito': {
-        if (queryParts.length === 2) {
-          path += queryParts[1] + '/' +
-          config.mosquito.default_source + '/' +
-          config.mosquito.default_database
+          fetchProperty(key, path, '_', 0)
+          .then(propertyList => {
+            let properties = {
+              key: queryParts.join('_'),
+              properties: propertyList
+            }
+            return resolve(properties)
+          })
+          break
         }
-        fetchProperty(key, path, '_', 0)
-        .then(propertyList => {
-          let properties = {
-            key: queryParts.join('_'), properties: propertyList
+      case 'cases':
+        {
+          if (queryParts.length > 1) {
+            path += config.cases[queryParts[1]].path +
+              queryParts.slice(2).join('/')
           }
-          return resolve(properties)
-        })
-        break
-      }
-      case 'cases': {
-        if (queryParts.length > 1) {
-          path += config.cases[queryParts[1]].path +
-          queryParts.slice(2).join('/')
+          fetchProperty(key, path, '.', 0)
+          .then(propertyList => {
+            let properties = {
+              key: queryParts.join('_'),
+              properties: propertyList
+            }
+            return resolve(properties)
+          })
+          break
         }
-        fetchProperty(key, path, '.', 0)
-        .then(propertyList => {
-          let properties = {
-            key: queryParts.join('_'), properties: propertyList
-          }
-          return resolve(properties)
-        })
-        break
-      }
     }
   })
 }
@@ -415,22 +456,22 @@ export const getProperties = (queryString) => {
 const fetchProperty = (key, path, splitOn, part) => {
   return new Promise((resolve, reject) => {
     data_access.get_file_list(key, path)
-    .then(fileList => {
-      let propertyList = fileList.entries.directories.length > 0 ?
-      fileList.entries.directories: fileList.entries.files;
-      propertyList = propertyList.reduce((list, element) => {
-        list.push(element.name.split(splitOn)[part])
-        return list
-      }, [])
-      return resolve(propertyList)
-    })
+      .then(fileList => {
+        let propertyList = fileList.entries.directories.length > 0 ?
+          fileList.entries.directories : fileList.entries.files;
+        propertyList = propertyList.reduce((list, element) => {
+          list.push(element.name.split(splitOn)[part])
+          return list
+        }, [])
+        return resolve(propertyList)
+      })
   });
 }
 
 
 /**
-  * Returns population metadata available from specified source for specified country.
-  * If country is not specified it will return data for all countries.
+ * Returns population metadata available from specified source for specified country.
+ * If country is not specified it will return data for all countries.
  * @param  {String} key      key
  * @param  {String} source      Source for the population data
  * @param  {String} country     country for which we need the data
@@ -440,21 +481,22 @@ export const getPopulation = (key, source, country) => {
   return new Promise((resolve, reject) => {
     source = (source !== undefined) ? source : config[key].default_source
     switch (source) {
-      case 'worldpop': {
-        countries_with_this_kind_data(key, source, country)
-        .then(data => {
-          return resolve(data)
-        })
-        .catch(reject)
-        break
-      }
+      case 'worldpop':
+        {
+          countries_with_this_kind_data(key, source, country)
+          .then(data => {
+            return resolve(data)
+          })
+          .catch(reject)
+          break
+        }
     }
   });
 }
 
 /**
-  * Returns mosquito metadata available from specified source for specified country.
-  * If country is not specified it will return data for all countries.
+ * Returns mosquito metadata available from specified source for specified country.
+ * If country is not specified it will return data for all countries.
  * @param  {String} key      key
  * @param  {String} kind      Source for the mosquito data
  * @param  {String} country     country for which we need the data
@@ -463,13 +505,13 @@ export const getPopulation = (key, source, country) => {
 export const getMosquito = (key, kind, country) => {
   return new Promise((resolve, reject) => {
     countries_with_this_kind_data(key, kind +
-      '/' + config.mosquito.default_source, country)
-    .then(data => {
-      return resolve(data)
-    })
-    .catch(error => {
-      return reject(error)
-    })
+        '/' + config.mosquito.default_source, country)
+      .then(data => {
+        return resolve(data)
+      })
+      .catch(error => {
+        return reject(error)
+      })
   });
 }
 
@@ -482,10 +524,10 @@ export const getMosquito = (key, kind, country) => {
  */
 function assign_correct_admin_from_admins(
   admin_properties_ary, spark_output_ids
-  ) {
+) {
   let index_short_cut = parseInt(
-    spark_output_ids[spark_output_ids.length-1]
-  ) -1;
+    spark_output_ids[spark_output_ids.length - 1]
+  ) - 1;
   return admin_properties_ary.slice(index_short_cut).find(p => {
     let count = 0;
     const temp_admin_id = Object.keys(p).reduce((ary, k) => {
@@ -510,8 +552,8 @@ export const getCountriesWithSchools = (options) => {
   return new Promise((resolve, reject) => {
     let select = 'SELECT country_code FROM schools'
     dbClient.execute(select, options)
-    .then(resolve)
-    .catch(reject)
+      .then(resolve)
+      .catch(reject)
   })
 }
 
@@ -524,23 +566,42 @@ export const getCountriesWithSchools = (options) => {
  */
 export const getSchools = (country, options) => {
   return new Promise((resolve, reject) => {
-    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, ' +
-    'admin_code, admin_id, altitude, availability_connectivity, ' +
-    'connectivity, country_code, datasource, description, educ_level, ' +
-    'electricity, environment, frequency, latency_connectivity, lat, '+
-    'lon, name, num_classrooms, num_latrines, num_teachers, num_students, ' +
-    'num_sections, phone_number, postal_code, speed_connectivity, ' +
-    'type_connectivity, type_school, water, created_at, updated_at, ' +
-    'probe_id, probe_provider, isp_id, school_id, ' +
-    'id_0, id_1, id_2, id_3, id_4, id_5 FROM schools'
-
+    console.log("inGS0");
+    let select = 'SELECT  id, lat, lon, speed_connectivity, type_connectivity FROM schools'
     options.country_code = country
-
     // let select = 'SELECT * from home_temp'
     // options.dept = country
-
     dbClient.execute(select, options)
-    .then(resolve)
-    .catch(reject)
+      .then(resolve)
+      .catch(reject)
+  })
+}
+
+
+/**
+ * getSchool - Description
+ *
+ * @param {type} id      school id
+ * @param {type} options schools options
+ *
+ * @return {type} promise
+ */
+export const getSchool = (id, options) => {
+  return new Promise((resolve, reject) => {
+    console.log("inGS1");
+    console.log(id);
+    let select = 'SELECT address, admin0, admin1, admin2, admin3, admin4, ' +
+      'admin_code, admin_id, altitude, availability_connectivity, ' +
+      'connectivity, country_code, datasource, description, educ_level, ' +
+      'electricity, environment, frequency, latency_connectivity, lat, ' +
+      'lon, name, num_classrooms, num_latrines, num_teachers, num_students, ' +
+      'num_sections, phone_number, postal_code, speed_connectivity, ' +
+      'type_connectivity, type_school, water, created_at, updated_at, ' +
+      'probe_id, probe_provider, isp_id, school_id, ' +
+      'id_0, id_1, id_2, id_3, id_4, id_5 FROM schools';
+    options.id = id
+    dbClient.execute(select, options)
+      .then(resolve)
+      .catch(reject)
   })
 }
