@@ -1307,6 +1307,39 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /v1/schools/school/{school_id}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'School'
+      description: Returns SchoolResponse
+      summary: School
+      parameters:
+        - name: school_id
+          type: string
+          in: path
+          required: true
+        - name: queryString
+          type: string
+          in: query
+          required: false
+      operationId: getSchool
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - proco
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SchoolResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -1395,3 +1428,9 @@ definitions:
         type: object
       hasNext:
         type: boolean
+  SchoolResponse:
+    required:
+      - result
+    properties:
+      result:
+        type: object
