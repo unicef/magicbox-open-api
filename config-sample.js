@@ -1,3 +1,4 @@
+``
 module.exports = {
   azure: {
     storage_account: 'storage_account_name',
@@ -5,9 +6,25 @@ module.exports = {
     directory: 'aggregations'
   },
   auth0: {
-    auth_domain: 'auth0_domain',
-    client_id: 'auth0_client_id',
+    auth_domain: 'AUTH0_DOMAIN',
+    client_id: 'AUTH0_CLIENTID',
     callback_url: 'http://localhost:8000/api/v1/token/'
+    client_secret: 'client_secret',
+    auth_url: 'AUTH_URL',
+    // callback_url: 'http://magicbox-open-api.azurewebsites.net/api/v1/token/'
+    callback_url: 'http://localhost:8000/api/v1/token/',
+    redirect_uri: 'http://localhost:8000/',
+    roles: {
+      'unicef.org': 'admin',
+      'projectconnect.world': 'proco',
+    },
+  },
+  mobility: {
+      path: 'mobility/',
+      default_country: 'colombia',
+      default_database: 'santiblanko',
+      default_source: 'telefonica',
+      default_admin_level: 2
   },
   mosquito: {
       val_type: 'mean',
@@ -46,5 +63,5 @@ module.exports = {
     password: 'DB_PASSWORD',
     port: 'DB_PORT',
   },
-  max_query_result: 50
+  max_query_result: 100000000
 };
