@@ -1312,7 +1312,7 @@ paths:
     x-swagger-router-controller: general
     get:
       tags:
-        - 'School'
+        - 'Schools'
       description: Returns SchoolResponse
       summary: School
       parameters:
