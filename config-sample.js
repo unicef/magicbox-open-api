@@ -8,7 +8,7 @@ module.exports = {
   auth0: {
     auth_domain: 'AUTH0_DOMAIN',
     client_id: 'AUTH0_CLIENTID',
-    callback_url: 'http://localhost:8000/api/v1/token/'
+    callback_url: 'http://localhost:8000/api/v1/token/',
     client_secret: 'CLIENT_SECRET',
     auth_url: 'AUTH_URL',
     // callback_url: 'http://magicbox-open-api.azurewebsites.net/api/v1/token/'
@@ -56,12 +56,13 @@ module.exports = {
   logger: {
     key: 'mixpanel_token'
   },
-  db: {
-    user: 'DB_USER',
-    host: 'DB_HOST',
-    database: 'DB_NAME',
-    password: 'DB_PASSWORD',
-    port: 'DB_PORT',
-  },
+    // Optional custom database config options for PostgreSQL
+//  db: {
+//    user: 'DB_USER',
+//    host: 'DB_HOST',
+//    database: 'DB_NAME',
+//    password: 'DB_PASSWORD',
+//    port: 'DB_PORT',
+//  },
   max_query_result: 100000000
 };
