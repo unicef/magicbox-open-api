@@ -8,7 +8,7 @@ module.exports = {
   auth0: {
     auth_domain: 'AUTH0_DOMAIN',
     client_id: 'AUTH0_CLIENTID',
-    callback_url: 'http://localhost:8000/api/v1/token/'
+    callback_url: 'http://localhost:8000/api/v1/token/',
     client_secret: 'CLIENT_SECRET',
     auth_url: 'AUTH_URL',
     // callback_url: 'http://magicbox-open-api.azurewebsites.net/api/v1/token/'
