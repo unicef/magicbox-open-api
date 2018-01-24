@@ -56,12 +56,13 @@ module.exports = {
   logger: {
     key: 'mixpanel_token'
   },
-  db: {
-    user: 'DB_USER',
-    host: 'DB_HOST',
-    database: 'DB_NAME',
-    password: 'DB_PASSWORD',
-    port: 'DB_PORT',
-  },
+    // Optional custom database config options for PostgreSQL
+//  db: {
+//    user: 'DB_USER',
+//    host: 'DB_HOST',
+//    database: 'DB_NAME',
+//    password: 'DB_PASSWORD',
+//    port: 'DB_PORT',
+//  },
   max_query_result: 100000000
 };
