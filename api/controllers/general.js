@@ -141,7 +141,7 @@ export const getCountriesWithSchools = (request, response) => {
     general_helper.getCountriesWithSchools(options)
       .then(results => {
         results.countries = results.rows.map(r => {
-          return r.country_code;
+          return alpha2ToAlpha3(r.country_code).toLowerCase();
         }).sort();
         // Remove "[{country_code": "GT}...]"
         delete results.rows;
