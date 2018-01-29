@@ -4,6 +4,8 @@ import * as auth from '../helpers/auth'
 import qs from 'qs'
 // import geojson from 'geojson'
 import * as logger from './../helpers/logger'
+// convert country code
+import {alpha3ToAlpha2, alpha2ToAlpha3} from 'i18n-iso-countries'
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
