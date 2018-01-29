@@ -273,10 +273,13 @@ export const showToken = (request, response) => {
  * @param{String} response - response object
  */
 export const getSchools = (request, response) => {
-  const {
-    country_code: country
+  let {
+    country: country
   } = getParams(request)
   const options = qs.parse(request.query)
+
+  country = alpha3ToAlpha2(country.toUpperCase())
+
   general_helper
     .getSchools(country, options)
     .then(result => {
