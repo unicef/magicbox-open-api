@@ -137,15 +137,23 @@ export function getCases(request, response) {
 export const getCountriesWithSchools = (request, response) => {
   const options = qs.parse(request.query);
   options.group_by = 'country_code';
+  const result = {
+    key: 'schools',
+    properties: []
+  }
+
   return new Promise((resolve, reject) => {
     general_helper.getCountriesWithSchools(options)
-      .then(results => {
-        results.countries = results.rows.map(r => {
-          return alpha2ToAlpha3(r.country_code).toLowerCase();
-        }).sort();
-        // Remove "[{country_code": "GT}...]"
-        delete results.rows;
-        response.json(results);
+      .then(data => {
+        data.rows.reduce((res, row) => {
+          let country_code = alpha2ToAlpha3(row.country_code).toLowerCase();
+          res.properties.push(country_code);
+          return res
+        }, result)
+
+        result.properties.sort()
+
+        response.json(result);
       })
   })
 }

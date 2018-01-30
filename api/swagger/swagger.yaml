@@ -1257,7 +1257,7 @@ paths:
           description: Success
           examples:
             application/json: {
-                            "key": "population_worldpop",
+                            "key": "schools",
                             "properties": [
                                     "afg",
                                     "ago",
