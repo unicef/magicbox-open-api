@@ -57,12 +57,12 @@ module.exports = {
     key: 'mixpanel_token'
   },
     // Optional custom database config options for PostgreSQL
-//  db: {
-//    user: 'DB_USER',
-//    host: 'DB_HOST',
-//    database: 'DB_NAME',
-//    password: 'DB_PASSWORD',
-//    port: 'DB_PORT',
-//  },
+  db: {
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
+  },
   max_query_result: 100000000
 };
