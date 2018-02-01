@@ -43,7 +43,10 @@
     "volos-swagger": "^0.8.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node build/server.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d build ./ --ignore node_modules,build --copy-files",
+    "build": "npm run clean && npm run build-server",
     "prod": "babel-node server.js",
     "dev": "babel-watch server.js",
     "precommit": "./preCommitChecks.sh",

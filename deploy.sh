@@ -125,5 +125,9 @@ if [ -e "$DEPLOYMENT_TARGET/config-sample.js" ]; then
   cd - > /dev/null
 fi
 
+# 5. Build server
+cd "$DEPLOYMENT_TARGET"
+eval $NPM_CMD run build
+
 ##################################################################################################################################
 echo "Finished successfully."
