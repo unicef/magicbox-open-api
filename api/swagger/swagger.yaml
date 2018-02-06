@@ -1250,6 +1250,7 @@ paths:
       tags:
         - 'Schools'
       description: Returns list of countries with for which we have school data
+      summary: 'List of countries with school data'
       # used as the method name of the controller
       operationId: getCountriesWithSchools
       responses:
@@ -1314,7 +1315,7 @@ paths:
       tags:
         - 'Schools'
       description: Returns SchoolResponse
-      summary: School
+      summary: School by ID
       parameters:
         - name: school_id
           type: string
