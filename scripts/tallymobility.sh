@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#
+# Mobility data have the following attributes:
+# id_origin,id_destination,journeys,people
+#
+# This script searches in a given directory for all the files matching the 
+# pattern YYYY-MM-DD.csv (mobility data), read the file contents and append 
+# the total number of journeys and people to the name of the file.
+#
+# YYYY-MM-DD.csv -> YYYY-MM-DD^JOURNEYS-PEOPLE.csv
+#
+
 # color codes
 orange=202
 red=160
@@ -52,7 +63,7 @@ for file in `ls *.csv`; do
     # new file name
     new_file="${BASH_REMATCH[1]}^${sum[0]}-${sum[1]}.csv"
     # rename file
-    mv $file "${BASH_REMATCH[1]}^${sum[0]}-${sum[1]}.csv"
+    mv $file $new_file
     # show processed information
     colored_echo "old file: ${file}, journeys: ${sum[0]}, people: ${sum[1]}, new file: ${new_file}" $green
   else
