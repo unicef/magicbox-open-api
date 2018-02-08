@@ -1258,7 +1258,7 @@ paths:
           description: Success
           examples:
             application/json: {
-                            "key": "population_worldpop",
+                            "key": "schools",
                             "properties": [
                                     "afg",
                                     "ago",
@@ -1275,7 +1275,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
-  /v1/schools/countries/{country_code}:
+  /v1/schools/countries/{country}:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
     get:
@@ -1284,7 +1284,7 @@ paths:
       description: Returns list of weeks for which requested data is available. List has first day of week.
       summary: Schools in country
       parameters:
-        - name: country_code
+        - name: country
           type: string
           in: path
           required: true

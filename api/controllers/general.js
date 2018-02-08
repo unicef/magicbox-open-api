@@ -4,6 +4,8 @@ import * as auth from '../helpers/auth'
 import qs from 'qs'
 // import geojson from 'geojson'
 import * as logger from './../helpers/logger'
+// convert country code
+import {alpha3ToAlpha2, alpha2ToAlpha3} from 'i18n-iso-countries'
 
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
@@ -135,15 +137,23 @@ export function getCases(request, response) {
 export const getCountriesWithSchools = (request, response) => {
   const options = qs.parse(request.query);
   options.group_by = 'country_code';
+  const result = {
+    key: 'schools',
+    properties: []
+  }
+
   return new Promise((resolve, reject) => {
     general_helper.getCountriesWithSchools(options)
-      .then(results => {
-        results.countries = results.rows.map(r => {
-          return r.country_code;
-        }).sort();
-        // Remove "[{country_code": "GT}...]"
-        delete results.rows;
-        response.json(results);
+      .then(data => {
+        data.rows.reduce((res, row) => {
+          let country_code = alpha2ToAlpha3(row.country_code).toLowerCase();
+          res.properties.push(country_code);
+          return res
+        }, result)
+
+        result.properties.sort()
+
+        response.json(result);
       })
   })
 }
@@ -271,10 +281,13 @@ export const showToken = (request, response) => {
  * @param{String} response - response object
  */
 export const getSchools = (request, response) => {
-  const {
-    country_code: country
+  let {
+    country: country
   } = getParams(request)
   const options = qs.parse(request.query)
+
+  country = alpha3ToAlpha2(country.toUpperCase())
+
   general_helper
     .getSchools(country, options)
     .then(result => {
