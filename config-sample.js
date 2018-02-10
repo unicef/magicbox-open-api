@@ -6,14 +6,14 @@ module.exports = {
     directory: 'aggregations'
   },
   auth0: {
-    auth_domain: 'AUTH0_DOMAIN',
-    client_id: 'AUTH0_CLIENTID',
+    auth_domain: process.env.AUTH0_DOMAIN || 'AUTH0_DOMAIN',
+    client_id: process.env.AUTH0_CLIENTID || 'AUTH0_CLIENTID',
     callback_url: 'http://localhost:8000/api/v1/token/',
-    client_secret: 'CLIENT_SECRET',
-    auth_url: 'AUTH_URL',
+    client_secret: process.env.AUTH0_CLIENT_SECRET || 'CLIENT_SECRET',
+    auth_url: process.env.AUTH_URL || 'AUTH_URL',
     // callback_url: 'http://magicbox-open-api.azurewebsites.net/api/v1/token/'
-    callback_url: 'http://localhost:8000/api/v1/token/',
-    redirect_uri: 'http://localhost:8000/',
+    callback_url: process.env.AUTH0_CB_URL || 'http://localhost:8000/api/v1/token/',
+    redirect_uri: process.env.REDIRECT_URI || 'http://localhost:8000/',
     roles: {
       'unicef.org': 'admin',
       'projectconnect.world': 'proco',
