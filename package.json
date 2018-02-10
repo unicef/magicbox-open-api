@@ -1,7 +1,7 @@
 {
   "name": "magicbox8",
   "engines": {
-    "node": "8.0.0"
+    "node": "8.1"
   },
   "version": "0.0.1",
   "private": true,
