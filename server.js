@@ -51,7 +51,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   app.use(swaggerExpress.runner.swaggerTools.swaggerMetadata())
   app.use(swaggerExpress.runner.swaggerTools.swaggerSecurity(config.swaggerSecurityHandlers))
 
-  app.use(cache.expressMiddleware().cache({ key: getCacheKey }))
+  app.use(cache.expressMiddleware().cache({key: getCacheKey}))
   // Provide the security handlers
 
   swaggerExpress.register(app)
