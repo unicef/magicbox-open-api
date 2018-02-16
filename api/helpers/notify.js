@@ -15,14 +15,14 @@ var transporter = nodemailer.createTransport({
  * @return {object} object with ip, path and query of the request
  */
 module.exports = (subject, message) => {
-  return new Promise((resolve, reject)=>  {
+  return new Promise((resolve, reject)=> {
     var mailOptions = {
       from: config.email.from,
       to: config.email.to,
       subject: subject,
       text: JSON.stringify(message)
     };
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
         console.log(error);
         return reject(error)
@@ -31,6 +31,5 @@ module.exports = (subject, message) => {
         return resolve(error)
       }
     });
-
   })
 }
