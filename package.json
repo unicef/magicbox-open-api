@@ -51,9 +51,9 @@
     "build": "npm run clean && npm run build-server",
     "prod": "babel-node server.js",
     "dev": "babel-watch server.js",
-    "precommit": "./preCommitChecks.sh",
+    "precommit": "./run-tests.sh",
     "pretest": "if [ ! -f ./config.js ]; then cp config-sample.js config.js; fi",
-    "test": "./preCommitChecks.sh",
+    "test": "./run-tests.sh",
     "tallymobility": "scripts/tallymobility.sh public/aggregations/mobility/acme/santiblanko/col"
   },
   "devDependencies": {
