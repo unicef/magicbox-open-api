@@ -26,11 +26,12 @@ Types of data currently available to the public include:
 	nvm install 8
 ## Setup
 
-	git clone https://github.com/unicef/magicbox-open-api.git
-	cd magicbox-open-api
-	cp config-sample.js config.js
-	npm install
-	npm run start
+    git clone https://github.com/unicef/magicbox-open-api.git
+    cd magicbox-open-api
+    cp config-sample.js config.js
+    npm install
+    npm run build
+    npm run start
 
 Now browse to: localhost:8000/docs
 
