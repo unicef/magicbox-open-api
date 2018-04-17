@@ -1,7 +1,9 @@
 Magic Box API
 =============
 
-[![Build Status](https://travis-ci.org/unicef/magicbox-open-api.svg?branch=master)](https://travis-ci.org/unicef/magicbox-open-api) [![Maintainability](https://api.codeclimate.com/v1/badges/d36cba5a7e783ffd8970/maintainability)](https://codeclimate.com/github/unicef/magicbox-open-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/d36cba5a7e783ffd8970/test_coverage)](https://codeclimate.com/github/unicef/magicbox-open-api/test_coverage)
+[![Chat on Gitter](https://badges.gitter.im/unicef-innovation-dev/Lobby.png)](https://gitter.im/unicef-innovation-dev/Lobby)
+[![Build Status](https://travis-ci.org/unicef/magicbox-open-api.svg?branch=master)](https://travis-ci.org/unicef/magicbox-open-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d36cba5a7e783ffd8970/maintainability)](https://codeclimate.com/github/unicef/magicbox-open-api/maintainability)
 
 [Magic Box](https://github.com/unicef/magicbox/wiki) is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
 
