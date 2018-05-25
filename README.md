@@ -1,7 +1,9 @@
 Magic Box API
 =============
 
+[![Chat on Gitter](https://badges.gitter.im/unicef-innovation-dev/Lobby.png)](https://gitter.im/unicef-innovation-dev/Lobby)
 [![Build Status](https://travis-ci.org/unicef/magicbox-open-api.svg?branch=master)](https://travis-ci.org/unicef/magicbox-open-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d36cba5a7e783ffd8970/maintainability)](https://codeclimate.com/github/unicef/magicbox-open-api/maintainability)
 
 [Magic Box](https://github.com/unicef/magicbox/wiki) is an open-source platform that is intended to use real-time information to inform life-saving humanitarian responses to emergency situations. It’s composed of multiple github repositories designed to ingest, aggregate, and serve data.
 
@@ -26,11 +28,12 @@ Types of data currently available to the public include:
 	nvm install 8
 ## Setup
 
-	git clone https://github.com/unicef/magicbox-open-api.git
-	cd magicbox-open-api
-	cp config-sample.js config.js
-	npm install
-	npm run start
+    git clone https://github.com/unicef/magicbox-open-api.git
+    cd magicbox-open-api
+    cp config-sample.js config.js
+    npm install
+    npm run build
+    npm run start
 
 Now browse to: localhost:8000/docs
 
