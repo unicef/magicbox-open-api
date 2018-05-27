@@ -353,7 +353,6 @@ export const get_cases = (key, kind, weekType, week) => {
  * @return {Promise} Fulfilled when records are returned
  */
 export const getProperties = (queryString) => {
-  console.log(queryString, '****')
   return new Promise((resolve, reject) => {
     let queryParts = queryString.split('_')
     let key = queryParts[0]
