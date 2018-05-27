@@ -1,8 +1,8 @@
 ``
 module.exports = {
   azure: {
-    storage_account: 'storage_account_name',
-    key1: 'azure_storage_key',
+    storage_account: process.env.STORAGE_ACCOUNT_NAME || 'storage_account_name',
+    key1: process.env.KEY1 || 'azure_storage_key',
     directory: 'aggregations'
   },
   auth0: {
