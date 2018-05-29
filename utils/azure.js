@@ -1,5 +1,6 @@
 import config from '../config'
 const base_dir = config.azure.directory
+const csvjson = require('csvjson');
 // import jsonfile from 'jsonfile'
 
 /**
@@ -46,7 +47,7 @@ export function read_file(fileSvc, key, dir, fileName) {
         // jsonfile.writeFile('./public/aggregations/' + [key, dir, fileName].join('/'), JSON.parse(fileContent), function (err) {
         //   console.error(err)
         // })
-        resolve(JSON.parse(fileContent));
+        resolve(csvjson.toObject(fileContent, {}))
         // resolve(JSON.parse(fileContent));
       } else {
         console.log('Error while reading', base_dir+path+fileName);
