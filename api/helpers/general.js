@@ -2,8 +2,60 @@ import config from '../../config'
 import bluebird from 'bluebird'
 import PostgresHelper from './postgres'
 import * as data_access from '../../utils/data_access'
-
+import fs from 'fs'
 const dbClient = new PostgresHelper()
+
+/**
+ * Returns a list of (country code, source name, shapefile set} for the given search key
+ * @param{String} key - the search key
+ * @return{Promise} fulfilled when records are returned
+ */
+export function getCountriesAndSourceData(key) {
+  return new Promise((resolve, reject) => {
+    switch (key) {
+      case 'mobility':
+        {
+          let path = './public/aggregations/' + key + '/'
+          let filenames = walkSync(path, [])
+          // transform the list of filenames into an array of objects in desired format
+          let results = filenames
+                        .map(line => line.split('/'))
+                        .reduce((arr, line) => {
+                          let obj = {
+                                      'country': line[2],
+                                      'source': line[0],
+                                      'shapefile': line[1]
+                                    }
+                          arr.push(obj)
+                          return arr
+                        }, [])
+          return resolve(results)
+        }
+      }
+    }
+  )
+}
+
+/**
+ * Traverses a directory recursively and returns the full pathnames of the files
+ * at the deepest level
+ * @param {String} dir path for the base directory
+ * @param {Array} filelist list of filenames to be returned
+ * @return {Array} list of filenames at the deepest level
+ */
+function walkSync(dir, filelist) {
+    let files = fs.readdirSync(dir)
+    filelist = filelist || [];
+    files.forEach(file => {
+      if (fs.statSync(dir + file).isDirectory()) {
+        filelist = walkSync(dir + file + '/', filelist)
+      } else {
+        filelist.push(dir.split('/').slice(4).join('/') + file)
+      }
+    })
+
+    return filelist
+}
 
 /**
  * Returns name of the a country's shapefile from` the List of shapefiles
@@ -392,7 +444,6 @@ export const getProperties = (queryString) => {
             })) {
             let file = queryParts.pop();
             path = queryParts.slice(1).join('/')
-            console.log('BBBBBB')
             return resolve(data_access.read_file(key, path, file))
           }
           path = queryParts.slice(1).join('/')
