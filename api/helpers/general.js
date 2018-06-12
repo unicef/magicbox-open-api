@@ -19,7 +19,9 @@ export function getCountriesAndSourceData(key) {
           let filenames = walkSync(path, [])
           // transform the list of filenames into an array of objects in desired format
           let results = filenames
-                        .map(line => line.split('/'))
+                        .map(line => {
+                          return line.split('/')
+                        })
                         .reduce((arr, line) => {
                           let obj = {
                                       'country': line[2],
@@ -29,7 +31,13 @@ export function getCountriesAndSourceData(key) {
                           arr.push(obj)
                           return arr
                         }, [])
-          return resolve(results)
+          // de-duplicate values in the array
+          let unique_results = Object.values(results.reduce((h, e) => {
+            let unique_key = e.country + e.source + e.shapefile
+            h[unique_key] = e
+            return h
+          }, {}))
+          return resolve(unique_results)
         }
       }
     }
