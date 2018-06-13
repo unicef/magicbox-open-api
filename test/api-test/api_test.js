@@ -11,6 +11,17 @@ process.env.NODE_ENV = 'test'
 
 chai.use(chaiHttp);
 
+describe('testing mobility API', () => {
+  it('it should GET list of objects', (done) => {
+    chai.request(server)
+    .get('/api/v1/mobility/countries/')
+    .end((err, res) => {
+      res.should.have.status(200)
+      res.body.should.be.a('array')
+      done()
+    })
+  })
+})
 
 describe('testing population API', () => {
       it('it should GET list of countries', (done) => {
