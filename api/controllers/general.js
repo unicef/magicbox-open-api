@@ -18,10 +18,7 @@ export function getMosquito(request, response) {
   // let [ key, kind, country ] = request._key.split('_')
 
   let key = 'mosquito'
-  let {
-    kind: kind,
-    country: country
-  } = getParams(request)
+  let {kind: kind, country: country} = getParams(request)
 
 
   const source = config[key].source
@@ -39,9 +36,7 @@ export function getMosquito(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
@@ -63,7 +58,7 @@ export function getPopulation(request, response) {
 
   let {
     source = config.population.default_source,
-      country: country
+    country: country
   } = getParams(request)
 
   const data_source = (source !== undefined) ? source : config.population.source
@@ -78,9 +73,7 @@ export function getPopulation(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
@@ -122,9 +115,7 @@ export function getCases(request, response) {
     })
     .catch(error => {
       logger.logErrorResponse(request, error)
-      response.json({
-        message: error
-      })
+      response.json({message: err})
     })
 }
 
@@ -144,9 +135,7 @@ export function getCountriesAndSourceData(request, response) {
   })
   .catch(err => {
     logger.logErrorResponse(request, err)
-    response.json({
-      message: err
-    })
+    response.json({message: err})
   })
 }
 
@@ -217,9 +206,7 @@ export function getProperties(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: error
-      })
+      response.json({message: err})
     })
 }
 
@@ -326,9 +313,7 @@ export const getSchools = (request, response) => {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
@@ -359,9 +344,7 @@ export const getSchool = (request, response) => {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
