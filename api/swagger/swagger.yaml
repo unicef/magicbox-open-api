@@ -15,13 +15,13 @@ For detailed instructions on how to use this API, please read this <a href='http
 <p>
 <ul>
   <li>
-    Case data from [Paho](http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en)
+    Case data from <a href=http://www.paho.org/hq/index.php?option=com_content&view=article&id=12390&Itemid=42090&lang=en>Paho</a>
   </li>
   <li>
     Population from <a href='http://worldpop.org.uk'>worldpop</a>
   </li>
   <li>
-    Mosquito prevalence -- Special thanks to the authors of [The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus](https://elifesciences.org/articles/08347)
+    Mosquito prevalence -- Special thanks to the authors of <a href=https://elifesciences.org/articles/08347>The global distribution of the arbovirus vectors Aedes aegypti and Ae. albopictus</a>
   </li>
 </ul>
 </p>
@@ -30,7 +30,7 @@ For detailed instructions on how to use this API, please read this <a href='http
 You can clone and install the <a href='https://github.com/unicef/magicbox-open-api/'>Magic Box API</a> locally, it comes with sample data.  If you would like to generate the same data sets we serve, please go to the the <a href='https://github.com/unicef/magicbox/wiki'>Magic Box Wiki</a>.
 </p>
 <p>
-  Most data comes with an admin ID, which is explained <a href='https://github.com/unicef/magicbox-open-api/'>here</a>. We will provide the option to request geojson with that data shortly.
+  Most data comes with an admin ID, which is explained <a href='https://github.com/unicef/magicbox-open-api#what-does-this-mean'>here</a>. We will provide the option to request geojson with that data shortly.
 </p>
 "
 
