@@ -132,11 +132,11 @@ export function getCountriesAndSourceData(request, response) {
     .getCountriesAndSourceData(key) // key is mobility
     .then(properties => {
       return response.json(properties)
-  })
-  .catch(err => {
-    logger.logErrorResponse(request, err)
-    response.json({message: err})
-  })
+    })
+    .catch(err => {
+      logger.logErrorResponse(request, err)
+      response.json({message: err})
+    })
 }
 
 /**
