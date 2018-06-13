@@ -392,7 +392,6 @@ export const getProperties = (queryString) => {
             })) {
             let file = queryParts.pop();
             path = queryParts.slice(1).join('/')
-            console.log('BBBBBB')
             return resolve(data_access.read_file(key, path, file))
           }
           path = queryParts.slice(1).join('/')

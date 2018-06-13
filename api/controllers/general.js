@@ -166,9 +166,14 @@ export const getCountriesWithSchools = (request, response) => {
  */
 export function getProperties(request, response) {
   // key was request._key before
-
+  // key is type of data user is querying
+  // ex: mobility, population...
   let key = request.swagger.apiPath.split('/')[2]
   let params = getParams(request)
+
+  // Currently only using worldpop
+  // so no need to specify source.
+  // TODO: better explanation.
   if (key === 'population') {
     if (!('source' in params)) {
       params.source = config.population.default_source
@@ -180,6 +185,7 @@ export function getProperties(request, response) {
       return params[property]
     }).join('_')
   }
+
 
   return general_helper
     .getProperties(key)
