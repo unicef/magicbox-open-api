@@ -31,7 +31,7 @@ export function getCountriesAndSourceData(key) {
  */
 function createArrayOfCountries(filenames) {
   let results = filenames.map(line => {
-    return line.split('/').slice(0 ,3) // discard csv in path
+    return line.split('/').slice(0, 3) // discard csv in path
   }).reduce((arr, line) => {
     let obj = {
       'country': line[2], 'source': line[0], 'shapefile': line[1],
