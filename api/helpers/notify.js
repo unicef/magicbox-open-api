@@ -1,7 +1,7 @@
 import config from '../../config'
-var nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: config.email.user,
@@ -11,12 +11,13 @@ var transporter = nodemailer.createTransport({
 
 /**
  * Returns ip, path and query of the request
- * @param  {object} request request object
+ * @param  {object} subject request object
+ * @param  {object} message request object
  * @return {object} object with ip, path and query of the request
  */
 module.exports = (subject, message) => {
   return new Promise((resolve, reject)=> {
-    var mailOptions = {
+    let mailOptions = {
       from: config.email.from,
       to: config.email.to,
       subject: subject,
