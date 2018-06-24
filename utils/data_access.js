@@ -3,7 +3,7 @@ import azure_storage from 'azure-storage'
 import jsonfile from 'jsonfile'
 import * as azure_utils from './azure'
 import fs from 'fs'
-const csv = require('csvtojson')
+const csvjson = require('csvjson');
 
 const storage_account = config.azure.storage_account
 const azure_key = (process.env.NODE_ENV !== 'test') ? config.azure.key1 : ''
@@ -96,10 +96,14 @@ export function read_file(key, dir, fileName) {
   });
 }
 
+/**
+ * Read a file and return Json object with the file content
+ * @param  {String} path Path to CSV
+ * @return {Promise} Fulfilled when records are returned
+ */
 function read_csv(path) {
   return new Promise((resolve, reject) => {
-    csv().fromFile(path).on('end_parsed', (jsonArrayObj) => { // when parse finished, result will be emitted here.
-      return resolve(jsonArrayObj);
-    })
+    let data = fs.readFileSync(path, {encoding: 'utf8'});
+      resolve(csvjson.toObject(data, {}))
   })
 }

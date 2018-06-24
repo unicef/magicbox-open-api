@@ -40,7 +40,8 @@ function createArrayOfCountries(filenames) {
     let obj = {
       'country': line[2], 'source': line[0], 'shapefile': line[1],
       // rebuild path in case apps need it later
-      'path': `/api/v1/mobility/sources/${line[0]}/series/${line[1]}/countries/${line[2]}`
+      'path': `/mobility/sources/${line[0]}/series/${line[1]}/countries/${line[2]}`,
+      'version': '/api/v1'
     }
     arr.push(obj)
     return arr
