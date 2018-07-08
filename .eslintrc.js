@@ -40,6 +40,9 @@ module.exports = {
           'comma-dangle': ['error', 'never'],
 
           'one-var': 0,
-          'one-var-declaration-per-line': 0
+          'one-var-declaration-per-line': 0,
+          // disable linebreak-style check so that ESLint won't give WinOS trouble
+          'linebreak-style': 0,
+          'global-require': 0
       }
 };

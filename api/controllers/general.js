@@ -10,18 +10,15 @@ import {alpha3ToAlpha2, alpha2ToAlpha3} from 'i18n-iso-countries'
 /**
  * Returns mosquito prevalence for specified country. If country is not specified it will return
  * mosquito prevalence for all countries.
- * @param{String} request - request object
- * @param{String} response - response object
- * @return{Promise} Fulfilled when records are returned
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} Fulfilled when records are returned
  */
 export function getMosquito(request, response) {
   // let [ key, kind, country ] = request._key.split('_')
 
   let key = 'mosquito'
-  let {
-    kind: kind,
-    country: country
-  } = getParams(request)
+  let {kind: kind, country: country} = getParams(request)
 
 
   const source = config[key].source
@@ -39,9 +36,7 @@ export function getMosquito(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
@@ -49,9 +44,9 @@ export function getMosquito(request, response) {
  * Returns population metadata available from specified source for specified country.
  * If country is not specified it will return data for all countries.
  * Default source is worldpop.
- * @param{String} request - request object
- * @param{String} response - response object
- * @return{Promise} Fulfilled when records are returned
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} Fulfilled when records are returned
  */
 export function getPopulation(request, response) {
   // const [ key, source, country ] = request._key.split('_')
@@ -63,7 +58,7 @@ export function getPopulation(request, response) {
 
   let {
     source = config.population.default_source,
-      country: country
+    country: country
   } = getParams(request)
 
   const data_source = (source !== undefined) ? source : config.population.source
@@ -78,18 +73,16 @@ export function getPopulation(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
 
 /**
  * Returns an object with information about cases for specific kind in all countries
- * @param{String} request - request object
- * @param{String} response - response object
- * @return{Promise} Fulfilled when records are returned
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} Fulfilled when records are returned
  */
 export function getCases(request, response) {
   // key represents what data we want to pull, here it is 'cases'
@@ -122,17 +115,35 @@ export function getCases(request, response) {
     })
     .catch(error => {
       logger.logErrorResponse(request, error)
-      response.json({
-        message: error
-      })
+      response.json({message: err})
+    })
+}
+
+/**
+ * Returns a list of (country code, source name, shapefile set} for the given search key
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} fulfilled when records are returned
+ */
+export function getCountriesAndSourceData(request, response) {
+  // if the path is /v1/mobility/countries, key will be 'mobility'
+  let key = request.swagger.apiPath.split('/')[2]
+  return general_helper
+    .getCountriesAndSourceData(key) // key is mobility
+    .then(properties => {
+      return response.json(properties)
+    })
+    .catch(err => {
+      logger.logErrorResponse(request, err)
+      response.json({message: err})
     })
 }
 
 /**
  * Fetches schools based on country and other options specified
- * @param{String} request - request object
- * @param{String} response - response object
- * @return{Promise} Fullfilled when schools are returned
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} Fullfilled when schools are returned
  */
 export const getCountriesWithSchools = (request, response) => {
   const options = qs.parse(request.query);
@@ -160,9 +171,9 @@ export const getCountriesWithSchools = (request, response) => {
 
 /**
  * Returns an object with properties for specific key
- * @param{String} request - request object
- * @param{String} response - response object
- * @return{Promise} Fulfilled when records are returned
+ * @param   {String} request - request object
+ * @param   {String} response - response object
+ * @return  {Promise} Fulfilled when records are returned
  */
 export function getProperties(request, response) {
   // key was request._key before
@@ -201,16 +212,14 @@ export function getProperties(request, response) {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: error
-      })
+      response.json({message: err})
     })
 }
 
 /**
  * Returns a clickable link to Auth0 for users to login and get access token
- * @param{String} request - request object
- * @param{String} response - response object
+ * @param {String} request - request object
+ * @param {String} response - response object
  */
 export const getToken = (request, response) => {
   let url = auth.getAuthorizeUrl()
@@ -227,8 +236,8 @@ export const getToken = (request, response) => {
 
 /**
  * Displays the token or error received from Auth0.
- * @param{String} request - request object
- * @param{String} response - response object
+ * @param {String} request - request object
+ * @param {String} response - response object
  */
 export const getRefreshToken = (request, response) => {
   const code = request.query.code
@@ -245,8 +254,8 @@ export const getRefreshToken = (request, response) => {
 }
 /**
  * Displays the token or error received from Auth0.
- * @param{String} request - request object
- * @param{String} response - response object
+ * @param {String} request - request object
+ * @param {String} response - response object
  */
 export const refreshToken = (request, response) => {
   let params = getParams(request)
@@ -267,8 +276,8 @@ export const refreshToken = (request, response) => {
 }
 /**
  * Displays the token or error received from Auth0.
- * @param{String} request - request object
- * @param{String} response - response object
+ * @param {String} request - request object
+ * @param {String} response - response object
  */
 export const showToken = (request, response) => {
   let authObject = qs.parse(request.body)
@@ -283,8 +292,8 @@ export const showToken = (request, response) => {
 
 /**
  * Displays the token or error received from Auth0.
- * @param{String} request - request object
- * @param{String} response - response object
+ * @param {String} request - request object
+ * @param {String} response - response object
  */
 export const getSchools = (request, response) => {
   let {
@@ -310,9 +319,7 @@ export const getSchools = (request, response) => {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
@@ -343,16 +350,14 @@ export const getSchool = (request, response) => {
     })
     .catch(err => {
       logger.logErrorResponse(request, err)
-      response.json({
-        message: err
-      })
+      response.json({message: err})
     })
 }
 
 /**
  * Returns object with all request parameters
- * @param{String} request - request object
- * @return {object} params all request parameters
+ * @param   {String} request - request object
+ * @return  {object} params all request parameters
  */
 export const getParams = (request) => {
   let params = {}

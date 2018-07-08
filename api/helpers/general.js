@@ -2,8 +2,78 @@ import config from '../../config'
 import bluebird from 'bluebird'
 import PostgresHelper from './postgres'
 import * as data_access from '../../utils/data_access'
-
+import fs from 'fs'
 const dbClient = new PostgresHelper()
+
+/**
+ * Returns a list of (country code, source name, shapefile set} for the given search key
+ * @param   {String} key - the search key
+ * @return  {Promise} fulfilled when records are returned
+ */
+export function getCountriesAndSourceData(key) {
+  return new Promise((resolve, reject) => {
+    switch (key) {
+      case 'mobility': {
+        let path = './public/aggregations/' + key + '/'
+        let filenames = walkSync(path, [])
+        let results = createArrayOfCountries(filenames)
+        return resolve(results)
+        }
+      }
+    }
+  )
+}
+
+/**
+ * Transforms a list of filenames into an array of objects in desired format
+ * @param   {Array} filenames - list of filenames to be transformed
+ * @return  {Array} unique_results - array of unique objects in our desired format
+ */
+function createArrayOfCountries(filenames) {
+  let results = filenames
+  .filter(line => {
+    return line.match(/csv/i)
+  })
+  .map(line => {
+    return line.split('/').slice(0, 3) // discard csv in path
+  }).reduce((arr, line) => {
+    let obj = {
+      'country': line[2], 'source': line[0], 'series': line[1],
+      // rebuild path in case apps need it later
+      'path': `/mobility/sources/${line[0]}/series/${line[1]}/countries/${line[2]}`,
+      'version': '/api/v1'
+    }
+    arr.push(obj)
+    return arr
+  }, [])
+  // de-duplicate values in the array
+  let unique_results = Object.values(results.reduce((h, e) => {
+    h[e.country + e.source + e.shapefile] = e
+    return h
+    }, {}))
+  return unique_results
+}
+
+/**
+ * Traverses a directory recursively and returns the full pathnames of the files
+ * at the deepest level
+ * @param   {String} dir path for the base directory
+ * @param   {Array} filelist list of filenames to be returned
+ * @return  {Array} list of filenames at the deepest level
+ */
+function walkSync(dir, filelist) {
+  let files = fs.readdirSync(dir)
+  filelist = filelist || [];
+  files.forEach(file => {
+    if (fs.statSync(dir + file).isDirectory()) {
+      filelist = walkSync(dir + file + '/', filelist)
+    } else {
+      filelist.push(dir.split('/').slice(4).join('/') + file)
+    }
+  })
+
+  return filelist
+}
 
 /**
  * Returns name of the a country's shapefile from` the List of shapefiles
@@ -25,9 +95,9 @@ const getFile = (shapefiles, country) => {
 
 /**
  * Return an object with list of countries and aggregated data for each country
- * @param{String} kind - Type of data requested (population or mosquito)
- * @param{String} source - source from which data should be fetched
- * @param{String} country - country for which data should be fetched,
+ * @param {String} kind - Type of data requested (population or mosquito)
+ * @param {String} source - source from which data should be fetched
+ * @param {String} country - country for which data should be fetched,
  *                          if not specified fetch data for all countries
  * @return{Promise} Fulfilled when records are returned
  */
@@ -61,9 +131,9 @@ export const countries_with_this_kind_data = (kind, source, country) => {
 
 /**
  * Returns geo-properties for a country
- * @param  {object} shapefileSet Object with information regarding requested data
+ * @param   {object} shapefileSet Object with information regarding requested data
  *                               e.g. country, name of shapefile etc.
- * @return {Promise} Fulfilled  when geo-properties are returned
+ * @return  {Promise} Fulfilled  when geo-properties are returned
  */
 const getGeoProperties = (shapefileSet) => {
   return new Promise((resolve, reject) => {
@@ -85,9 +155,9 @@ const getGeoProperties = (shapefileSet) => {
 
 /**
  * Returns list of shapefiles from specified source for specified kind of data
- * @param{String} kind - Type of data requested (population or mosquito)
- * @param{String} source - source from which data should be fetched
- * @return{Promise} Fulfilled  when shapefiles are returned
+ * @param   {String} kind - Type of data requested (population or mosquito)
+ * @param   {String} source - source from which data should be fetched
+ * @return  {Promise} Fulfilled  when shapefiles are returned
  */
 export const getShapeFiles = (kind, source) => {
   return new Promise((resolve, reject) => {
@@ -225,8 +295,8 @@ const mergePropertiesWithShapefile = (shapefileSet) => {
 
 /**
  * Return object for raster that contains metadata gleaned from the raster file name
- * @param{Object} file_obj - raster blob object from storage
- * @return{Object} Raster metadata
+ * @param   {Object} file_obj - raster blob object from storage
+ * @return  {Object} Raster metadata
  */
 function file_to_record(file_obj) {
   let [ary, raster, data_source, sum, sq_km] = file_obj.split(/\^/);

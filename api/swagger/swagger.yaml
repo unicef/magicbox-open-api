@@ -74,6 +74,37 @@ x-volos-resources:
         maxEntries: 10000
 
 paths:
+  /v1/mobility/countries:
+    x-swagger-router-controller: general
+    get:
+      tags:
+        - 'Mobility'
+      description: Returns list of countries for which we have mobility data. Each list entry also has the data provider's name ("source") and the file series name ("series").
+      summary: abw, afg...
+      # used as the method name of the controller
+      operationId: getCountriesAndSourceData
+      responses:
+        "200":
+          description: Success
+          examples:
+            application/json: {
+                                "key": "mobility",
+                                "properties": [
+                                    {
+                                    "country": 'col',
+                                    "source": 'acme',
+                                    "series": 'santiblanko'
+                                    }
+                                ]
+                              }
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ValueResponse"
+        # responses many fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /v1/mobility/sources:
     # binds a127 app logic to a route
     x-swagger-router-controller: general
