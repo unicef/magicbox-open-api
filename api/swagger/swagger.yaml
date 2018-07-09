@@ -93,7 +93,9 @@ paths:
                                     {
                                     "country": 'col',
                                     "source": 'acme',
-                                    "series": 'santiblanko'
+                                    "series": 'santiblanko',
+                                    "path":"/mobility/sources/acme/series/santiblanko/countries/col",
+                                    "version":"/api/v1"
                                     }
                                 ]
                               }
