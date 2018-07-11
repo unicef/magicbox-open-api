@@ -80,7 +80,7 @@ paths:
     get:
       tags:
         - 'Mobility'
-      description: Returns list of countries for which we have mobility data. Each list entry also has the data's provider name ("source"), the shapefile set name ("shapefile"), and the path for app use.
+      description: Returns list of countries for which we have mobility data. Each list entry also has the data provider's name ("source"), the file series name ("series"), the path for app use, and the API version.
       summary: List of countries
       # used as the method name of the controller
       operationId: getCountriesAndSourceData
@@ -94,9 +94,9 @@ paths:
                                     {
                                     "country": 'col',
                                     "source": 'acme',
-                                    "shapefile": 'santiblanko',
-                                    "path": '/api/mobility/source/acme/series/santiblanko/countries/col'
-                                    #TODO: prefix the path to reflect the most recent changes
+                                    "series": 'santiblanko',
+                                    "path":"/mobility/sources/acme/series/santiblanko/countries/col",
+                                    "version":"/api/v1"
                                     }
                                 ]
                               }

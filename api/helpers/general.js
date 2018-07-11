@@ -30,13 +30,18 @@ export function getCountriesAndSourceData(key) {
  * @return  {Array} unique_results - array of unique objects in our desired format
  */
 function createArrayOfCountries(filenames) {
-  let results = filenames.map(line => {
+  let results = filenames
+  .filter(line => {
+    return line.match(/csv/i)
+  })
+  .map(line => {
     return line.split('/').slice(0, 3) // discard csv in path
   }).reduce((arr, line) => {
     let obj = {
-      'country': line[2], 'source': line[0], 'shapefile': line[1],
+      'country': line[2], 'source': line[0], 'series': line[1],
       // rebuild path in case apps need it later
-      'path': `/api/mobility/source/${line[0]}/series/${line[1]}/countries/${line[2]}`
+      'path': `/mobility/sources/${line[0]}/series/${line[1]}/countries/${line[2]}`,
+      'version': '/api/v1'
     }
     arr.push(obj)
     return arr
