@@ -325,8 +325,8 @@ export const getSchools = (request, response) => {
 
 /**
  * getSchool - gets a school
- *  @param  {String} request request
- *  @param  {String} response response
+ * @param {String} request request
+ * @param {String} response response
  */
 export const getSchool = (request, response) => {
   const {

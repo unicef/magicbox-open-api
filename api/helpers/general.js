@@ -146,7 +146,9 @@ const getGeoProperties = (shapefileSet) => {
         return resolve(shapefileSet)
       })
       .catch(error => {
-        return reject('Error getting geo-properties for ' + shapefileSet.country)
+        return reject(
+	  'Error getting geo-properties for ' + shapefileSet.country
+	)
       })
   })
 }
@@ -634,7 +636,8 @@ export const getCountriesWithSchools = (options) => {
  */
 export const getSchools = (country, options) => {
   return new Promise((resolve, reject) => {
-    let select = 'SELECT  id, lat, lon, speed_connectivity, type_connectivity FROM schools'
+    let select = 'SELECT  id, lat, lon, speed_connectivity, ' +
+      'type_connectivity FROM schools'
     options.country_code = country
     // let select = 'SELECT * from home_temp'
     // options.dept = country
