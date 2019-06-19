@@ -636,7 +636,7 @@ export const getCountriesWithSchools = (options) => {
  */
 export const getSchools = (country, options) => {
   return new Promise((resolve, reject) => {
-    let select = 'SELECT  id, lat, lon, speed_connectivity, ' +
+    let select = 'SELECT  id, lat, lon, school_id, name, speed_connectivity, type_connectivity, sector, environment, gender, ethnic_group, shift_type,' +
       'type_connectivity FROM schools'
     options.country_code = country
     // let select = 'SELECT * from home_temp'
