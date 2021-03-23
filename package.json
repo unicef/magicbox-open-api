@@ -12,7 +12,7 @@
   "main": "./server.js",
   "dependencies": {
     "a127-magic": "^0.12.1",
-    "auth0": "^2.24.0",
+    "auth0": "^2.27.1",
     "auth0-js": "^9.13.0",
     "azure-storage": "^2.10.3",
     "babel-cli": "^6.24.1",
