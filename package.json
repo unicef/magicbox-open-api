@@ -13,7 +13,7 @@
   "dependencies": {
     "a127-magic": "^0.12.1",
     "auth0": "^2.24.0",
-    "auth0-js": "^9.13.0",
+    "auth0-js": "^9.13.2",
     "azure-storage": "^2.10.3",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^10.1.0",
